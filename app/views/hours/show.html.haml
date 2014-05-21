@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Course:
+  = @hour.course_id
+%p
+  %b Teaching assistant:
+  = @hour.teaching_assistant_id
+%p
+  %b Num:
+  = @hour.num
+
+= link_to 'Edit', edit_hour_path(@hour)
+\|
+= link_to 'Back', hours_path

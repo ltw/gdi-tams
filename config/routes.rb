@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :hours
+
   resources :admins
 
   resources :teaching_assistants
