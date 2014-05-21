@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :admins
+
+  resources :teaching_assistants
+
+  resources :statuses
+
   resources :courses
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @teaching_assistant.name
+%p
+  %b Email:
+  = @teaching_assistant.email
+%p
+  %b Status:
+  = @teaching_assistant.status_id
+
+= link_to 'Edit', edit_teaching_assistant_path(@teaching_assistant)
+\|
+= link_to 'Back', teaching_assistants_path
