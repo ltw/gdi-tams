@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   resources :hours
 
-  resources :admins
+  resources :admins, only: [:index]
 
-  resources :teaching_assistants
+  resources :teaching_assistants, only: [:index, :show]
 
   resources :statuses
 
