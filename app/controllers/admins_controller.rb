@@ -5,6 +5,9 @@ class AdminsController < ApplicationController
     @courses = Course.upcoming.single_day
     @series = Series.upcoming
     @tas = TeachingAssistant.all.sort_by(&:name)
+    @approved = Status.find_by_label("approved")
+    @banned = Status.find_by_label("banned")
+    @pending = Status.find_by_label("pending")
   end
 
   private

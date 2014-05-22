@@ -39,7 +39,7 @@
       - TeachingAssistant.prospective.each do |ta|
         %li
           = link_to ta.name, edit_teaching_assistant_path(ta)
-          = link_to 'Upgrade status', teaching_assistant_path(ta.id, teaching_assistant: {status_id: Status.find_by_label("pending").id}), method: :put
+          = link_to 'Upgrade status', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @pending.id}), method: :put
 
 %table
   %tr
@@ -62,9 +62,9 @@
       %td= link_to 'Edit', edit_teaching_assistant_path(ta)
       %td
         - if ta.pending?
-          = link_to 'Upgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: Status.find_by_label("approved").id}), method: :put
+          = link_to 'Upgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @approved.id}), method: :put
         - elsif ta.approved?
-          = link_to 'Downgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: Status.find_by_label("pending").id}), method: :put
-      %td= link_to 'Ban', teaching_assistant_path(ta.id, teaching_assistant: {status_id: Status.find_by_label("banned").id}), method: :put
+          = link_to 'Downgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @pending.id}), method: :put
+      %td= link_to 'Ban', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @banned.id}), method: :put
       %td= link_to 'Remove', teaching_assistant_path(ta.id, teaching_assistant: {}), method: :delete
 
