@@ -66,5 +66,5 @@
         - elsif ta.approved?
           = link_to 'Downgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @pending.id}), method: :put
       %td= link_to 'Ban', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @banned.id}), method: :put
-      %td= link_to 'Remove', teaching_assistant_path(ta.id, teaching_assistant: {}), method: :delete
+      %td= link_to 'Remove', teaching_assistant_path(ta.id), method: :delete
 
