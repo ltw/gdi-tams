@@ -16,7 +16,8 @@
 - @series.each do |series|
   %p
     %b= series.end_date
-    = link_to series.name, series_path(series)
+    = series.name
+    = link_to 'Show', series_path(series)
     = link_to 'Edit', edit_series_path(series)
   %table
     = render partial: 'course_table_header'

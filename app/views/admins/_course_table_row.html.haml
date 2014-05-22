@@ -1,9 +1,13 @@
 %tr
+  %td= link_to 'Show', course_path(course)
+  %td= link_to 'Edit', edit_course_path(course)
   %td= course.name
   %td= course.date
   %td= link_to 'Meetup', course.url
   %td= course.location
+  %td
+    - course.teaching_assistants.each do |ta|
+      #{ta.name} (#{link_to 'Show', teaching_assistant_path(ta)})
+      %br
   %td= course.num_tas_needed
   %td= course.teaching_assistants.count
-  %td= link_to 'Show', course_path(course)
-  %td= link_to 'Edit', edit_course_path(course)
