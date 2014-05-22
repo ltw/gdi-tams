@@ -1,10 +1,14 @@
 class TeachingAssistantsController < ApplicationController
-  before_action :set_teaching_assistant, only: [:show]
+  before_action :set_teaching_assistant, only: [:edit, :show, :update]
 
   # GET /teaching_assistants
   def index
     render 'shared/admin_only' unless is_admin?
     @teaching_assistants = TeachingAssistant.all
+  end
+
+  def edit
+    render 'shared/admin_only' unless is_admin?
   end
 
   # GET /teaching_assistants/1
@@ -26,6 +30,14 @@ class TeachingAssistantsController < ApplicationController
       redirect_to courses_path, notice: "You will receive an email shortly with details, pending approval. Thanks for TA'ing with Girl Develop It!"
     else
       render :new
+    end
+  end
+
+  def update
+    if @teaching_assistant.update(teaching_assistant_params)
+      redirect_to admins_dashboard_path, notice: 'Teaching assistant successfully updated.'
+    else
+      render :edit
     end
   end
 

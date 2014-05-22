@@ -11,6 +11,7 @@ class TeachingAssistant < ActiveRecord::Base
   scope :approved, -> { where status: Status.find_by_label("approved") }
   scope :pending, -> { where status: Status.find_by_label("pending") }
   scope :banned, -> { where status: Status.find_by_label("banned") }
+  scope :prospective, -> { where status: Status.find_by_label("prospective") }
 
   def balance
     hours.to_a.map(&:num).inject(&:+)

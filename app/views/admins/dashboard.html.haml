@@ -1,5 +1,9 @@
 %h1 Dashboard
 
+- if TeachingAssistant.prospective.any?
+  #error_explanation
+    %h2 You have new TA applications!
+
 = link_to 'Add new series', new_series_path
 = link_to 'Import new course', new_course_path
 = link_to 'Add new teaching assistant', new_teaching_assistant_path
@@ -26,6 +30,15 @@
 
 %h2 Teaching Assistants
 
+- if TeachingAssistant.prospective.any?
+  #error_explanation
+    %h2 New TA applications:
+    %ul
+      - TeachingAssistant.prospective.each do |ta|
+        %li
+          = link_to ta.name, edit_teaching_assistant_path(ta)
+          = link_to 'Upgrade status', teaching_assistant_path(ta.id, teaching_assistant: {status_id: Status.find_by_label("pending").id}), method: :put
+
 %table
   %tr
     %th Name
@@ -35,7 +48,7 @@
     %th
     %th
   - @tas.each do |ta|
-    %tr
+    %tr{:class => ("prospective" if ta.status.label == "prospective")}
       %td= ta.name
       %td= ta.email
       %td= ta.balance
