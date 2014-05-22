@@ -6,26 +6,18 @@
   Your balance of teaching assistant hours is:
   = @teaching_assistant.balance || 0
 
-%h2 Upcoming Courses
+%h2 Upcoming Series Workshops
+
+%p To sign up to TA a multiple day workshop, you need to RSVP for each day you plan to attend.
+
+= render partial: 'shared/series_list', locals: {series: @series, teaching_assistant: @teaching_assistant}
+
+%h2 Upcoming Single Day Courses
 
 %table
-  %tr
-    %th Course Name
-    %th Date
-    %th Meetup
-    %th Signed up?
-    %th RSVP
+  = render partial: 'shared/course_list_header'
   - @courses.each do |course|
-    %tr
-      %td= course.name
-      %td= course.date
-      %td= link_to 'Meetup', course.url
-      %td= @teaching_assistant.signed_up_for(course)
-      - if course.hour_for(@teaching_assistant)
-        %td= render partial: 'hours/edit', locals: {teaching_assistant: @teaching_assistant, course: course, hour: course.hour_for(@teaching_assistant)}
-      - else
-        %td= render partial: 'hours/form', locals: {teaching_assistant: @teaching_assistant, course: course}
-
+    = render partial: 'shared/course_list', locals: {course: course, teaching_assistant: @teaching_assistant}
 
 %h2 TA History
 

@@ -3,6 +3,8 @@ class Course < ActiveRecord::Base
   has_many :hours
   has_many :teaching_assistants, through: :hours
 
+  validates_presence_of :credit_hours
+
   scope :upcoming, -> { where("date > ?", Date.today) }
   scope :single_day, -> { where("series_id IS NULL") }
   scope :series, -> { where("series_id > ?", 0) }
