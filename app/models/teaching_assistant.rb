@@ -21,6 +21,10 @@ class TeachingAssistant < ActiveRecord::Base
     hours.select { |hour| hour.course.date > Date.today }
   end
 
+  def pending?
+    status.label == "pending"
+  end
+
   def signed_up_for(course)
     if is_ta_for?(course)
       "Yes (TA)"
