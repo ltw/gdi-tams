@@ -2,6 +2,7 @@
 approved = Status.create! label: "approved"
 pending = Status.create! label: "pending"
 banned = Status.create! label: "banned"
+prospective = Status.create! label: "prospective"
 
 Admin.create! name: "liz", password: "kiwi"
 
