@@ -24,9 +24,10 @@ class HoursController < ApplicationController
   # POST /hours
   def create
     @hour = Hour.new(hour_params)
+    private_id = TeachingAssistant.find(hour_params[:teaching_assistant_id]).private_id
 
     if @hour.save
-      redirect_to @hour, notice: 'Hour was successfully created.'
+      redirect_to sign_ups_path(private_id), notice: "Success! We have you down as a TA for #{@hour.course.name} on #{@hour.course.date}."
     else
       render :new
     end
@@ -43,8 +44,11 @@ class HoursController < ApplicationController
 
   # DELETE /hours/1
   def destroy
+    private_id = @hour.teaching_assistant.private_id
+    name = @hour.course.name
+    date = @hour.course.date
     @hour.destroy
-    redirect_to hours_url, notice: 'Hour was successfully destroyed.'
+    redirect_to sign_ups_path(private_id), notice: "You are no longer TA'ing for #{name} on #{date}."
   end
 
   private

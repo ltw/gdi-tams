@@ -5,6 +5,7 @@
   %td= link_to 'Meetup', course.url
   %td= course.location
   %td= course.num_tas_needed
+  %td= course.teaching_assistants.count
   %td= teaching_assistant.signed_up_for(course)
   - if course.hour_for(@teaching_assistant)
     %td= render partial: 'hours/edit', locals: {teaching_assistant: teaching_assistant, course: course, hour: course.hour_for(@teaching_assistant)}
