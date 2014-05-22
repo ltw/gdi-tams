@@ -13,6 +13,8 @@ class HoursController < ApplicationController
   # GET /hours/new
   def new
     @hour = Hour.new
+    @course = Course.find(params[:course_id])
+    @teaching_assistant = TeachingAssistant.find(params[:teaching_assistant_id])
   end
 
   # GET /hours/1/edit

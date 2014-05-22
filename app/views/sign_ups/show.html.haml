@@ -24,7 +24,7 @@
       - if course.hour_for(@teaching_assistant)
         %td= render partial: 'hours/edit', locals: {teaching_assistant: @teaching_assistant, course: course, hour: course.hour_for(@teaching_assistant)}
       - else
-        %td= render partial: 'hours/new', locals: {teaching_assistant: @teaching_assistant, course: course}
+        %td= render partial: 'hours/form', locals: {teaching_assistant: @teaching_assistant, course: course}
 
 
 %h2 TA History
