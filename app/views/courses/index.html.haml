@@ -1,26 +1,46 @@
-%h1 Listing courses
+%h1 Courses
+
+%h2 Upcoming Series Workshops
+
+- @series.each do |series|
+  %h2= series.name
+  %p= series.end_date
+  %h3 Series course sessions
+  %table
+    %tr
+      %th Link
+      %th Name
+      %th Date
+      %th Url
+      %th Location
+      %th TAs needed
+    - series.courses.each do |course|
+      %tr
+        %td= link_to "View", course_path(course)
+        %td= course.name
+        %td= course.date
+        %td= link_to 'Meetup', course.url
+        %td= course.location
+        %td= course.num_tas_needed
+
+
+%h2 Upcoming Single Day Workshops
 
 %table
   %tr
+    %th Link
     %th Name
     %th Date
     %th Url
     %th Location
     %th TAs needed
-    %th
-    %th
 
   - @courses.each do |course|
     %tr
+      %td= link_to "View", course_path(course)
       %td= course.name
       %td= course.date
       %td= link_to 'Meetup', course.url
       %td= course.location
       %td= course.num_tas_needed
-      %td= link_to 'Show', course
-      %td= link_to 'Edit', edit_course_path(course)
-      %td= link_to 'Destroy', course, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-%br
-
-= link_to 'New Course', new_course_path

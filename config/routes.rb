@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :series
+
   root 'courses#index'
 
   resources :hours

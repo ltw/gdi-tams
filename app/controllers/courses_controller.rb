@@ -3,7 +3,8 @@ class CoursesController < ApplicationController
 
   # GET /courses
   def index
-    @courses = Course.all
+    @courses = Course.upcoming.single_day
+    @series = Series.upcoming
   end
 
   # GET /courses/1
@@ -13,6 +14,7 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
+    @series = Series.upcoming
   end
 
   # GET /courses/1/edit
@@ -53,6 +55,6 @@ class CoursesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def course_params
-      params.require(:course).permit(:name, :date, :url, :location, :description, :num_tas_needed, :meetup_id, :credit_hours)
+      params.require(:course).permit(:name, :date, :url, :location, :description, :num_tas_needed, :meetup_id, :credit_hours, :series_id)
     end
 end

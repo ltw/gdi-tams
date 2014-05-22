@@ -35,5 +35,8 @@
   .field
     = f.label :num_tas_neeed, 'Number of teaching assistants needed'
     = f.number_field :num_tas_needed
+  .field
+    = f.label :series_id, "Is this course part of a series?"
+    = f.select(:series_id, @series.collect {|s| [s.name, s.id]}, {:include_blank => 'Course series'})
   .actions
     = f.submit 'Save'
