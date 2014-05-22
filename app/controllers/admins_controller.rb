@@ -10,6 +10,7 @@ class AdminsController < ApplicationController
     render 'shared/admin_only' unless is_admin?
     @courses = Course.upcoming.single_day
     @series = Series.upcoming
+    @tas = TeachingAssistant.all.sort_by(&:name)
   end
 
   private

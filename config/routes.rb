@@ -7,11 +7,11 @@ Rails.application.routes.draw do
 
   resources :courses
 
+  resources :teaching_assistants
+
   resources :admins, only: [:index]
 
   resources :sessions, only: [:new, :create, :destroy]
-
-  resources :teaching_assistants, only: [:index, :show]
 
   resources :statuses, only: [:index, :show]
 
