@@ -18,4 +18,8 @@ class TeachingAssistant < ActiveRecord::Base
   def generate_private_id
     self.private_id = SecureRandom.hex
   end
+
+  def history
+    courses.select { |course| course.date > Date.today }
+  end
 end

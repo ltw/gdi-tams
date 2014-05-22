@@ -1,23 +1,41 @@
+%h1 Hello, #{@teaching_assistant.name}!
+
 %p#notice= notice
 
 %p
-  %b Name:
-  = @teaching_assistant.name
-%p
-  %b Balance:
-  = @teaching_assistant.balance
-%p
-  %b History:
-  %table
-    %tr
-      %th Hours
-      %th Course Name
-      %th Date
-      %th Meetup
+  Your balance of teaching assistant hours is:
+  = @teaching_assistant.balance || 0
 
-    - @teaching_assistant.hours.each do |hour|
-      %tr
-        %td= hour.num
-        %td= hour.course.name
-        %td= hour.course.date
-        %td= link_to 'Meetup', hour.course.url
+%h2 Upcoming Courses
+
+%table
+  %tr
+    %th Course Name
+    %th Date
+    %th Meetup
+    %th Signed up?
+    %th RSVP
+  - @courses.each do |course|
+    %tr
+      %td= course.name
+      %td= course.date
+      %td= link_to 'Meetup', course.url
+      %td Ummmm...?
+      %td Link to RSVP here
+
+
+%h2 TA History
+
+%table
+  %tr
+    %th Hours
+    %th Course Name
+    %th Date
+    %th Meetup
+
+  - @teaching_assistant.history.each do |hour|
+    %tr
+      %td= hour.num
+      %td= hour.course.name
+      %td= hour.course.date
+      %td= link_to 'Meetup', hour.course.url
