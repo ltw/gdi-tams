@@ -13,9 +13,18 @@ class TeachingAssistantsController < ApplicationController
   end
 
   def new
+    @teaching_assistant = TeachingAssistant.new
   end
 
   def create
+    @teaching_assistant = TeachingAssistant.new(teaching_assistant_params)
+    @teaching_assistant.status = Status.find_by_label("prospective")
+
+    if @teaching_assistant.save
+      redirect_to courses_path, notice: "You will receive an email shortly with details, pending approval. Thanks for TA'ing with Girl Develop It!"
+    else
+      render :new
+    end
   end
 
   private
