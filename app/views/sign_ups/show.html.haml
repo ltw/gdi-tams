@@ -20,8 +20,11 @@
       %td= course.name
       %td= course.date
       %td= link_to 'Meetup', course.url
-      %td Ummmm...?
-      %td Link to RSVP here
+      %td= @teaching_assistant.signed_up_for(course)
+      - if course.hour_for(@teaching_assistant)
+        %td= render partial: 'hours/edit', locals: {teaching_assistant: @teaching_assistant, course: course, hour: @hour}
+      - else
+        %td= render partial: 'hours/new', locals: {teaching_assistant: @teaching_assistant, course: course}
 
 
 %h2 TA History
