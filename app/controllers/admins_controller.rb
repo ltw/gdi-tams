@@ -1,4 +1,5 @@
 class AdminsController < ApplicationController
+  include AdminsHelper
 
   # GET /admins
   def index
@@ -7,6 +8,8 @@ class AdminsController < ApplicationController
 
   def dashboard
     render 'shared/admin_only' unless is_admin?
+    @courses = Course.upcoming.single_day
+    @series = Series.upcoming
   end
 
   private
