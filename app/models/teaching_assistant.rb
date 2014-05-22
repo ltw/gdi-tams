@@ -5,11 +5,13 @@ class TeachingAssistant < ActiveRecord::Base
   has_many :hours
   has_many :courses, through: :hours
 
-  validates_uniqueness_of :private_id
+  validates_uniqueness_of :private_id, :email
+  validates_presence_of :name, :email
 
   scope :approved, -> { where status: Status.find_by_label("approved") }
   scope :pending, -> { where status: Status.find_by_label("pending") }
   scope :banned, -> { where status: Status.find_by_label("banned") }
+  scope :prospective, -> { where status: Status.find_by_label("prospective") }
 
   def balance
     hours.to_a.map(&:num).inject(&:+)
@@ -17,6 +19,14 @@ class TeachingAssistant < ActiveRecord::Base
 
   def history
     hours.select { |hour| hour.course.date > Date.today }
+  end
+
+  def pending?
+    status.label == "pending"
+  end
+
+  def approved?
+    status.label == "approved"
   end
 
   def signed_up_for(course)

@@ -1,10 +1,4 @@
 class AdminsController < ApplicationController
-  include AdminsHelper
-
-  # GET /admins
-  def index
-    @admins = Admin.all
-  end
 
   def dashboard
     render 'shared/admin_only' unless is_admin?
