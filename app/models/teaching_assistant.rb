@@ -8,6 +8,6 @@ class TeachingAssistant < ActiveRecord::Base
   scope :banned, -> { where status: Status.find_by_label("banned") }
 
   def balance
-    hours.num.inject(&:+)
+    hours.to_a.map(&:num).inject(&:+)
   end
 end
