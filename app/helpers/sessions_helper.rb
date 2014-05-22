@@ -5,5 +5,6 @@ module SessionsHelper
 
   def destroy_session
     session[:current_user_id] = nil
+    @admin = nil
   end
 end

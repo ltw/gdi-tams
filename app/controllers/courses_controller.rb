@@ -1,4 +1,6 @@
 class CoursesController < ApplicationController
+  include AdminsHelper
+
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   # GET /courses
@@ -15,10 +17,12 @@ class CoursesController < ApplicationController
   def new
     @course = Course.new
     @series = Series.upcoming
+    render 'shared/admin_only' unless is_admin?
   end
 
   # GET /courses/1/edit
   def edit
+    render 'shared/admin_only' unless is_admin?
   end
 
   # POST /courses

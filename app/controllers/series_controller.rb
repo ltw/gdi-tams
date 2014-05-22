@@ -1,4 +1,6 @@
 class SeriesController < ApplicationController
+  include AdminsHelper
+
   before_action :set_series, only: [:show, :edit, :update, :destroy]
 
   # GET /series
@@ -13,10 +15,12 @@ class SeriesController < ApplicationController
   # GET /series/new
   def new
     @series = Series.new
+    render 'shared/admin_only' unless is_admin?
   end
 
   # GET /series/1/edit
   def edit
+    render 'shared/admin_only' unless is_admin?
   end
 
   # POST /series
