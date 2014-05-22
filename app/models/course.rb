@@ -20,4 +20,8 @@ class Course < ActiveRecord::Base
   def is_series?
     series.id.present?
   end
+
+  def num_tas_still_needed
+    num_tas_needed - teaching_assistants.count
+  end
 end

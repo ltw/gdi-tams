@@ -4,6 +4,32 @@
   %b Name:
   = @series.name
 
-= link_to 'Edit', edit_series_path(@series)
-\|
-= link_to 'Back', series_index_path
+%p
+  %b End date:
+  = @series.end_date
+
+%p
+  %h2 Course Sessions
+
+- @series.courses.each do |course|
+  %p
+    = link_to 'View', course_path(course)
+    = link_to 'Meetup', course.url
+  %p
+    %b= course.date
+    = course.name
+
+  %p
+    %b Teaching assistants: #{course.teaching_assistants.count}
+  %p
+    Number TAs still needed: #{course.num_tas_still_needed}
+
+  %table
+    %tr
+      %th Name
+      %th Email
+    - course.teaching_assistants.each do |ta|
+      %tr
+        %td= ta.name
+        %td= ta.email
+
