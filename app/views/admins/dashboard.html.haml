@@ -1,1 +1,45 @@
 %h1 Dashboard
+
+= link_to 'Add new series', new_series_path
+= link_to 'Import new course', new_course_path
+= link_to 'Add new teaching assistant', new_teaching_assistant_path
+
+%h2 Upcoming Single Day Workshops
+
+%table
+  = render partial: 'course_table_header'
+  - @courses.each do |course|
+    = render partial: 'course_table_row', locals: {course: course}
+
+%h2 Upcoming Multi-Dary Workshops
+
+- @series.each do |series|
+  %p
+    %b= series.end_date
+    = series.name
+    = link_to 'Show', series_path(series)
+    = link_to 'Edit', edit_series_path(series)
+  %table
+    = render partial: 'course_table_header'
+    - series.courses.each do |course|
+      = render partial: 'course_table_row', locals: {course: course}
+
+%h2 Teaching Assistants
+
+%table
+  %tr
+    %th Name
+    %th Email
+    %th Balance
+    %th Status
+    %th
+    %th
+  - @tas.each do |ta|
+    %tr
+      %td= ta.name
+      %td= ta.email
+      %td= ta.balance
+      %td= ta.status.label
+      %td= link_to 'Show', teaching_assistant_path(ta)
+      %td= link_to 'Edit', edit_teaching_assistant_path(ta)
+
