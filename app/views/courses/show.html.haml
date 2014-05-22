@@ -1,5 +1,8 @@
 %p#notice= notice
 
+- if @series
+  = render partial: 'shared/series_link', locals: {series: @series}
+
 %p
   %b Name:
   = link_to @course.name, @course.url
