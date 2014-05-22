@@ -6,3 +6,6 @@
 
 // Global typography rules
 @import "base/typography";
+
+// Grid system - overrides some of reset
+@import "layout/grid";
