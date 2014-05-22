@@ -20,6 +20,6 @@ class TeachingAssistant < ActiveRecord::Base
   end
 
   def history
-    courses.select { |course| course.date > Date.today }
+    hours.select { |hour| hour.course.date > Date.today }
   end
 end
