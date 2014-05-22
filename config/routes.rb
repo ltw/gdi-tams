@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  resources :series
-
   root 'courses#index'
 
+  resources :series
+
   resources :hours
+
+  resources :courses
 
   resources :admins, only: [:index]
 
@@ -13,7 +15,6 @@ Rails.application.routes.draw do
 
   resources :statuses, only: [:index, :show]
 
-  resources :courses
-
   get '/sign_ups/:private_id', to: 'sign_ups#show', as: 'sign_ups'
+  get '/admins/dashboard', to: 'admins#dashboard', as: 'admins_dashboard'
 end
