@@ -15,11 +15,30 @@ class TeachingAssistant < ActiveRecord::Base
     hours.to_a.map(&:num).inject(&:+)
   end
 
-  def generate_private_id
-    self.private_id = SecureRandom.hex
-  end
-
   def history
     hours.select { |hour| hour.course.date > Date.today }
+  end
+
+  def signed_up_for(course)
+    if is_ta_for?(course)
+      "Yes (TA)"
+    elsif is_student_in?(course)
+      "Yes (Student)"
+    else
+      "No"
+    end
+  end
+
+  protected
+  def is_ta_for?(course)
+    hours.credit.where(course: course).present?
+  end
+
+  def is_student_in?(course)
+    hours.debit.where(course: course).present?
+  end
+
+  def generate_private_id
+    self.private_id = SecureRandom.hex
   end
 end
