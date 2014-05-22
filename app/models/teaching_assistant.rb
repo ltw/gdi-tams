@@ -25,6 +25,10 @@ class TeachingAssistant < ActiveRecord::Base
     status.label == "pending"
   end
 
+  def approved?
+    status.label == "approved"
+  end
+
   def signed_up_for(course)
     if is_ta_for?(course)
       "Yes (TA)"

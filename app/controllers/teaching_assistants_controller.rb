@@ -1,5 +1,5 @@
 class TeachingAssistantsController < ApplicationController
-  before_action :set_teaching_assistant, only: [:edit, :show, :update]
+  before_action :set_teaching_assistant, only: [:edit, :show, :update, :destroy]
 
   # GET /teaching_assistants
   def index
@@ -39,6 +39,11 @@ class TeachingAssistantsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @teaching_assistant.destroy
+    redirect_to admins_dashboard_path, notice: 'Teaching Assistant was successfully removed.'
   end
 
   private

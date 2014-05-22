@@ -50,6 +50,8 @@
     %th
     %th
     %th
+    %th
+    %th
   - @tas.each do |ta|
     %tr{:class => ("prospective" if ta.status.label == "prospective")}
       %td= ta.name
@@ -58,8 +60,11 @@
       %td= ta.status.label
       %td= link_to 'Show', teaching_assistant_path(ta)
       %td= link_to 'Edit', edit_teaching_assistant_path(ta)
-      - if ta.pending?
-        %td= link_to 'Upgrade status', teaching_assistant_path(ta.id, teaching_assistant: {status_id: Status.find_by_label("approved").id}), method: :put
-      - else
-        %td
+      %td
+        - if ta.pending?
+          = link_to 'Upgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: Status.find_by_label("approved").id}), method: :put
+        - elsif ta.approved?
+          = link_to 'Downgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: Status.find_by_label("pending").id}), method: :put
+      %td= link_to 'Ban', teaching_assistant_path(ta.id, teaching_assistant: {status_id: Status.find_by_label("banned").id}), method: :put
+      %td= link_to 'Remove', teaching_assistant_path(ta.id, teaching_assistant: {}), method: :delete
 
