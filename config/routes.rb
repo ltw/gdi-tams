@@ -9,8 +9,6 @@ Rails.application.routes.draw do
 
   resources :teaching_assistants
 
-  resources :admins, only: [:index]
-
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :statuses, only: [:index, :show]

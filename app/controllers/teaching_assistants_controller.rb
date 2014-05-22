@@ -20,7 +20,9 @@ class TeachingAssistantsController < ApplicationController
     @teaching_assistant = TeachingAssistant.new(teaching_assistant_params)
     @teaching_assistant.status = Status.find_by_label("prospective")
 
-    if @teaching_assistant.save
+    if is_admin? && @teaching_assistant.save
+      redirect_to admins_dashboard_path, notice: "TA #{@teaching_assistant.name} successfully added and marked as prospective. Remember to process their application below."
+    elsif @teaching_assistant.save
       redirect_to courses_path, notice: "You will receive an email shortly with details, pending approval. Thanks for TA'ing with Girl Develop It!"
     else
       render :new
