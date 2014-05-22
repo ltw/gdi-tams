@@ -6,8 +6,7 @@
     %th Date
     %th Url
     %th Location
-    %th Time
-    %th
+    %th TAs needed
     %th
     %th
 
@@ -15,9 +14,9 @@
     %tr
       %td= course.name
       %td= course.date
-      %td= course.url
+      %td= link_to 'Meetup', course.url
       %td= course.location
-      %td= course.time
+      %td= course.num_tas_needed
       %td= link_to 'Show', course
       %td= link_to 'Edit', edit_course_path(course)
       %td= link_to 'Destroy', course, :method => :delete, :data => { :confirm => 'Are you sure?' }

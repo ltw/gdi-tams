@@ -13,8 +13,8 @@
   %b Location:
   = @course.location
 %p
-  %b Time:
-  = @course.time
+  %b Description:
+  = raw @course.description
 
 = link_to 'Edit', edit_course_path(@course)
 \|
