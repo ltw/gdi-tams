@@ -2,16 +2,25 @@
 
 %p
   %b Name:
-  = @course.name
+  = link_to @course.name, @course.url
 %p
   %b Date:
   = @course.date
 %p
-  %b Url:
-  = @course.url
-%p
   %b Location:
   = @course.location
+
+%p
+  %b Teaching assistants:
+  %table
+    %tr
+      %th Name
+      %th Email
+    - @course.teaching_assistants.each do |ta|
+      %tr
+        %td= ta.name
+        %td= ta.email
+
 %p
   %b Description:
   = raw @course.description
