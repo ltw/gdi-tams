@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   resources :admins, only: [:index]
 
+  resources :sessions, only: [:new, :create, :destroy]
+
   resources :teaching_assistants, only: [:index, :show]
 
   resources :statuses, only: [:index, :show]
