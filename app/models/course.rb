@@ -5,6 +5,10 @@ class Course < ActiveRecord::Base
   scope :upcoming, lambda { where("date > ?", Date.today) }
 
   def hour_for(teaching_assistant)
-    @hour = hours.where(teaching_assistant: teaching_assistant).first
+    hours.where(teaching_assistant: teaching_assistant).first
+  end
+
+  def credits_array
+    a=*(1..credit_hours)
   end
 end
