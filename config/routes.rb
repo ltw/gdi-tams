@@ -15,5 +15,5 @@ Rails.application.routes.draw do
 
   resources :courses
 
-  get '/sign_ups/:private_id', to: 'sign_ups#show'
+  get '/sign_ups/:private_id', to: 'sign_ups#show', as: 'sign_ups'
 end
