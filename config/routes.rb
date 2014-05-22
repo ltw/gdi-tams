@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :teaching_assistants, only: [:index, :show]
 
-  resources :statuses
+  resources :statuses, only: [:index, :show]
 
   resources :courses
 
