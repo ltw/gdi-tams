@@ -1,3 +1,8 @@
+= form_tag({}, {class: 'fetch_meetup'}) do
+  = label_tag(:url, 'Meetup URL')
+  = text_field_tag(:url)
+  = submit_tag('Fetch')
+
 = form_for @course do |f|
   - if @course.errors.any?
     #error_explanation
@@ -7,19 +12,25 @@
           %li= msg
 
   .field
-    = f.label :name
+    = f.label :name, 'Course name'
     = f.text_field :name
   .field
     = f.label :date
     = f.date_select :date
   .field
-    = f.label :url
+    = f.label :url, 'Meetup URL'
     = f.text_field :url
   .field
     = f.label :location
     = f.text_field :location
   .field
-    = f.label :time
+    = f.label :time, 'Start time'
     = f.time_select :time
+  .field
+    = f.label :description, 'Course description'
+    = f.text_area :description
+  .field
+    = f.label :num_tas_neeed, 'Number of teaching assistants needed'
+    = f.number_field :num_tas_needed
   .actions
     = f.submit 'Save'
