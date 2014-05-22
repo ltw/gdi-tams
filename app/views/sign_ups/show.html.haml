@@ -22,7 +22,7 @@
       %td= link_to 'Meetup', course.url
       %td= @teaching_assistant.signed_up_for(course)
       - if course.hour_for(@teaching_assistant)
-        %td= render partial: 'hours/edit', locals: {teaching_assistant: @teaching_assistant, course: course, hour: @hour}
+        %td= render partial: 'hours/edit', locals: {teaching_assistant: @teaching_assistant, course: course, hour: course.hour_for(@teaching_assistant)}
       - else
         %td= render partial: 'hours/new', locals: {teaching_assistant: @teaching_assistant, course: course}
 

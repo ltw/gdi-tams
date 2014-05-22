@@ -1,1 +1,4 @@
-%h1 Editing hour
+- if hour.is_credit?
+  = button_to 'Change RSVP to NO', { controller: :hours, action: :destroy, id: hour.id }, method: :delete
+- else
+  %p Notify Liz if you are not attending as a student.
