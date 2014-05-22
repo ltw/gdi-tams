@@ -6,6 +6,7 @@ class AdminsController < ApplicationController
   end
 
   def dashboard
+    render 'shared/admin_only' unless is_admin?
   end
 
   private
