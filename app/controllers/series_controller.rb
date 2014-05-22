@@ -53,6 +53,6 @@ class SeriesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def series_params
-      params.require(:series).permit(:name)
+      params.require(:series).permit(:name, :end_date)
     end
 end
