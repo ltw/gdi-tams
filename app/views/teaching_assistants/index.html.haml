@@ -1,23 +1,33 @@
 %h1 Listing teaching_assistants
 
+%h2 Approved
+
 %table
   %tr
     %th Name
     %th Email
-    %th Status
-    %th
-    %th
     %th
 
-  - @teaching_assistants.each do |teaching_assistant|
+  - TeachingAssistant.approved.each do |teaching_assistant|
     %tr
       %td= teaching_assistant.name
       %td= teaching_assistant.email
-      %td= teaching_assistant.status_id
       %td= link_to 'Show', teaching_assistant
-      %td= link_to 'Edit', edit_teaching_assistant_path(teaching_assistant)
-      %td= link_to 'Destroy', teaching_assistant, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Teaching assistant', new_teaching_assistant_path
+%h2 Pending
+
+%table
+  %tr
+    %th Name
+    %th Email
+    %th
+
+  - TeachingAssistant.approved.each do |teaching_assistant|
+    %tr
+      %td= teaching_assistant.name
+      %td= teaching_assistant.email
+      %td= link_to 'Show', teaching_assistant
+
+%br
