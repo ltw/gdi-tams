@@ -10,10 +10,6 @@ class TeachingAssistantsController < ApplicationController
   def show
   end
 
-  def private
-    @teaching_assistant = TeachingAssistant.find_by_private_id(params[:private_id])
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_teaching_assistant

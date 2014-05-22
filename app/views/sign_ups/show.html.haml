@@ -1,0 +1,23 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @teaching_assistant.name
+%p
+  %b Balance:
+  = @teaching_assistant.balance
+%p
+  %b History:
+  %table
+    %tr
+      %th Hours
+      %th Course Name
+      %th Date
+      %th Meetup
+
+    - @teaching_assistant.hours.each do |hour|
+      %tr
+        %td= hour.num
+        %td= hour.course.name
+        %td= hour.course.date
+        %td= link_to 'Meetup', hour.course.url
