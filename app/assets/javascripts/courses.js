@@ -33,8 +33,6 @@ $(document).ready(function() {
     var year = $('#course_date_1i'); // YYYY
     var month = $('#course_date_2i'); // January
     var day = $('#course_date_3i'); // 1-31
-    var hour = $('#course_time_4i'); // 00-23
-    var minute = $('#course_time_5i'); // 00-59
   }
 
   function loadingThingy() {
