@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %title Girl Develop It TAMS (Teaching Assistant Management System)
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .pure-g
+      .pure-u-2-24
+      .pure-u-20-24
+        = yield
+      .pure-u-2-24
