@@ -27,10 +27,13 @@
     = f.label :description, 'Course description'
     = f.text_area :description
   .field
-    = f.label :num_tas_neeed, 'Number of teaching assistants needed'
-    = f.number_field :num_tas_needed
-  .field
     = f.label :meetup_id, "ID of the Meetup (for future use)"
     = f.text_field :meetup_id
+  .field
+    = f.label :credit_hours, 'Number of credit hours received'
+    = f.number_field :credit_hours
+  .field
+    = f.label :num_tas_neeed, 'Number of teaching assistants needed'
+    = f.number_field :num_tas_needed
   .actions
     = f.submit 'Save'
