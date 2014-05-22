@@ -1,5 +1,4 @@
 class SeriesController < ApplicationController
-  include AdminsHelper
 
   before_action :set_series, only: [:show, :edit, :update, :destroy]
 

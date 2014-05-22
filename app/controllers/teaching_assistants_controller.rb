@@ -3,11 +3,19 @@ class TeachingAssistantsController < ApplicationController
 
   # GET /teaching_assistants
   def index
+    render 'shared/admin_only' unless is_admin?
     @teaching_assistants = TeachingAssistant.all
   end
 
   # GET /teaching_assistants/1
   def show
+    render 'shared/admin_only' unless is_admin?
+  end
+
+  def new
+  end
+
+  def create
   end
 
   private

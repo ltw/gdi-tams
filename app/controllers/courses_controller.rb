@@ -1,5 +1,4 @@
 class CoursesController < ApplicationController
-  include AdminsHelper
 
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 

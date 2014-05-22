@@ -1,5 +1,4 @@
 class AdminsController < ApplicationController
-  include AdminsHelper
 
   # GET /admins
   def index
