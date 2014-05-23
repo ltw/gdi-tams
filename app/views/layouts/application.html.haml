@@ -5,9 +5,20 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Roboto:300,400,400italic,700,800', media: 'all'
   %body
+    .pure-g
+      .pure-u-1-1
+        %nav
+          - if is_admin?
+            = render partial: 'shared/menu_admin'
+          - else
+            = render partial: 'shared/menu'
     .pure-g
       .pure-u-2-24
       .pure-u-20-24
+        %header
+          %h1 Girl Develop It Chicago
+          %h2 Teaching Assistant Management System
         = yield
       .pure-u-2-24

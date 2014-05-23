@@ -1,70 +1,71 @@
-%h1 Dashboard
+%h3 Organizer Dashboard
 
 %p#notice= notice
 
 - if TeachingAssistant.prospective.any?
   #error_explanation
-    %h2 You have new TA applications!
+    %h4 You have new TA applications!
 
-= link_to 'Add new series', new_series_path
-= link_to 'Import new course', new_course_path
-= link_to 'Add new teaching assistant', new_teaching_assistant_path
+%ul.inline
+  %li= link_to 'Add new series', new_series_path
+  %li= link_to 'Import new course', new_course_path
+  %li= link_to 'Add new teaching assistant', new_teaching_assistant_path
 
-%h2 Upcoming Single Day Workshops
+%h4 Upcoming Single Day Workshops
 
 %table
   = render partial: 'course_table_header'
   - @courses.each do |course|
     = render partial: 'course_table_row', locals: {course: course}
 
-%h2 Upcoming Multi-Day Workshops
+/ %h4 Upcoming Multi-Day Workshops
 
-- @series.each do |series|
-  %p
-    %b= series.end_date
-    = series.name
-    = link_to 'Show', series_path(series)
-    = link_to 'Edit', edit_series_path(series)
-  %table
-    = render partial: 'course_table_header'
-    - series.courses.each do |course|
-      = render partial: 'course_table_row', locals: {course: course}
+/ - @series.each do |series|
+/   %p
+/     %b= series.end_date
+/     = series.name
+/     = link_to 'Show', series_path(series)
+/     = link_to 'Edit', edit_series_path(series)
+/   %table
+/     = render partial: 'course_table_header'
+/     - series.courses.each do |course|
+/       = render partial: 'course_table_row', locals: {course: course}
 
-%h2 Teaching Assistants
+/ %h4 Teaching Assistants
 
-- if TeachingAssistant.prospective.any?
-  #error_explanation
-    %h2 New TA applications:
-    %ul
-      - TeachingAssistant.prospective.each do |ta|
-        %li
-          = link_to ta.name, edit_teaching_assistant_path(ta)
-          = link_to 'Upgrade status', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @pending.id}), method: :put
+/ - if TeachingAssistant.prospective.any?
+/   #error_explanation
+/     %h4 New TA applications:
+/     %ul
+/       - TeachingAssistant.prospective.each do |ta|
+/         %li
+/           = link_to ta.name, edit_teaching_assistant_path(ta)
+/           = link_to 'Upgrade status', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @pending.id}), method: :put
 
-%table
-  %tr
-    %th Name
-    %th Email
-    %th Balance
-    %th Status
-    %th
-    %th
-    %th
-    %th
-    %th
-  - @tas.each do |ta|
-    %tr{:class => ("prospective" if ta.status.label == "prospective")}
-      %td= ta.name
-      %td= ta.email
-      %td= ta.balance
-      %td= ta.status.label
-      %td= link_to 'Show', teaching_assistant_path(ta)
-      %td= link_to 'Edit', edit_teaching_assistant_path(ta)
-      %td
-        - if ta.pending?
-          = link_to 'Upgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @approved.id}), method: :put
-        - elsif ta.approved?
-          = link_to 'Downgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @pending.id}), method: :put
-      %td= link_to 'Ban', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @banned.id}), method: :put
-      %td= link_to 'Remove', teaching_assistant_path(ta.id), method: :delete
+/ %table
+/   %tr
+/     %th Name
+/     %th Email
+/     %th Balance
+/     %th Status
+/     %th
+/     %th
+/     %th
+/     %th
+/     %th
+/   - @tas.each do |ta|
+/     %tr{:class => ("prospective" if ta.status.label == "prospective")}
+/       %td= ta.name
+/       %td= ta.email
+/       %td= ta.balance
+/       %td= ta.status.label
+/       %td= link_to 'Show', teaching_assistant_path(ta)
+/       %td= link_to 'Edit', edit_teaching_assistant_path(ta)
+/       %td
+/         - if ta.pending?
+/           = link_to 'Upgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @approved.id}), method: :put
+/         - elsif ta.approved?
+/           = link_to 'Downgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @pending.id}), method: :put
+/       %td= link_to 'Ban', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @banned.id}), method: :put
+/       %td= link_to 'Remove', teaching_assistant_path(ta.id), method: :delete
 
