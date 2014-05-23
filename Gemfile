@@ -21,5 +21,6 @@ gem 'better_errors', group: :development
 gem 'binding_of_caller', group: :development
 
 # Heroku
+gem 'unicorn'
 gem 'rails_12factor', group: :production
 ruby '2.0.0'
