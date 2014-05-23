@@ -24,4 +24,8 @@ class Course < ActiveRecord::Base
   def num_tas_still_needed
     num_tas_needed - teaching_assistants.count
   end
+
+  def pretty_date
+    date.strftime("%B %e, %Y (%A)")
+  end
 end
