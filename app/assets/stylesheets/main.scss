@@ -1,14 +1,19 @@
 // CSS reset
 @import "base/reset";
 
+// Grid system - overrides some of reset (we want this)
+@import "layout/grid";
+
 // Global variables
 @import "helpers/var";
 
 // Global typography rules
 @import "base/typography";
 
-// Grid system - overrides some of reset
-@import "layout/grid";
+// Misc
+@import "layout/header";
+@import "layout/nav";
+
 
 
 // things from scaffold that must be included
