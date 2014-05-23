@@ -1,0 +1,16 @@
+@import "../helpers/var";
+
+article.single_day {
+  border: lighten($tertiary, 20%) 1px solid;
+  padding: $padding;
+  margin: $microMargin;
+  float: left;
+  width: 45%;
+  &:nth-child(3n) {
+    clear: both;
+  }
+}
+
+.clear {
+  clear: both;
+}

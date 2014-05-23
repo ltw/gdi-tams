@@ -31,9 +31,9 @@ class TeachingAssistant < ActiveRecord::Base
 
   def signed_up_for(course)
     if is_ta_for?(course)
-      "Yes (TA)"
+      "TA"
     elsif is_student_in?(course)
-      "Yes (Student)"
+      "Student"
     else
       "No"
     end
