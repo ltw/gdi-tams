@@ -1,0 +1,17 @@
+@import "../helpers/var";
+
+.line {
+  width: 100%;
+  height: $microMargin;
+  margin: $jumboMargin 0;
+}
+
+.line_jumbo {
+  @extend .line;
+  height: $jumboMargin;
+}
+
+.line__secondary {
+  @extend .line;
+  background-color: $secondary;
+}

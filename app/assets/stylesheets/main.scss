@@ -1,18 +1,23 @@
-// CSS reset
+// CSS reset (1)
 @import "base/reset";
 
-// Grid system - overrides some of reset (we want this)
+// Grid system (2)
 @import "layout/grid";
 
-// Global variables
+// Global variables (3)
 @import "helpers/var";
 
-// Global typography rules
+// Global typography rules (4)
 @import "base/typography";
 
-// Misc
+// ----------------------------------------------------
+// EVERYTHING ABOVE THIS LINE MUST BE IMPORTED IN ORDER
+
 @import "layout/header";
 @import "layout/nav";
+
+@import "components/menus";
+@import "components/separators";
 
 
 
