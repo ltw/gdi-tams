@@ -59,3 +59,7 @@ a {
 .light {
   font-weight: 300;
 }
+
+.small {
+  font-size: $fontSize * 0.75;
+}
