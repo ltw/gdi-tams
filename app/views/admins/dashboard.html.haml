@@ -7,16 +7,28 @@
     %h4 You have new TA applications!
 
 %ul.inline
-  %li= link_to 'Add new series', new_series_path
-  %li= link_to 'Import new course', new_course_path
-  %li= link_to 'Add new teaching assistant', new_teaching_assistant_path
+  %li.first Quick links:
+  %li= link_to 'Upcoming single day workshops', '#single_day'
+  %li= link_to 'Upcoming multi-day workshops', '#multi_day'
+  %li= link_to 'TA list', '#tas'
+
+.line__secondary
 
 %h4 Upcoming Single Day Workshops
 
-%table
-  = render partial: 'course_table_header'
-  - @courses.each do |course|
-    = render partial: 'course_table_row', locals: {course: course}
+- @courses.each do |course|
+  .pure-g
+    .pure-u-2-5
+      %p= course.name
+    .pure-u-1-5
+      %p= course.pretty_date
+    .pure-u-1-5
+    .pure-u-1-5
+
+/ %table
+/   = render partial: 'course_table_header'
+/   - @courses.each do |course|
+/     = render partial: 'course_table_row', locals: {course: course}
 
 / %h4 Upcoming Multi-Day Workshops
 
