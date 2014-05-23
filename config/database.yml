@@ -80,6 +80,3 @@ test:
 #
 production:
   <<: *default
-  database: teaching_assistants_production
-  username: teaching_assistants
-  password: <%= ENV['TEACHING_ASSISTANTS_DATABASE_PASSWORD'] %>

@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-ruby '2.0.0'
-
 gem 'rails', '4.1.1'
 
 gem 'pg'
@@ -21,3 +19,7 @@ gem 'debugger', group: [:development, :test]
 gem 'rspec-rails', group: :test
 gem 'better_errors', group: :development
 gem 'binding_of_caller', group: :development
+
+# Heroku
+gem 'rails_12factor', group: :production
+ruby '2.0.0'
