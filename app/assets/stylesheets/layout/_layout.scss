@@ -1,11 +1,40 @@
-article.single_day {
+article {
   border: lighten($tertiary, 20%) 1px solid;
-  padding: $padding;
-  margin: $microMargin;
+  padding: 1%;
+  margin: 1%;
   float: left;
-  width: 45%;
-  &:nth-child(3n) {
-    clear: both;
+
+  &.single_day {
+    width: 45%;
+    &:nth-child(3n) {
+      clear: both;
+    }
+  }
+
+  &.ta_list {
+    width: 20%;
+    &:nth-child(4n+2) {
+      clear: both;
+    }
+  }
+}
+
+
+@media all and (max-width: 960px) {
+  article.single_day {
+    width: 95%;
+  }
+  article.ta_list {
+    width: 45%;
+    &:nth-child(2n) {
+      clear: both;
+    }
+  }
+}
+
+@media all and (max-width: 675px) {
+  article.ta_list {
+    width: 95%;
   }
 }
 
