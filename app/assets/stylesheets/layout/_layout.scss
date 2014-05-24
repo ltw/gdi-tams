@@ -3,27 +3,25 @@ article {
   padding: 1%;
   margin: 1%;
   float: left;
+  width: 95%;
 
   &.single_day {
     width: 45%;
     &:nth-child(3n) {
-      clear: both;
+      float: left;
     }
   }
 
   &.ta_list {
-    width: 29%;
-    &:nth-child(3n+3) {
-      clear: both;
+    width: 45%;
+    &:nth-child(3n) {
+      float: left;
     }
   }
 }
 
 
 @media all and (max-width: 960px) {
-  article.single_day {
-    width: 95%;
-  }
   article.ta_list {
     width: 95%;
   }

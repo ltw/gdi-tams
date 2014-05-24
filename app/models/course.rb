@@ -31,6 +31,6 @@ class Course < ActiveRecord::Base
   end
 
   def pretty_time
-    "#{start_time.strftime("%I:%M %p")}–#{end_time.strftime("%I:%M %p")}"
+    "from #{start_time.strftime("%I:%M %p")}–#{end_time.strftime("%I:%M %p")}"
   end
 end
