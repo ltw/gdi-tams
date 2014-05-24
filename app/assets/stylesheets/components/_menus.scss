@@ -1,5 +1,4 @@
 ul.inline {
-  padding: 0 0 $padding 0;
   padding: 0;
   li {
     display: inline;
@@ -9,5 +8,14 @@ ul.inline {
       font-weight: 700;
       text-transform: uppercase;
     }
+  }
+}
+
+ul.stacked {
+  margin: $microMargin;
+  font-size: $fontSize * 0.75;
+  li {
+    padding: $microPadding/1.5 0 0 0;
+    &:first-child { padding: 0; }
   }
 }

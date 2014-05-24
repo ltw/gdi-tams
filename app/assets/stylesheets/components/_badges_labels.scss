@@ -4,6 +4,7 @@
   color: $background;
   padding: $microPadding/2;
   border-radius: 10px;
+  text-transform: uppercase;
   &.approved {
     background-color: $secondary;
   }

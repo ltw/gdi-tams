@@ -69,23 +69,28 @@
 
 - @tas.each do |ta|
   %article.ta_list
+    .right
+      %ul.stacked
+        %li
+          %span.badge{:class => ta.status.label}= ta.status.label.capitalize
+        %li
+          - if ta.pending?
+            = link_to 'Upgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @approved.id}), method: :put
+          - elsif ta.approved?
+            = link_to 'Downgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @pending.id}), method: :put
+        %li= link_to 'Delete', teaching_assistant_path(ta.id), method: :delete
+        %li= link_to 'Ban', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @banned.id}), method: :put
     %h5
       = ta.name
-      %span.right.badge{:class => ta.status.label}= ta.status.label.capitalize
     %ul.inline
+      %li= link_to 'View profile', teaching_assistant_path(ta)
       %li= link_to 'Email', ta.email
+    %ul.inline
+      %li.first Balance:
       %li
-        - if ta.pending?
-          = link_to 'Upgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @approved.id}), method: :put
-        - elsif ta.approved?
-          = link_to 'Downgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @pending.id}), method: :put
-      %li= link_to 'Profile', teaching_assistant_path(ta)
-      %li= link_to 'Edit', edit_teaching_assistant_path(ta)
-      %li= link_to 'Delete', teaching_assistant_path(ta.id), method: :delete
-      %li= link_to 'Ban', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @banned.id}), method: :put
-    %p
-      Balance:
-      = ta.balance
+        = ta.balance || 0
+        hours
+
 
 
 / - if TeachingAssistant.prospective.any?
