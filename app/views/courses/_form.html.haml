@@ -18,6 +18,12 @@
     = f.label :date
     = f.date_select :date
   .field
+    = f.label :start_time
+    = f.time_select :start_time
+  .field
+    = f.label :end_time
+    = f.time_select :end_time
+  .field
     = f.label :url, 'Meetup URL'
     = f.text_field :url
   .field

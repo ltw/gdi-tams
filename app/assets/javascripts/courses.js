@@ -35,6 +35,31 @@ $(document).ready(function() {
     var date = dateFromSecondsSinceEpoch(data.time);
     var day = date.getDate();
 
+    // START TIME
+    var startHour = date.getHours();
+    if (startHour < 10) {
+      startHour = '0' + startHour;
+    }
+    var startMins = date.getMinutes();
+    if (startMins < 10) {
+      startMins = '0' + startMins;
+    }
+
+    // END TIME
+    var mins = parseInt(data.duration) / 1000 / 60;
+    var minutes = mins % 60;
+    if (minutes < 10) {
+      minutes = '0' + minutes;
+    }
+    else if (minutes == null) {
+      minutes = '00';
+    }
+    var length = mins / 60;
+    var hours = parseInt(startHour) + parseInt(length);
+    if (hours < 10) {
+      hours = '0' + hours;
+    }
+
     $('div.loading').remove();
     $('form.new_course').show();
     $('#course_name').val(data.name);
@@ -44,6 +69,10 @@ $(document).ready(function() {
     $('#course_date_1i').val('2014');
     $('#course_date_2i').val(date.getMonth() + 1); // January
     $('#course_date_3i').val(day); // 1-31
+    $('#course_start_time_4i').val(startHour);
+    $('#course_start_time_5i').val(startMins);
+    $('#course_end_time_4i').val(hours);
+    $('#course_end_time_5i').val(minutes);
     $('#course_meetup_id').val(id);
   }
 
