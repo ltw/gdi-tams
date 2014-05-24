@@ -67,18 +67,17 @@
       %li.first Location:
       %li= course.location
     - series.courses.sort_by(&:date).each do |course|
-      %article.single_day
-        %h6.no_padding.no_margin
-          = course.pretty_date
-          = course.pretty_time
-        %ul.inline
-          %li.first Number TAs still needed:
-          %li= course.num_tas_still_needed
-          %li.first TA minimum:
-          %li= course.num_tas_needed
-        %ul.inline
-          %li.first Credit hours:
-          %li= course.credit_hours
+      %h6.no_padding.no_margin
+        = course.pretty_date
+        = course.pretty_time
+      %ul.inline
+        %li.first Number TAs still needed:
+        %li= course.num_tas_still_needed
+        %li.first TA minimum:
+        %li= course.num_tas_needed
+      %ul.inline
+        %li.first Credit hours:
+        %li= course.credit_hours
 
 .clear
 
