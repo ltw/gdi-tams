@@ -67,51 +67,26 @@
 
 %h4 Teaching Assistants
 
-.pure-g
-  .pure-u-4-24
-    %h5 Name
-  .pure-u-4-24
-    %h5 Email
-  .pure-u-2-24
-    %h5 Balance
-  .pure-u-3-24
-    %h5 Status
-  .pure-u-4-24
-    %h5 Change status
-  .pure-u-1-24
-    %h5 Ban
-  .pure-u-2-24
-    %h5 Remove
-  .pure-u-1-24
-    %h5 View
-  .pure-u-1-24
-    %h5 Edit
+- @tas.each do |ta|
+  %article.ta_list
+    %h5
+      = ta.name
+      %span.right.badge{:class => ta.status.label}= ta.status.label.capitalize
+    %ul.inline
+      %li= link_to 'Email', ta.email
+      %li
+        - if ta.pending?
+          = link_to 'Upgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @approved.id}), method: :put
+        - elsif ta.approved?
+          = link_to 'Downgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @pending.id}), method: :put
+      %li= link_to 'Profile', teaching_assistant_path(ta)
+      %li= link_to 'Edit', edit_teaching_assistant_path(ta)
+      %li= link_to 'Delete', teaching_assistant_path(ta.id), method: :delete
+      %li= link_to 'Ban', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @banned.id}), method: :put
+    %p
+      Balance:
+      = ta.balance
 
-.ta_list
-  - @tas.each do |ta|
-    .pure-g
-      .pure-u-4-24
-        %p= ta.name
-      .pure-u-4-24
-        %p= ta.email
-      .pure-u-2-24
-        %p= ta.balance
-      .pure-u-3-24
-        %p= ta.status.label.capitalize
-      .pure-u-4-24
-        %p
-          - if ta.pending?
-            = link_to 'Upgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @approved.id}), method: :put
-          - elsif ta.approved?
-            = link_to 'Downgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @pending.id}), method: :put
-      .pure-u-1-24
-        %p= link_to 'Ban', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @banned.id}), method: :put
-      .pure-u-2-24
-        %p= link_to 'Remove', teaching_assistant_path(ta.id), method: :delete
-      .pure-u-1-24
-        %p= link_to 'Show', teaching_assistant_path(ta)
-      .pure-u-1-24
-        %p= link_to 'Edit', edit_teaching_assistant_path(ta)
 
 / - if TeachingAssistant.prospective.any?
 /   #error_explanation

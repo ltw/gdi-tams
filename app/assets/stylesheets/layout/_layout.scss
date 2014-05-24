@@ -12,8 +12,8 @@ article {
   }
 
   &.ta_list {
-    width: 20%;
-    &:nth-child(4n+2) {
+    width: 29%;
+    &:nth-child(3n) {
       clear: both;
     }
   }
@@ -40,4 +40,9 @@ article {
 
 .clear {
   clear: both;
+}
+
+
+.right {
+  float: right;
 }
