@@ -1,0 +1,20 @@
+.badge {
+  font-size: $fontSize * 0.5;
+  font-weight: 700;
+  color: $background;
+  padding: $microPadding/2;
+  border-radius: 10px;
+  text-transform: uppercase;
+  &.approved {
+    background-color: $secondary;
+  }
+  &.pending {
+    background-color: $tertiary;
+  }
+  &.prospectice {
+    background-color: $primary;
+  }
+  &.banned {
+    background-color: darken($primary, 20%);
+  }
+}

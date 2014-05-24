@@ -4,6 +4,9 @@
   %b Name:
   = @teaching_assistant.name
 %p
+  %b Sign up:
+  = link_to "Private sign up page", sign_ups_path(@teaching_assistant.private_id)
+%p
   %b Email:
   = @teaching_assistant.email
 %p

@@ -2,8 +2,8 @@ class AdminsController < ApplicationController
 
   def dashboard
     render 'shared/admin_only' unless is_admin?
-    @courses = Course.upcoming.single_day
-    @series = Series.upcoming
+    @courses = Course.upcoming.single_day.sort_by(&:date)
+    @series = Series.upcoming.sort_by(&:end_date)
     @tas = TeachingAssistant.all.sort_by(&:name)
     @approved = Status.find_by_label("approved")
     @banned = Status.find_by_label("banned")

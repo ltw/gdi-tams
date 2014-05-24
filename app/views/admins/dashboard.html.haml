@@ -1,70 +1,122 @@
-%h1 Dashboard
+%h3 Organizer Dashboard
 
 %p#notice= notice
 
 - if TeachingAssistant.prospective.any?
   #error_explanation
-    %h2 You have new TA applications!
+    %h4 You have new TA applications!
 
-= link_to 'Add new series', new_series_path
-= link_to 'Import new course', new_course_path
-= link_to 'Add new teaching assistant', new_teaching_assistant_path
+%ul.inline
+  %li.first Quick links:
+  %li= link_to 'Upcoming single day workshops', '#single_day'
+  %li= link_to 'Upcoming multi-day workshops', '#multi_day'
+  %li= link_to 'TA list', '#tas'
 
-%h2 Upcoming Single Day Workshops
+.line__secondary
 
-%table
-  = render partial: 'course_table_header'
-  - @courses.each do |course|
-    = render partial: 'course_table_row', locals: {course: course}
+%h4 Upcoming Single Day Workshops
 
-%h2 Upcoming Multi-Day Workshops
+- @courses.each do |course|
+  %article.single_day
+    %h5= course.name
+    %ul.inline
+      %li.first More information:
+      %li= link_to 'Meetup', course.url
+      %li= link_to 'Description', course_path(course)
+    %ul.inline
+      %li.first Date & time:
+      %li
+        = course.pretty_date
+        = course.pretty_time
+    %ul.inline
+      %li.first Location:
+      %li= course.location
+    %ul.inline
+      %li.first Number TAs still needed:
+      %li= course.num_tas_still_needed
+      %li.first TA minimum:
+      %li= course.num_tas_needed
+    %ul.inline
+      %li.first Credit hours:
+      %li= course.credit_hours
+    %h6 Teaching Assistants
+    - course.teaching_assistants.each do |ta|
+      %ul.inline
+        %li.first
+          = ta.name
+          (
+          = ta.signed_up_for(course)
+          )
+        %li= link_to 'Remove TA from course', hour_path(course.hour_for(ta)), method: :delete
+        %li= link_to 'View TA info', teaching_assistant_path(ta)
+
+.clear
+
+.line__secondary
+%h4 Upcoming Multi-Day Workshops
 
 - @series.each do |series|
-  %p
-    %b= series.end_date
-    = series.name
-    = link_to 'Show', series_path(series)
-    = link_to 'Edit', edit_series_path(series)
-  %table
-    = render partial: 'course_table_header'
-    - series.courses.each do |course|
-      = render partial: 'course_table_row', locals: {course: course}
+  %article.multi_day
+    %h5= series.name
+    - course = series.courses.first
+    %ul.inline
+      %li.first More information:
+      %li= link_to 'Meetup', course.url
+      %li= link_to 'Description', course_path(course)
+    %ul.inline
+      %li.first Location:
+      %li= course.location
+    - series.courses.sort_by(&:date).each do |course|
+      %article.single_day
+        %h6.no_padding.no_margin
+          = course.pretty_date
+          = course.pretty_time
+        %ul.inline
+          %li.first Number TAs still needed:
+          %li= course.num_tas_still_needed
+          %li.first TA minimum:
+          %li= course.num_tas_needed
+        %ul.inline
+          %li.first Credit hours:
+          %li= course.credit_hours
 
-%h2 Teaching Assistants
+.clear
 
-- if TeachingAssistant.prospective.any?
-  #error_explanation
-    %h2 New TA applications:
-    %ul
-      - TeachingAssistant.prospective.each do |ta|
+.line__secondary
+
+%h4 Teaching Assistants
+
+- @tas.each do |ta|
+  %article.ta_list
+    .right
+      %ul.stacked
         %li
-          = link_to ta.name, edit_teaching_assistant_path(ta)
-          = link_to 'Upgrade status', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @pending.id}), method: :put
+          %span.badge{:class => ta.status.label}= ta.status.label.capitalize
+        %li
+          - if ta.pending?
+            = link_to 'Upgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @approved.id}), method: :put
+          - elsif ta.approved?
+            = link_to 'Downgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @pending.id}), method: :put
+        %li= link_to 'Delete', teaching_assistant_path(ta.id), method: :delete
+        %li= link_to 'Ban', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @banned.id}), method: :put
+    %h5
+      = ta.name
+    %ul.inline
+      %li= link_to 'View profile', teaching_assistant_path(ta)
+      %li= link_to 'Email', ta.email
+    %ul.inline
+      %li.first Balance:
+      %li
+        = ta.balance || 0
+        hours
 
-%table
-  %tr
-    %th Name
-    %th Email
-    %th Balance
-    %th Status
-    %th
-    %th
-    %th
-    %th
-    %th
-  - @tas.each do |ta|
-    %tr{:class => ("prospective" if ta.status.label == "prospective")}
-      %td= ta.name
-      %td= ta.email
-      %td= ta.balance
-      %td= ta.status.label
-      %td= link_to 'Show', teaching_assistant_path(ta)
-      %td= link_to 'Edit', edit_teaching_assistant_path(ta)
-      %td
-        - if ta.pending?
-          = link_to 'Upgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @approved.id}), method: :put
-        - elsif ta.approved?
-          = link_to 'Downgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @pending.id}), method: :put
-      %td= link_to 'Ban', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @banned.id}), method: :put
-      %td= link_to 'Remove', teaching_assistant_path(ta.id), method: :delete
 
+
+/ - if TeachingAssistant.prospective.any?
+/   #error_explanation
+/     %h5 New TA applications:
+/     %ul
+/       - TeachingAssistant.prospective.each do |ta|
+/         %li
+/           = link_to ta.name, edit_teaching_assistant_path(ta)
+/           = link_to 'Upgrade status', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @pending.id}), method: :put

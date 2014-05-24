@@ -1,0 +1,14 @@
+header {
+  padding: $padding 0px;
+  h1, h2 {
+    text-align: right;
+  }
+  h1 {
+    font-size: $fontSize * 1.25;
+    color: $primary;
+    text-transform: uppercase;
+  }
+  h2 {
+    color: $secondary;
+  }
+}

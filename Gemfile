@@ -2,13 +2,13 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.1'
 
-gem 'pg'
+gem 'pg', '~> 0.17.1'
 
-gem 'haml-rails'
-gem 'sass-rails', '~> 4.0.3'
+gem 'haml-rails', '0.5.3'
+gem 'sass-rails', '4.0.3'
 gem 'uglifier', '>= 1.3.0'
-gem 'jquery-rails'
-gem 'turbolinks'
+gem 'jquery-rails', '~> 3.1.0'
+gem 'turbolinks', '~> 2.2.2'
 
 gem 'bcrypt', '~> 3.1.7'
 

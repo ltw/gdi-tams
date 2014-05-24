@@ -2,8 +2,8 @@ class TeachingAssistant < ActiveRecord::Base
   before_save :generate_private_id
 
   belongs_to :status
-  has_many :hours
-  has_many :courses, through: :hours
+  has_many :hours, dependent: :destroy
+  has_many :courses, through: :hours, dependent: :destroy
 
   validates_uniqueness_of :private_id, :email
   validates_presence_of :name, :email
@@ -31,9 +31,9 @@ class TeachingAssistant < ActiveRecord::Base
 
   def signed_up_for(course)
     if is_ta_for?(course)
-      "Yes (TA)"
+      "TA"
     elsif is_student_in?(course)
-      "Yes (Student)"
+      "Student"
     else
       "No"
     end
