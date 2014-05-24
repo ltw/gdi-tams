@@ -1,9 +1,10 @@
 class Course < ActiveRecord::Base
   belongs_to :series
-  has_many :hours
+  has_many :hours, dependent: :destroy
   has_many :teaching_assistants, through: :hours
 
   validates_presence_of :credit_hours
+  validates_presence_of :num_tas_needed
 
   scope :upcoming, -> { where("date > ?", Date.today) }
   scope :single_day, -> { where("series_id IS NULL") }
