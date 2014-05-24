@@ -25,15 +25,6 @@ article {
     width: 95%;
   }
   article.ta_list {
-    width: 45%;
-    &:nth-child(2n) {
-      clear: both;
-    }
-  }
-}
-
-@media all and (max-width: 675px) {
-  article.ta_list {
     width: 95%;
   }
 }
