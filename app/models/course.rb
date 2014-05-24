@@ -28,4 +28,8 @@ class Course < ActiveRecord::Base
   def pretty_date
     date.strftime("%B %e, %Y (%A)")
   end
+
+  def pretty_time
+    "#{start_time.strftime("%I:%M %p")}–#{end_time.strftime("%I:%M %p")}"
+  end
 end

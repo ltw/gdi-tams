@@ -24,8 +24,11 @@
       %li= link_to 'Meetup', course.url
       %li= link_to 'Description', course_path(course)
     %ul.inline
-      %li.first Date:
-      %li= course.pretty_date
+      %li.first Date & time:
+      %li
+        = course.pretty_date
+        from
+        = course.pretty_time
     %ul.inline
       %li.first Location:
       %li= course.location
