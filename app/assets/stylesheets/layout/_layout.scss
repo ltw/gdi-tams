@@ -13,7 +13,7 @@ article {
 
   &.ta_list {
     width: 29%;
-    &:nth-child(3n) {
+    &:nth-child(3n+1) {
       clear: both;
     }
   }
