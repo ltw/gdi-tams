@@ -10,4 +10,8 @@ module IconsHelper
   def icon_thumbs_up
     raw('<i class="fa fa-thumbs-up"></i>')
   end
+
+  def icon_check
+    raw('<i class="fa fa-check"></i>')
+  end
 end
