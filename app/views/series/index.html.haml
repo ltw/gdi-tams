@@ -2,9 +2,15 @@
 
 .line__secondary
 
-%ul.long
+%table
+  %tr
+    %th Show
+    %th Name
+    %th Date
+    %th Courses
   - @series.each do |series|
-    %li
-      = link_to icon_link_out + ' View series details', series_path(series), class: 'badge default left_margin'
-      = series.name
-      (#{series.pretty_end_date}, #{series.courses.count} sessions)
+    %tr
+      %td= link_to icon_link_out, series_path(series)
+      %td= series.name
+      %td= series.pretty_end_date
+      %td= series.courses.count
