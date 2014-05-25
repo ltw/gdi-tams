@@ -1,33 +1,23 @@
-%h1 Listing teaching_assistants
+%h3 Teaching Assistants
 
-%h2 Approved
+.line__secondary
 
-%table
-  %tr
-    %th Name
-    %th Email
-    %th
-
-  - TeachingAssistant.approved.each do |teaching_assistant|
-    %tr
-      %td= teaching_assistant.name
-      %td= teaching_assistant.email
-      %td= link_to 'Show', teaching_assistant
-
-%br
-
-%h2 Pending
-
-%table
-  %tr
-    %th Name
-    %th Email
-    %th
-
-  - TeachingAssistant.approved.each do |teaching_assistant|
-    %tr
-      %td= teaching_assistant.name
-      %td= teaching_assistant.email
-      %td= link_to 'Show', teaching_assistant
-
-%br
+- @teaching_assistants.each do |teaching_assistant|
+  %article.single_day
+    %p.float_right
+      %span.badge{class: teaching_assistant.status.label}
+        = teaching_assistant.status.label
+    %h5
+      = teaching_assistant.name
+      = link_to icon_email + ' Email', teaching_assistant.email, class: 'badge default side_margin'
+      = link_to icon_link_out + ' Profile', teaching_assistant, class: 'badge default right_margin'
+      = link_to icon_link_out + ' Private sign up page', sign_ups_path(teaching_assistant.private_id), class: 'badge default right_margin'
+      - if teaching_assistant.approved?
+        = link_to icon_thumbs_down + ' Downgrade', { controller: :teaching_assistants, action: :update, id: teaching_assistant.id, teaching_assistant: { status: @pending } }, method: :put, title: "Change student to TA", class: "badge warning right_margin"
+      - else
+        = link_to icon_thumbs_up + ' Upgrade', { controller: :teaching_assistants, action: :update, id: teaching_assistant.id, teaching_assistant: { status: @approved } }, method: :put, title: "Change student to TA", class: "badge approved right_margin"
+      = link_to icon_delete + ' Ban', teaching_assistant.email, class: 'badge warning right_margin'
+      = link_to icon_delete + ' Remove', teaching_assistant, class: 'badge warning right_margin'
+    %p
+      Credit hour balance:
+      = teaching_assistant.balance

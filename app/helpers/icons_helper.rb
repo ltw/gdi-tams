@@ -23,12 +23,20 @@ module IconsHelper
     raw('<i class="fa fa-pencil-square"></i>')
   end
 
+  def icon_email
+    raw('<i class="fa fa-envelope"></i>')
+  end
+
   def icon_history
     raw('<i class="fa fa-history"></i>')
   end
 
   def icon_link_out
     raw('<i class="fa fa-external-link"></i>')
+  end
+
+  def icon_thumbs_down
+    raw('<i class="fa fa-thumbs-down"></i>')
   end
 
   def icon_thumbs_up
