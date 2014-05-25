@@ -14,4 +14,8 @@ module IconsHelper
   def icon_check
     raw('<i class="fa fa-check"></i>')
   end
+
+  def icon_add
+    raw('<i class="fa fa-plus-circle"></i>')
+  end
 end
