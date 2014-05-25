@@ -72,6 +72,10 @@
           = course.pretty_date
           = course.pretty_time
         %ul.inline
+          %li.first More information:
+          %li= link_to 'View details', course_path(course)
+          %li= link_to 'Meetup', course.url
+        %ul.inline
           %li.first Number TAs still needed:
           %li= course.num_tas_still_needed
           %li.first TA minimum:
@@ -79,6 +83,16 @@
         %ul.inline
           %li.first Credit hours:
           %li= course.credit_hours
+        %b.text_secondary Teaching Assistans
+        - course.teaching_assistants.each do |ta|
+          %ul.inline
+            %li.first
+              = ta.name
+              (
+              = ta.signed_up_for(course)
+              )
+            %li= link_to 'Remove TA from course', hour_path(course.hour_for(ta)), method: :delete
+            %li= link_to 'View TA info', teaching_assistant_path(ta)
 
 .clear
 

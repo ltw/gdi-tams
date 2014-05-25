@@ -63,3 +63,11 @@ a {
 .small {
   font-size: $fontSize * 0.75;
 }
+
+.text_primary {
+  color: $primary;
+}
+
+.text_secondary {
+  color: $secondary;
+}
