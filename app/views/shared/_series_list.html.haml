@@ -1,9 +1,0 @@
-- series.each do |workshop|
-  %h2= workshop.name
-  %p= workshop.end_date
-  %h3 Series course sessions
-
-  %table
-    = render partial: 'shared/course_list_header'
-    - workshop.courses.each do |course|
-      = render partial: 'shared/course_list', locals: {course: course, teaching_assistant: teaching_assistant}

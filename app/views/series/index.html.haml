@@ -15,16 +15,4 @@
       %th Meetup
 
     - series.courses.each do |course|
-      %tr
-        %td
-          = link_to icon_link_out + ' view', course_path(course), class: 'badge default'
-        %td
-          %b= course.name
-          %br
-          = course.location
-        %td
-          = course.pretty_date_short
-          %br
-          = course.pretty_time
-        %td= course.credit_hours
-        %td= link_to icon_link_out, course.url
+      = render partial: 'shared/course_row', locals: { course: course }
