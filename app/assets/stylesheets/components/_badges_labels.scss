@@ -8,13 +8,27 @@
   &.approved {
     background-color: $secondary;
   }
-  &.pending {
+  &.pending, &.default {
     background-color: $tertiary;
   }
-  &.prospectice {
+  &.prospective, &.warning, &.alert {
     background-color: $primary;
   }
   &.banned {
     background-color: darken($primary, 20%);
   }
+}
+
+#error_explanation {
+  background-color: lighten($primary, 30%);
+  padding: $microPadding $padding;
+  border: 5px solid $primary;
+  a {
+    color: darken($tertiary, 30%);
+  }
+}
+
+#notice {
+  color: $secondary;
+  font-weight: 700;
 }
