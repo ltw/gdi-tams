@@ -46,4 +46,7 @@ table {
     font-size: 100%;
     tr, th, td, td:first-child, td:last-child { border: 0; }
   }
+  &.small {
+    width: auto;
+  }
 }

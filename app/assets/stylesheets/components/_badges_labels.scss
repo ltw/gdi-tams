@@ -21,6 +21,9 @@
   &.banned {
     background-color: darken($primary, 20%);
   }
+  &.inactive {
+    background-color: darken($secondary, 20%);
+  }
 }
 
 #error_explanation {
