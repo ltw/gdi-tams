@@ -26,4 +26,20 @@ module IconsHelper
   def icon_edit
     raw('<i class="fa fa-pencil-square"></i>')
   end
+
+  def icon_code
+    raw('<i class="fa fa-code"></i>')
+  end
+
+  def icon_history
+    raw('<i class="fa fa-history"></i>')
+  end
+
+  def icon_woman
+    raw('<i class="fa fa-female"></i>')
+  end
+
+  def icon_book
+    raw('<i class="fa fa-book"></i>')
+  end
 end
