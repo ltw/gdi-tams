@@ -1,29 +1,3 @@
 #content {
   padding-bottom: $jumboPadding;
 }
-
-article {
-  border: lighten($tertiary, 20%) 1px solid;
-  padding: $microPadding;
-  margin: $jumboMargin auto;
-  width: 95%;
-
-  &.single_day {
-    width: 95%;
-  }
-
-  &.ta_list {
-    width: 45%;
-    &:nth-child(3n) {
-      float: left;
-    }
-  }
-}
-
-.clear {
-  clear: both;
-}
-
-.float_right {
-  float: right;
-}
