@@ -74,37 +74,43 @@
     %ul.inline
       %li.first More information:
       %li= link_to 'Meetup', course.url
-      %li= link_to 'Description', course_path(course)
     %ul.inline
       %li.first Location:
       %li= course.location
     - series.courses.sort_by(&:date).each do |course|
-      %article.single_day
-        %h6.no_padding.no_margin
-          = course.pretty_date
-          = course.pretty_time
-        %ul.inline
-          %li.first More information:
-          %li= link_to 'View details', course_path(course)
-          %li= link_to 'Meetup', course.url
-        %ul.inline
-          %li.first Number TAs still needed:
-          %li= course.num_tas_still_needed
-          %li.first TA minimum:
-          %li= course.num_tas_needed
-        %ul.inline
-          %li.first Credit hours:
-          %li= course.credit_hours
-        %b.text_secondary Teaching Assistans
-        - course.teaching_assistants.each do |ta|
+      .line_skinny__secondary
+      .pure-g
+        .pure-u-1-2
+          %h6.no_padding.no_margin
+            = course.pretty_date
+            %span.left_margin
+              = link_to icon_link_out, course_path(course)
+          %p= course.pretty_time
           %ul.inline
-            %li.first
-              = ta.name
-              (
-              = ta.signed_up_for(course)
-              )
-            %li= link_to 'Remove TA from course', hour_path(course.hour_for(ta)), method: :delete
-            %li= link_to 'View TA info', teaching_assistant_path(ta)
+            %li.first TA minimum:
+            %li
+              = course.num_tas_needed
+              - if course.need_tas?
+                %span.badge.alert.left_margin
+                  = course.num_tas_still_needed
+                  still needed!
+              - else
+                %span.text_secondary.left_margin= icon_check
+          %ul.inline
+            %li.first Credit hours:
+            %li= course.credit_hours
+        .pure-u-1-2
+          %b.text_secondary Teaching Assistants
+          - course.teaching_assistants.each do |ta|
+            %ul.inline
+              %li
+                = ta.name
+                (
+                = ta.signed_up_for(course)
+                )
+              %li
+                = link_to icon_delete, hour_path(course.hour_for(ta)), title: "Remove from course", method: :delete
+                = link_to icon_link_out, teaching_assistant_path(ta), title: "View TA profile"
 
 .clear
 
