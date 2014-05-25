@@ -3,7 +3,7 @@ class HoursController < ApplicationController
 
   # GET /hours
   def index
-    @hours = Hour.all
+    @courses = Course.last_month.sort_by(&:date)
   end
 
   # GET /hours/1
