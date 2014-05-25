@@ -1,16 +1,30 @@
-%h3 Series: Multi-Day Courses
+%h3 Series: Upcoming Multi-Day Courses
 
-.line__secondary
 
-%table
-  %tr
-    %th Show
-    %th Name
-    %th Date
-    %th Courses
-  - @series.each do |series|
+- @series.each do | series|
+  .line__secondary
+
+  %h5= series.name
+
+  %table
     %tr
-      %td= link_to icon_link_out, series_path(series)
-      %td= series.name
-      %td= series.pretty_end_date
-      %td= series.courses.count
+      %th
+      %th Name & Location
+      %th Date & Time
+      %th Credit
+      %th Meetup
+
+    - series.courses.each do |course|
+      %tr
+        %td
+          = link_to icon_link_out + ' view', course_path(course), class: 'badge default'
+        %td
+          %b= course.name
+          %br
+          = course.location
+        %td
+          = course.pretty_date_short
+          %br
+          = course.pretty_time
+        %td= course.credit_hours
+        %td= link_to icon_link_out, course.url
