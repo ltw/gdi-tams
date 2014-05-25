@@ -16,8 +16,8 @@ class HoursController < ApplicationController
   # GET /hours/new
   def new
     @hour = Hour.new
-    @course = Course.find(params[:course_id])
-    @teaching_assistant = TeachingAssistant.find(params[:teaching_assistant_id])
+    @courses = Course.all.sort_by(&:date)
+    @tas= TeachingAssistant.all.sort_by(&:name)
   end
 
   # GET /hours/1/edit
@@ -26,11 +26,17 @@ class HoursController < ApplicationController
 
   # POST /hours
   def create
+    hours = Course.find(params[:hour][:course_id]).credit_hours
     @hour = Hour.new(hour_params)
-    private_id = TeachingAssistant.find(hour_params[:teaching_assistant_id]).private_id
+
+    if params[:student]
+      @hour.num = -hours
+    else
+      @hour.num = hours
+    end
 
     if @hour.save
-      redirect_to sign_ups_path(private_id), notice: "Success! We have you down as a TA for #{@hour.course.name} on #{@hour.course.date}."
+      redirect_to root_path, notice: "Success! We have you down as a TA for #{@hour.course.name} on #{@hour.course.date}."
     else
       render :new
     end

@@ -32,7 +32,7 @@
       = course.pretty_time
     %h6
       Teaching Assistants
-      = link_to icon_add + ' Add a Teaching Assistant', new_hour_path, class: "badge approved left_margin"
+      = link_to icon_add + ' Add a Teaching Assistant or Student', new_hour_path, class: "badge approved left_margin"
     = render partial: "ta_list", locals: { course: course }
 
 .line__secondary
@@ -54,5 +54,5 @@
           = course.credit_hours
       %p
         Teaching Assistants
-        = link_to icon_add + ' Add a Teaching Assistant', new_hour_path, class: "badge approved left_margin"
+        = link_to icon_add + ' Add a Teaching Assistant or Student', new_hour_path, class: "badge approved left_margin"
       = render partial: "ta_list", locals: { course: course }
