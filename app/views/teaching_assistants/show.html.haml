@@ -10,6 +10,18 @@
 
 .line__secondary
 
+%h4 Upcoming Schedule
+
+%table
+  %tr
+    %th Info
+    %th Course & Location
+    %th Date & Time
+    %th
+  - @teaching_assistant.schedule.each do |course|
+    = render partial: 'sign_ups/course_row', locals: { course: course }
+
+.line__secondary
 
 %h4 History
 

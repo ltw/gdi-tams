@@ -1,0 +1,25 @@
+%tr
+  %td.center
+    = link_to icon_link_out, course.url
+  %td
+    - if @teaching_assistant.is_ta_for?(course)
+      %span.right_margin.text_secondary
+        = icon_check
+    - else
+      %span.right_margin.text_primary
+        = icon_x
+    %b= course.name
+    %br
+    = course.location
+  %td
+    = course.pretty_date
+    %br
+    = course.pretty_time
+  %td
+    - if @teaching_assistant.is_ta_for?(course)
+      = link_to 'Change RSVP to No', hours_path, class: 'badge warning'
+    - else
+      = link_to 'RSVP Yes', hours_path, class: 'badge approved'
+    %br
+    %b Credit hours:
+    = course.credit_hours
