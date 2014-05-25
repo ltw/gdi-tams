@@ -50,4 +50,8 @@ module IconsHelper
   def icon_woman
     raw('<i class="fa fa-female"></i>')
   end
+
+  def icon_x
+    raw('<i class="fa fa-times"></i>')
+  end
 end
