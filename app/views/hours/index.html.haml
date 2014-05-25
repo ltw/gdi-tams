@@ -9,39 +9,49 @@
 %h4 Recently concluded single day workshops
 
 - @courses.each do |course|
-  %article.single_day
-    %h5
-      = course.name
-      = link_to icon_edit, edit_course_path(course)
-      %span.badge.default.float_right
-        Credit hours:
-        = course.credit_hours
-    %p
-      = course.pretty_date
-      = course.pretty_time
-    %h6
-      Teaching Assistants
-      = link_to icon_add + ' Add a Teaching Assistant or Student', new_hour_path, class: "badge approved left_margin"
-    = render partial: "ta_list", locals: { course: course }
+  %span.float_right= link_to icon_add + ' Add a Teaching Assistant or Student', new_hour_path, class: "badge approved"
+  %h5
+    = course.name
+    = link_to icon_link_out, course_path(course), class: 'side_margin'
+    = link_to icon_edit, edit_course_path(course)
+  %table
+    %tr
+      %th Date & Time
+      %th Hours
+      %th Teaching Assistants
+    %tr
+      %td
+        = course.pretty_date_short
+        %br
+        = course.pretty_time
+      %td= course.credit_hours
+      %td= render partial: "ta_list", locals: { course: course }
+  .line__secondary
 
-.line__secondary
 
 %h4 Recently concluded multi-day workshops
 
 - @series.each do |series|
-  %article.multi_day
-    %h5
-      = series.name
-      = link_to icon_edit, edit_series_path(series)
-    - series.courses.each do |course|
-      %h6
-        = course.pretty_date
-        = course.pretty_time
-        = link_to icon_edit, edit_course_path(course)
-        %span.badge.default.float_right
-          Credit hours:
-          = course.credit_hours
-      %p
-        Teaching Assistants
-        = link_to icon_add + ' Add a Teaching Assistant or Student', new_hour_path, class: "badge approved left_margin"
-      = render partial: "ta_list", locals: { course: course }
+  %h5
+    = series.name
+    = link_to icon_link_out, series_path(series), class: 'side_margin'
+    = link_to icon_edit, edit_series_path(series)
+  - series.courses.each do |course|
+    %table
+      %tr
+        %th
+          = course.pretty_date
+          = link_to icon_link_out, course_path(course), class: 'side_margin'
+          = link_to icon_edit, edit_course_path(course)
+          = link_to icon_add + ' Add a Teaching Assistant or Student', new_hour_path, class: "badge approved left_margin"
+      %tr
+        %table
+          %tr
+            %th Time
+            %th Hours
+            %th Teaching Assistants
+          %tr
+            %td= course.pretty_time
+            %td= course.credit_hours
+            %td= render partial: "ta_list", locals: { course: course }
+    %p
