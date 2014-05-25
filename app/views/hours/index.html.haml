@@ -25,7 +25,7 @@
         %br
         = course.pretty_time
       %td= course.credit_hours
-      %td= render partial: "ta_list", locals: { course: course }
+      %td= render partial: "shared/ta_table", locals: { course: course }
   .line__secondary
 
 
@@ -53,5 +53,5 @@
           %tr
             %td= course.pretty_time
             %td= course.credit_hours
-            %td= render partial: "ta_list", locals: { course: course }
+            %td= render partial: "shared/ta_table", locals: { course: course }
     %p
