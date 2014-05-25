@@ -1,36 +1,111 @@
-%h1 Hello, #{@teaching_assistant.name}!
+%h3 Hello, #{@teaching_assistant.name}!
 
 %p#notice= notice
 
 %p
-  Your balance of teaching assistant hours is:
-  = @teaching_assistant.balance || 0
+  This is your secret sign up page. Only you (and the GDI Organizers) have access to this URL (unless you share it with someone else, but that's kind of silly and defeats the purpose of having a secret sign up page, now doesn't it?).
 
-%h2 Upcoming Series Workshops
+%p
+  You can sign up to TA new classes below, or change your RSVP for classes you already signed up to TA.
 
-%p To sign up to TA a multiple day workshop, you need to RSVP for each day you plan to attend.
+%p
+  %b To use your credit hours:
+  Email <a href="mailto:liza@girldevelopit.com">Liz</a> and she will get you signed up in Meetup. That's unfortunately still a manual process.
 
-= render partial: 'shared/series_list', locals: {series: @series, teaching_assistant: @teaching_assistant}
+.line__secondary
 
-%h2 Upcoming Single Day Courses
-
-%table
-  = render partial: 'shared/course_list_header'
-  - @courses.each do |course|
-    = render partial: 'shared/course_list', locals: {course: course, teaching_assistant: @teaching_assistant}
-
-%h2 TA History
+%h4 Things you're going to
 
 %table
   %tr
-    %th Hours
-    %th Course Name
-    %th Date
-    %th Meetup
+    %th Info
+    %th Course & Location
+    %th Date & Time
+    %th
+  - @teaching_assistant.schedule.each do |course|
+    = render partial: 'course_row', locals: { course: course }
 
-  - @teaching_assistant.history.each do |hour|
+.line__secondary
+
+%h4 All Upcoming Single Day Courses
+
+%table
+  %tr
+    %th Info
+    %th Course & Location
+    %th Date & Time
+    %th Sign up!
+  - @courses.each do |course|
+    = render partial: 'course_row', locals: { course: course }
+
+.line__secondary
+
+%h4 All Upcoming Series Workshops
+
+%p To sign up to TA a multiple day workshop, you need to RSVP for each day you plan to attend.
+
+- @series.each do |series|
+  %h5= series.name
+  %table
     %tr
-      %td= hour.num
-      %td= hour.course.name
-      %td= hour.course.date
-      %td= link_to 'Meetup', hour.course.url
+      %th Info
+      %th Course & Location
+      %th Date & Time
+      %th Sign up!
+    - series.courses.each do |course|
+      = render partial: 'course_row', locals: { course: course }
+
+.line__secondary
+
+%h4 Hour balance
+
+%p
+  Your current balance only covers classes you have already TA'd for. Your pending balance includes all hours you're signed up for, but haven't attended yet.
+
+%p
+  %b You can only spend your current balance if you plan on taking classes.
+
+%table.small
+  %tr
+    %th Current Balance
+    %th Pending Balance
+  %tr
+    %td= @teaching_assistant.balance || 0
+    %td= @teaching_assistant.pending_balance || 0
+
+.line__secondary
+
+%h4 TA History
+
+%p Red rows indicate that you were enrolled in the class as a student using your credit hours.
+
+= render partial: 'shared/ta_history_table', locals: { teaching_assistant: @teaching_assistant }
+
+.line__secondary
+
+%h4 Update your info
+
+= render partial: 'teaching_assistants/form'
+
+.line__secondary
+
+- if @teaching_assistant.inactive?
+  %h4 Re-activate me!
+
+  %p Welcome back!
+
+  %h5
+    = link_to icon_delete + ' Mark me as active', { controller: :teaching_assistants, action: :update, id: @teaching_assistant, teaching_assistant: { status_id: @pending.id } }, method: :put
+- else
+  %h4 Remove me
+
+  %p We're sad to see you go!
+
+  %p
+    %b Important note:
+    Removing yourself will mark you as inactive in our system. Your history and contact details will still exist in our TA database, but you will no longer receive emails.
+
+  %p You can reactivate your account later if you want to. Just visit this page again!
+
+  %h5
+    = link_to icon_delete + ' Mark me as inactive', { controller: :teaching_assistants, action: :update, id: @teaching_assistant, teaching_assistant: { status_id: @inactive.id } }, method: :put

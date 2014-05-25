@@ -14,6 +14,12 @@
   height: $microMargin/2;
 }
 
+.line_very_skinny  {
+  @extend .line;
+  height: $microMargin/2;
+  margin: $margin auto;
+}
+
 .line__secondary {
   @extend .line;
   background-color: $secondary;

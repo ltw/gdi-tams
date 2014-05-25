@@ -4,7 +4,11 @@ class TeachingAssistantsController < ApplicationController
   # GET /teaching_assistants
   def index
     render 'shared/admin_only' unless is_admin?
-    @teaching_assistants = TeachingAssistant.all
+    @teaching_assistants = TeachingAssistant.all.sort_by(&:name)
+    @approved = Status.find_by_label("approved")
+    @banned = Status.find_by_label("banned")
+    @pending = Status.find_by_label("pending")
+    @prospective = Status.find_by_label("prospective")
   end
 
   def edit
@@ -13,6 +17,7 @@ class TeachingAssistantsController < ApplicationController
 
   # GET /teaching_assistants/1
   def show
+    render 'shared/admin_only' unless is_admin?
     render 'shared/admin_only' unless is_admin?
   end
 

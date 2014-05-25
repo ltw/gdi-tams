@@ -1,33 +1,18 @@
-%h1 Listing teaching_assistants
+%h3 Teaching Assistants
 
-%h2 Approved
-
-%table
-  %tr
-    %th Name
-    %th Email
-    %th
-
-  - TeachingAssistant.approved.each do |teaching_assistant|
-    %tr
-      %td= teaching_assistant.name
-      %td= teaching_assistant.email
-      %td= link_to 'Show', teaching_assistant
-
-%br
-
-%h2 Pending
+.line__secondary
 
 %table
   %tr
+    %th Status
     %th Name
-    %th Email
-    %th
-
-  - TeachingAssistant.approved.each do |teaching_assistant|
+    %th Balance
+    %th Actions
+  - @teaching_assistants.each do |teaching_assistant|
     %tr
+      %td
+        %span.badge{class: teaching_assistant.status.label}
+          = teaching_assistant.status.label
       %td= teaching_assistant.name
-      %td= teaching_assistant.email
-      %td= link_to 'Show', teaching_assistant
-
-%br
+      %td= teaching_assistant.balance || 0
+      %td= render partial: 'action_badge', locals: { teaching_assistant: teaching_assistant }

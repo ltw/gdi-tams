@@ -23,7 +23,7 @@ class Course < ActiveRecord::Base
   end
 
   def is_series?
-    series.id.present?
+    series.present?
   end
 
   def need_tas?
@@ -36,6 +36,10 @@ class Course < ActiveRecord::Base
 
   def pretty_date
     date.strftime("%B %e, %Y (%A)")
+  end
+
+  def pretty_date_short
+    date.strftime("%B %e, %Y")
   end
 
   def pretty_time

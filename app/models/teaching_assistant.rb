@@ -1,5 +1,5 @@
 class TeachingAssistant < ActiveRecord::Base
-  before_save :generate_private_id
+  before_create :generate_private_id
 
   belongs_to :status
   has_many :hours, dependent: :destroy
@@ -13,12 +13,20 @@ class TeachingAssistant < ActiveRecord::Base
   scope :banned, -> { where status: Status.find_by_label("banned") }
   scope :prospective, -> { where status: Status.find_by_label("prospective") }
 
-  def balance
+  def pending_balance
     hours.to_a.map(&:num).inject(&:+)
   end
 
+  def balance
+    history.to_a.map(&:num).inject(&:+)
+  end
+
   def history
-    hours.select { |hour| hour.course.date > Date.today }
+    hours.select { |h| h.course.date < Date.today }.sort_by { |h| h.course.date }
+  end
+
+  def schedule
+    hours.where('num > 0').select { |h| h.course.date > Date.today }.map(&:course).sort_by(&:date)
   end
 
   def pending?
@@ -27,6 +35,10 @@ class TeachingAssistant < ActiveRecord::Base
 
   def approved?
     status.label == "approved"
+  end
+
+  def inactive?
+    (status.label == "inactive") || (status.label == "banned")
   end
 
   def signed_up_for(course)

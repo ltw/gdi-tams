@@ -1,35 +1,30 @@
-%p#notice= notice
+%h3= @teaching_assistant.name
 
-%p
-  %b Name:
-  = @teaching_assistant.name
-%p
-  %b Sign up:
-  = link_to "Private sign up page", sign_ups_path(@teaching_assistant.private_id)
-%p
-  %b Email:
-  = @teaching_assistant.email
-%p
-  %b Status:
-  = @teaching_assistant.status.label
-%p
-  %b Balance:
+%h4
+  Credit hour balance:
   = @teaching_assistant.balance
-%p
-  %b History:
-  %table
-    %tr
-      %th Hours
-      %th Course Name
-      %th Date
-      %th Meetup
 
-    - @teaching_assistant.hours.each do |hour|
-      %tr
-        %td= hour.num
-        %td= hour.course.name
-        %td= hour.course.date
-        %td= link_to 'Meetup', hour.course.url
+%span.badge{class: @teaching_assistant.status.label}
+  = @teaching_assistant.status.label
+= render partial: 'action_badge', locals: { teaching_assistant: @teaching_assistant }
 
+.line__secondary
 
-= link_to 'Back', teaching_assistants_path
+%h4 Upcoming Schedule
+
+%table
+  %tr
+    %th Info
+    %th Course & Location
+    %th Date & Time
+    %th
+  - @teaching_assistant.schedule.each do |course|
+    = render partial: 'sign_ups/course_row', locals: { course: course }
+
+.line__secondary
+
+%h4 History
+
+= render partial: 'shared/ta_history_table', locals: { teaching_assistant: @teaching_assistant }
+
+= render partial: 'shared/symbols'
