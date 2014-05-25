@@ -1,3 +1,7 @@
+#content {
+  padding-bottom: $jumboPadding;
+}
+
 article {
   border: lighten($tertiary, 20%) 1px solid;
   padding: 1%;
@@ -6,10 +10,7 @@ article {
   width: 95%;
 
   &.single_day {
-    width: 45%;
-    &:nth-child(3n) {
-      float: left;
-    }
+    width: 95%;
   }
 
   &.ta_list {
@@ -20,18 +21,10 @@ article {
   }
 }
 
-
-@media all and (max-width: 960px) {
-  article.ta_list {
-    width: 95%;
-  }
-}
-
 .clear {
   clear: both;
 }
 
-
-.right {
+.float_right {
   float: right;
 }
