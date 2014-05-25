@@ -4,13 +4,15 @@
 
 - if TeachingAssistant.prospective.any?
   #error_explanation
-    %h4 You have new TA applications!
+    %p
+      %b You have new TA applications!
+      = link_to 'Click here to review them.', '#tas'
 
 %ul.inline
   %li.first Quick links:
   %li= link_to 'Upcoming single day workshops', '#single_day'
   %li= link_to 'Upcoming multi-day workshops', '#multi_day'
-  %li= link_to 'TA list', '#tas'
+  %li= link_to 'TAs application review', '#tas'
 
 .line__secondary
 
@@ -18,37 +20,48 @@
 
 - @courses.each do |course|
   %article.single_day
-    %h5= course.name
-    %ul.inline
-      %li.first More information:
-      %li= link_to 'Meetup', course.url
-      %li= link_to 'Description', course_path(course)
-    %ul.inline
-      %li.first Date & time:
-      %li
-        = course.pretty_date
-        = course.pretty_time
-    %ul.inline
-      %li.first Location:
-      %li= course.location
-    %ul.inline
-      %li.first Number TAs still needed:
-      %li= course.num_tas_still_needed
-      %li.first TA minimum:
-      %li= course.num_tas_needed
-    %ul.inline
-      %li.first Credit hours:
-      %li= course.credit_hours
-    %h6 Teaching Assistants
-    - course.teaching_assistants.each do |ta|
-      %ul.inline
-        %li.first
-          = ta.name
-          (
-          = ta.signed_up_for(course)
-          )
-        %li= link_to 'Remove TA from course', hour_path(course.hour_for(ta)), method: :delete
-        %li= link_to 'View TA info', teaching_assistant_path(ta)
+    .pure-g
+      .pure-u-2-3
+        %h5= course.name
+        %ul.inline
+          %li.first More information:
+          %li= link_to 'Meetup', course.url
+          %li= link_to 'Description', course_path(course)
+        %ul.inline
+          %li.first Date:
+          %li= course.pretty_date
+        %ul.inline
+          %li.first Time:
+          %li= course.pretty_time
+        %ul.inline
+          %li.first Location:
+          %li= course.location
+        %ul.inline
+          %li.first TA minimum:
+          %li
+            = course.num_tas_needed
+            - if course.need_tas?
+              %span.badge.alert.left_margin
+                = course.num_tas_still_needed
+                still needed!
+            - else
+              %span.text_secondary.left_margin
+                %i.fa.fa-check
+        %ul.inline
+          %li.first Credit hours:
+          %li= course.credit_hours
+      .pure-u-1-3
+        %h6 Teaching Assistants
+        - course.teaching_assistants.each do |ta|
+          %ul.inline
+            %li
+              = ta.name
+              (
+              = ta.signed_up_for(course)
+              )
+            %li
+              = link_to icon_delete, hour_path(course.hour_for(ta)), title: "Remove from course", method: :delete
+              = link_to icon_link_out, teaching_assistant_path(ta), title: "View TA profile"
 
 .clear
 
@@ -98,39 +111,18 @@
 
 .line__secondary
 
-%h4 Teaching Assistants
+%h4 Teaching Assistant application review
 
-- @tas.each do |ta|
-  %article.ta_list
-    .right
-      %ul.stacked
-        %li
-          %span.badge{:class => ta.status.label}= ta.status.label.capitalize
-        %li
-          - if ta.pending?
-            = link_to 'Upgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @approved.id}), method: :put
-          - elsif ta.approved?
-            = link_to 'Downgrade', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @pending.id}), method: :put
-        %li= link_to 'Delete', teaching_assistant_path(ta.id), method: :delete
-        %li= link_to 'Ban', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @banned.id}), method: :put
-    %h5
-      = ta.name
-    %ul.inline
-      %li= link_to 'View profile', teaching_assistant_path(ta)
-      %li= link_to 'Email', ta.email
-    %ul.inline
-      %li.first Balance:
+- if TeachingAssistant.prospective.any?
+  #error_explanation
+    %p
+      %b New TA applications to review!
+  %ul
+    - TeachingAssistant.prospective.each do |ta|
       %li
-        = ta.balance || 0
-        hours
+        = ta.name
+        = link_to icon_link_out, teaching_assistant_path(ta), title: "View profile"
+        = link_to icon_thumbs_up, teaching_assistant_path(ta.id, teaching_assistant: {status_id: @pending.id}), method: :put, title: "Upgrade status to pending"
 
-
-
-/ - if TeachingAssistant.prospective.any?
-/   #error_explanation
-/     %h5 New TA applications:
-/     %ul
-/       - TeachingAssistant.prospective.each do |ta|
-/         %li
-/           = link_to ta.name, edit_teaching_assistant_path(ta)
-/           = link_to 'Upgrade status', teaching_assistant_path(ta.id, teaching_assistant: {status_id: @pending.id}), method: :put
+- else
+  %p You have no TA applications to review.
