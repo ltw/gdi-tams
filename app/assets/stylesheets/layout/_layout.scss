@@ -4,8 +4,8 @@
 
 article {
   border: lighten($tertiary, 20%) 1px solid;
-  padding: 1%;
-  margin: 1%;
+  padding: $microPadding;
+  margin: $jumboMargin auto;
   width: 95%;
 
   &.single_day {
