@@ -19,7 +19,7 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
-    @series = Series.upcoming
+    @series = Series.all
     render 'shared/admin_only' unless is_admin?
   end
 
