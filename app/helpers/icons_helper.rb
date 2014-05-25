@@ -18,4 +18,12 @@ module IconsHelper
   def icon_add
     raw('<i class="fa fa-plus-circle"></i>')
   end
+
+  def icon_vertical_stack
+    raw('<i class="fa fa-bars"></i>')
+  end
+
+  def icon_edit
+    raw('<i class="fa fa-pencil-square"></i>')
+  end
 end

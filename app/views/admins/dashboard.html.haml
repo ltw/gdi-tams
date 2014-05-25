@@ -22,7 +22,9 @@
   %article.single_day
     .pure-g
       .pure-u-2-3
-        %h5= course.name
+        %h5
+          = course.name
+          = link_to icon_edit, edit_course_path(course)
         %ul.inline
           %li.first More information:
           %li= link_to 'Meetup', course.url
@@ -69,11 +71,14 @@
 
 - @series.each do |series|
   %article.multi_day
-    %h5= series.name
+    %h5
+      = series.name
+      = link_to icon_edit, edit_series_path(series)
     - course = series.courses.first
     %ul.inline
       %li.first More information:
       %li= link_to 'Meetup', course.url
+      %li= link_to 'Description', series_path(series)
     %ul.inline
       %li.first Location:
       %li= course.location
@@ -83,8 +88,7 @@
         .pure-u-1-2
           %h6.no_padding.no_margin
             = course.pretty_date
-            %span.left_margin
-              = link_to icon_link_out, course_path(course)
+            = link_to icon_edit, edit_course_path(course)
           %p= course.pretty_time
           %ul.inline
             %li.first TA minimum:
@@ -99,6 +103,9 @@
           %ul.inline
             %li.first Credit hours:
             %li= course.credit_hours
+          %ul.inline
+            %li.first More information:
+            %li= link_to 'Course session info', course_path(course)
         .pure-u-1-2
           %b.text_secondary Teaching Assistants
           - course.teaching_assistants.each do |ta|
