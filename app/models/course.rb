@@ -10,6 +10,10 @@ class Course < ActiveRecord::Base
   scope :single_day, -> { where("series_id IS NULL") }
   scope :series, -> { where("series_id > ?", 0) }
 
+  def self.last_month
+    single_day.where(date: 1.month.ago.beginning_of_month..Date.yesterday)
+  end
+
   def hour_for(teaching_assistant)
     hours.where(teaching_assistant: teaching_assistant).first
   end

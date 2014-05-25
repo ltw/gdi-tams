@@ -3,18 +3,22 @@ class HoursController < ApplicationController
 
   # GET /hours
   def index
-    @hours = Hour.all
+    render 'shared/admin_only' unless is_admin?
+    @courses = Course.last_month.sort_by(&:date)
+    @series = Series.last_month.sort_by(&:end_date)
   end
 
   # GET /hours/1
   def show
+    render 'shared/admin_only' unless is_admin?
   end
 
   # GET /hours/new
   def new
+    render 'shared/admin_only' unless is_admin?
     @hour = Hour.new
-    @course = Course.find(params[:course_id])
-    @teaching_assistant = TeachingAssistant.find(params[:teaching_assistant_id])
+    @courses = Course.all.sort_by(&:date)
+    @tas= TeachingAssistant.all.sort_by(&:name)
   end
 
   # GET /hours/1/edit
@@ -23,11 +27,17 @@ class HoursController < ApplicationController
 
   # POST /hours
   def create
+    hours = Course.find(params[:hour][:course_id]).credit_hours
     @hour = Hour.new(hour_params)
-    private_id = TeachingAssistant.find(hour_params[:teaching_assistant_id]).private_id
+
+    if params[:student]
+      @hour.num = -hours
+    else
+      @hour.num = hours
+    end
 
     if @hour.save
-      redirect_to sign_ups_path(private_id), notice: "Success! We have you down as a TA for #{@hour.course.name} on #{@hour.course.date}."
+      redirect_to root_path, notice: "Success! TA added for #{@hour.course.name} on #{@hour.course.date}."
     else
       render :new
     end
@@ -48,7 +58,7 @@ class HoursController < ApplicationController
     name = @hour.course.name
     date = @hour.course.date
     @hour.destroy
-    redirect_to sign_ups_path(private_id), notice: "You are no longer TA'ing for #{name} on #{date}."
+    redirect_to sign_ups_path(private_id), notice: "TA removed for #{name} on #{date}."
   end
 
   private

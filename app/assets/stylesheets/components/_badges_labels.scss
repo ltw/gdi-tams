@@ -5,6 +5,10 @@
   padding: $microPadding/2;
   border-radius: 10px;
   text-transform: uppercase;
+  a {
+    color: $background;
+    font-weight: 700;
+  }
   &.approved {
     background-color: $secondary;
   }

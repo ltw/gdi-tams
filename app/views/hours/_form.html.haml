@@ -6,8 +6,14 @@
         - @hour.errors.full_messages.each do |msg|
           %li= msg
 
-  = f.hidden_field :course_id, value: course.id
-  = f.hidden_field :teaching_assistant_id, value: @teaching_assistant.id
-  = f.hidden_field :num, value: course.credit_hours
+  .field
+    = f.label :course_id, "Which course?"
+    = f.select(:course_id, @courses.collect {|c| ["#{c.pretty_date} - #{c.name}", c.id]}, {:include_blank => 'Course'})
+  .field
+    = f.label :teaching_assistant_id, "Which TA?"
+    = f.select(:teaching_assistant_id, @tas.collect {|ta| [ta.name, ta.id]}, {:include_blank => 'Teaching Assistant'})
+  .field
+    = label_tag :student, "Student?"
+    = check_box_tag :student
   .actions
-    = f.submit 'RSVP Yes'
+    = f.submit 'Add TA to course'

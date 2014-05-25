@@ -39,7 +39,6 @@ class TeachingAssistant < ActiveRecord::Base
     end
   end
 
-  protected
   def is_ta_for?(course)
     hours.credit.where(course: course).present?
   end

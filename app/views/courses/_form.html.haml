@@ -43,6 +43,6 @@
     = f.number_field :num_tas_needed
   .field
     = f.label :series_id, "Is this course part of a series?"
-    = f.select(:series_id, @series.collect {|s| [s.name, s.id]}, {:include_blank => 'Course series'})
+    = f.select(:series_id, @series.collect {|s| ["#{s.name} (ending #{s.pretty_end_date})", s.id]}, {:include_blank => 'Course series'})
   .actions
     = f.submit 'Save'

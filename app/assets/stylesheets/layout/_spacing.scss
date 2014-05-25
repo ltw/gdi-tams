@@ -9,3 +9,11 @@
 .left_margin {
   margin-left: $margin;
 }
+
+.side_margin {
+  margin: auto $margin;
+}
+
+.right_margin {
+  margin-right: $margin;
+}
