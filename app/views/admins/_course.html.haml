@@ -1,10 +1,8 @@
-%h5 #{course.pretty_date_short}: #{course.name}
-
 %table
   %tr
     %th
-    %th Name & Location
     %th Date & Time
+    %th Name & Location
     %th Credit
     %th Meetup
 
@@ -27,5 +25,3 @@
       - else
         %span.badge.approved= icon_check + ' OK!'
     %td= render partial: 'shared/ta_table', locals: { course: course }
-
-.line

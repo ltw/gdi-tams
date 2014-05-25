@@ -2,12 +2,12 @@
   %td
     = link_to icon_link_out + ' view', course_path(course), class: 'badge default'
   %td
-    %b= course.name
-    %br
-    = course.location
-  %td
     = course.pretty_date_short
     %br
     = course.pretty_time
+  %td
+    %b= course.name
+    %br
+    = course.location
   %td= course.credit_hours
   %td= link_to icon_link_out, course.url
