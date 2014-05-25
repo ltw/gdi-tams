@@ -37,7 +37,7 @@ class HoursController < ApplicationController
     end
 
     if @hour.save
-      redirect_to root_path, notice: "Success! We have you down as a TA for #{@hour.course.name} on #{@hour.course.date}."
+      redirect_to root_path, notice: "Success! TA added for #{@hour.course.name} on #{@hour.course.date}."
     else
       render :new
     end
@@ -58,7 +58,7 @@ class HoursController < ApplicationController
     name = @hour.course.name
     date = @hour.course.date
     @hour.destroy
-    redirect_to sign_ups_path(private_id), notice: "You are no longer TA'ing for #{name} on #{date}."
+    redirect_to sign_ups_path(private_id), notice: "TA removed for #{name} on #{date}."
   end
 
   private
