@@ -1,7 +1,7 @@
 .line {
   width: 100%;
   height: $microMargin;
-  margin: $jumboMargin 0;
+  margin: $jumboMargin auto;
 }
 
 .line_jumbo {
@@ -9,7 +9,17 @@
   height: $jumboMargin;
 }
 
+.line_skinny {
+  @extend .line;
+  height: $microMargin/2;
+}
+
 .line__secondary {
   @extend .line;
+  background-color: $secondary;
+}
+
+.line_skinny__secondary {
+  @extend .line_skinny;
   background-color: $secondary;
 }

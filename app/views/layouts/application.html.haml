@@ -2,10 +2,12 @@
 %html
   %head
     %title Girl Develop It TAMS (Teaching Assistant Management System)
+    %meta{:name => "viewport", :content => "width=device-width; initial-scale=1.0; maximum-scale=1.0;"}
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
     = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Roboto:300,400,400italic,700,800', media: 'all'
+    = stylesheet_link_tag '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', media: 'all'
   %body
     .pure-g
       .pure-u-1-1
@@ -14,11 +16,11 @@
             = render partial: 'shared/menu_admin'
           - else
             = render partial: 'shared/menu'
-    .pure-g
-      .pure-u-2-24
-      .pure-u-20-24
+    .pure-g#content
+      .pure-u-1-5
+      .pure-u-3-5
         %header
           %h1 Girl Develop It Chicago
           %h2 Teaching Assistant Management System
         = yield
-      .pure-u-2-24
+      .pure-u-1-5
