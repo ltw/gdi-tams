@@ -1,21 +1,10 @@
-%p#notice= notice
+%h3 Series
 
-%h1 Listing series
+.line__secondary
 
-%table
-  %tr
-    %th Name
-    %th
-    %th
-    %th
-
+%ul.long
   - @series.each do |series|
-    %tr
-      %td= series.name
-      %td= link_to 'Show', series
-      %td= link_to 'Edit', edit_series_path(series)
-      %td= link_to 'Destroy', series, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Series', new_series_path
+    %li
+      = link_to icon_link_out + ' View series details', series_path(series), class: 'badge default left_margin'
+      = series.name
+      (#{series.pretty_end_date}, #{series.courses.count} sessions)

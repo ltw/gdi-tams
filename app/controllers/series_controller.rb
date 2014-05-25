@@ -4,7 +4,7 @@ class SeriesController < ApplicationController
 
   # GET /series
   def index
-    @series = Series.all
+    @series = Series.all.sort_by(&:end_date).reverse
   end
 
   # GET /series/1
