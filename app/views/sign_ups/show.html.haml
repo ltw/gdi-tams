@@ -2,15 +2,19 @@
 
 %p#notice= notice
 
-%p
-  %b Your balance of teaching assistant hours is:
+%h4
+  Current balance:
   = @teaching_assistant.balance || 0
+
+%h4
+  Pending balance:
+  = @teaching_assistant.pending_balance || 0
 
 %p
   This is your secret sign up page. Only you (and the GDI Organizers) have access to this URL (unless you share it with someone else, but that's kind of silly and defeats the purpose of having a secret sign up page, now doesn't it?).
 
 %p
-  You can sign up to TA new classes below, or change your RSVP for classes you already signed up to TA as.
+  You can sign up to TA new classes below, or change your RSVP for classes you already signed up to TA.
 
 %p
   %b To use your credit hours:
@@ -19,6 +23,8 @@
 .line__secondary
 
 %h4 Things you're going to
+
+%p Liz, write this damn code.
 
 .line__secondary
 
@@ -35,3 +41,19 @@
 
 %h4 TA History
 = render partial: 'shared/ta_history_table', locals: { teaching_assistant: @teaching_assistant }
+
+.line__secondary
+
+%h4 Update email address
+
+.line__secondary
+
+%h4 Remove me
+
+%p We're sad to see you go!
+
+%p
+  %b Important note:
+  Removing yourself will mark you as inactive in our system. Your history and contact details will still exist in our TA database, but you will no longer receive emails.
+
+%p You can reactivate your account later if you want to. Just visit this page again!

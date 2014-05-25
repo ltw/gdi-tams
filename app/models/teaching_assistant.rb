@@ -13,12 +13,17 @@ class TeachingAssistant < ActiveRecord::Base
   scope :banned, -> { where status: Status.find_by_label("banned") }
   scope :prospective, -> { where status: Status.find_by_label("prospective") }
 
-  def balance
+  def pending_balance
     hours.to_a.map(&:num).inject(&:+)
   end
 
+  def balance
+    history.to_a.map(&:num).inject(&:+)
+  end
+
+
   def history
-    hours.select { |h| h.course.date > Date.today }.sort_by { |h| h.course.date }
+    hours.select { |h| h.course.date < Date.today }.sort_by { |h| h.course.date }
   end
 
   def pending?
