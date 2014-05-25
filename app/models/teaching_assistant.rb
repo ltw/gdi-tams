@@ -18,7 +18,7 @@ class TeachingAssistant < ActiveRecord::Base
   end
 
   def history
-    hours.select { |hour| hour.course.date > Date.today }
+    hours.select { |h| h.course.date > Date.today }.sort_by { |h| h.course.date }
   end
 
   def pending?
