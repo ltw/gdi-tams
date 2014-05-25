@@ -22,6 +22,10 @@ class Course < ActiveRecord::Base
     series.id.present?
   end
 
+  def need_tas?
+    num_tas_still_needed > 0
+  end
+
   def num_tas_still_needed
     num_tas_needed - teaching_assistants.count
   end
@@ -31,6 +35,6 @@ class Course < ActiveRecord::Base
   end
 
   def pretty_time
-    "from #{start_time.strftime("%I:%M %p")}–#{end_time.strftime("%I:%M %p")}"
+    "#{start_time.strftime("%I:%M %p")}–#{end_time.strftime("%I:%M %p")}"
   end
 end
