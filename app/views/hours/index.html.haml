@@ -2,20 +2,57 @@
 
 %p The system only shows single day classes and workshops that have concluded in the past month. To view additional courses, you will need to log in to the console.
 
-%table
-  %tr
-    %th Course
-    %th Teaching assistant
-    %th Num
-    %th
-    %th
-    %th
+%h4 Symbol Legend
 
-  - @courses.each do |hour|
-    %tr
-      %td= link_to 'Show', hour
-      %td= link_to 'Edit', edit_hour_path(hour)
-      %td= link_to 'Destroy', hour, :method => :delete, :data => { :confirm => 'Are you sure?' }
+%ul
+  %li
+    %b= icon_delete
+    Remove TA from course (will also remove credit hours from balance)
+  %li
+    %b= icon_book
+    Change status from TA to student (will deduct hours from balance)
+  %li
+    %b= icon_history
+    Change status from student to TA (will add hours to balance)
 
-%br
+.line__secondary
 
+%h4 Recently concluded single day workshops
+
+- @courses.each do |course|
+  %article.single_day
+    %h5
+      = course.name
+      = link_to icon_edit, edit_course_path(course)
+      %span.badge.default.float_right
+        Credit hours:
+        = course.credit_hours
+    %p
+      = course.pretty_date
+      = course.pretty_time
+    %h6
+      Teaching Assistants
+      = link_to icon_add + ' Add a Teaching Assistant', new_hour_path, class: "badge approved left_margin"
+    = render partial: "ta_list", locals: { course: course }
+
+.line__secondary
+
+%h4 Recently concluded multi-day workshops
+
+- @series.each do |series|
+  %article.multi_day
+    %h5
+      = series.name
+      = link_to icon_edit, edit_series_path(series)
+    - series.courses.each do |course|
+      %h6
+        = course.pretty_date
+        = course.pretty_time
+        = link_to icon_edit, edit_course_path(course)
+        %span.badge.default.float_right
+          Credit hours:
+          = course.credit_hours
+      %p
+        Teaching Assistants
+        = link_to icon_add + ' Add a Teaching Assistant', new_hour_path, class: "badge approved left_margin"
+      = render partial: "ta_list", locals: { course: course }
