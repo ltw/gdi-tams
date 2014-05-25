@@ -2,18 +2,7 @@
 
 %p The system only shows single day classes and workshops that have concluded in the past month. To view additional courses, you will need to log in to the console.
 
-%h4 Symbol Legend
-
-%ul
-  %li
-    %b= icon_delete
-    Remove TA from course (will also remove credit hours from balance)
-  %li
-    %b= icon_book
-    Change status from TA to student (will deduct hours from balance)
-  %li
-    %b= icon_history
-    Change status from student to TA (will add hours to balance)
+= render partial: 'shared/symbols'
 
 .line__secondary
 

@@ -15,6 +15,7 @@
 
 %table
   %tr
+    %th.center=icon_delete
     %th.center Hours
     %th Date
     %th Course
@@ -24,7 +25,14 @@
 
   - @teaching_assistant.hours.each do |hour|
     %tr{class: hour.is_debit?}
-      %td.center= hour.num
+      %td.center
+        = link_to icon_delete, { controller: :hours, action: :destroy, id: hour.id }, method: :delete, title: "Remove TA from course (will also remove hours from credit balance)"
+      %td.center
+        = hour.num
+        - if hour.is_credit?
+          = link_to icon_book, { controller: :hours, action: :update, id: hour.id, hour: { num: -hour.num } }, method: :put, title: "Change TA to student"
+        - else
+          = link_to icon_history, { controller: :hours, action: :update, id: hour.id, hour: { num: hour.course.credit_hours } }, method: :put, title: "Change student to TA"
       %td= hour.course.pretty_date_short
       %td= hour.course.name
       %td= link_to icon_link_out, course_path(hour.course)
@@ -33,3 +41,4 @@
         - if hour.course.is_series?
           = link_to icon_link_out, series_path(hour.course.series)
 
+= render partial: 'shared/symbols'
