@@ -1,46 +1,59 @@
-%h1 Courses
+%h3 All Upcoming Courses
 
-%h2 Upcoming Series Workshops
+.line__secondary
 
-- @series.each do |series|
-  %h2= series.name
-  %p= series.end_date
-  %h3 Series course sessions
-  %table
-    %tr
-      %th Link
-      %th Name
-      %th Date
-      %th Url
-      %th Location
-      %th TAs needed
-    - series.courses.each do |course|
-      %tr
-        %td= link_to "View", course_path(course)
-        %td= course.name
-        %td= course.date
-        %td= link_to 'Meetup', course.url
-        %td= course.location
-        %td= course.num_tas_needed
-
-
-%h2 Upcoming Single Day Workshops
+%h4 Single Day Workshops
 
 %table
   %tr
-    %th Link
-    %th Name
-    %th Date
-    %th Url
-    %th Location
-    %th TAs needed
+    %th
+    %th Name & Location
+    %th Date & Time
+    %th Credit
+    %th Meetup
 
   - @courses.each do |course|
     %tr
-      %td= link_to "View", course_path(course)
-      %td= course.name
-      %td= course.date
-      %td= link_to 'Meetup', course.url
-      %td= course.location
-      %td= course.num_tas_needed
+      %td
+        = link_to icon_link_out + ' view', course_path(course), class: 'badge default'
+      %td
+        %b= course.name
+        %br
+        = course.location
+      %td
+        = course.pretty_date_short
+        %br
+        = course.pretty_time
+      %td= course.credit_hours
+      %td= link_to icon_link_out, course.url
 
+.line__secondary
+
+%h4 Multi-Day Workshops
+
+- @series.each do | series|
+
+  %h5= series.name
+
+  %table
+    %tr
+      %th
+      %th Name & Location
+      %th Date & Time
+      %th Credit
+      %th Meetup
+
+    - series.courses.each do |course|
+      %tr
+        %td
+          = link_to icon_link_out + ' view', course_path(course), class: 'badge default'
+        %td
+          %b= course.name
+          %br
+          = course.location
+        %td
+          = course.pretty_date_short
+          %br
+          = course.pretty_time
+        %td= course.credit_hours
+        %td= link_to icon_link_out, course.url
