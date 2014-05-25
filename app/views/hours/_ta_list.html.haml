@@ -6,6 +6,7 @@
         = link_to icon_book + ' Use hours', { controller: :hours, action: :update, id: course.hour_for(ta), hour: { num: -course.credit_hours } }, method: :put, title: "Change TA to student", class: "badge warning right_margin"
       - else
         = link_to icon_history + ' Make TA', { controller: :hours, action: :update, id: course.hour_for(ta), hour: { num: course.credit_hours } }, method: :put, title: "Change student to TA", class: "badge approved right_margin"
+      = link_to icon_link_out + ' View profile', teaching_assistant_path(ta), class: 'badge default right_margin'
       = ta.name
       (
       = ta.signed_up_for(course)
