@@ -2,14 +2,17 @@
 
 .line__secondary
 
-- @teaching_assistants.each do |teaching_assistant|
-  %article.single_day
-    %p.float_right
-      %span.badge{class: teaching_assistant.status.label}
-        = teaching_assistant.status.label
-    %h5
-      = teaching_assistant.name
-      = render partial: 'action_badge', locals: { teaching_assistant: teaching_assistant }
-    %p
-      Credit hour balance:
-      = teaching_assistant.balance
+%table
+  %tr
+    %th Status
+    %th Name
+    %th Balance
+    %th Actions
+  - @teaching_assistants.each do |teaching_assistant|
+    %tr
+      %td
+        %span.badge{class: teaching_assistant.status.label}
+          = teaching_assistant.status.label
+      %td= teaching_assistant.name
+      %td= teaching_assistant.balance || 0
+      %td= render partial: 'action_badge', locals: { teaching_assistant: teaching_assistant }
