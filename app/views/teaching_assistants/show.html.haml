@@ -1,29 +1,35 @@
 %h3= @teaching_assistant.name
 
+%h4
+  Credit hour balance:
+  = @teaching_assistant.balance
+
 %span.badge{class: @teaching_assistant.status.label}
   = @teaching_assistant.status.label
 = render partial: 'action_badge', locals: { teaching_assistant: @teaching_assistant }
 
 .line__secondary
 
-%p
-  %b Credit hour balance:
-  = @teaching_assistant.balance
-%p
-  %b History:
-  %table
-    %tr
-      %th Hours
-      %th Course Name
-      %th Date
-      %th Meetup
 
-    - @teaching_assistant.hours.each do |hour|
-      %tr
-        %td= hour.num
-        %td= hour.course.name
-        %td= hour.course.date
-        %td= link_to 'Meetup', hour.course.url
+%h4 History
 
+%table
+  %tr
+    %th.center Hours
+    %th Date
+    %th Course
+    %th Show
+    %th Meetup
+    %th Series
 
-= link_to 'Back', teaching_assistants_path
+  - @teaching_assistant.hours.each do |hour|
+    %tr{class: hour.is_debit?}
+      %td.center= hour.num
+      %td= hour.course.pretty_date_short
+      %td= hour.course.name
+      %td= link_to icon_link_out, course_path(hour.course)
+      %td= link_to icon_link_out, hour.course.url
+      %td
+        - if hour.course.is_series?
+          = link_to icon_link_out, series_path(hour.course.series)
+

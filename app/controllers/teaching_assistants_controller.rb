@@ -18,6 +18,7 @@ class TeachingAssistantsController < ApplicationController
   # GET /teaching_assistants/1
   def show
     render 'shared/admin_only' unless is_admin?
+    render 'shared/admin_only' unless is_admin?
   end
 
   def new

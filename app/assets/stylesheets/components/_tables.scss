@@ -1,0 +1,44 @@
+table {
+  font-size: $fontSize * 0.8;
+  width: 100%;
+  th, td {
+    padding: $microPadding;
+    border: 1px solid lighten($tertiary, 25%);
+  }
+  tr {
+    th {
+      background-color: lighten($tertiary, 25%);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: $secondary;
+      text-align: left;
+      border-bottom: 5px solid lighten($tertiary, 20%);
+      border-top: 5px solid lighten($tertiary, 20%);
+      &:first-child {
+        border-left: 5px solid lighten($tertiary, 20%);
+      }
+      &:last-child {
+        border-right: 5px solid lighten($tertiary, 20%);
+      }
+    }
+  }
+  tr {
+    td {
+      &:first-child {
+        border-left: 5px solid lighten($tertiary, 20%);
+      }
+      &:last-child {
+        border-right: 5px solid lighten($tertiary, 20%);
+      }
+    }
+    &:last-child {
+      border-bottom: 5px solid lighten($tertiary, 20%);
+    }
+  }
+  td.center, th.center {
+    text-align: center;
+  }
+  tr.true {
+    color: $primary;
+  }
+}
