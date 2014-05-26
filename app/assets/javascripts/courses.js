@@ -1,9 +1,8 @@
 $(document).ready(function() {
-  $('form.new_course').hide();
   $('form.fetch_meetup').submit(function(event) {
     event.preventDefault();
     var url = $('form.fetch_meetup input#url').val();
-    $('form.fetch_meetup').hide();
+    $('.fetch_meetup').hide();
     loadingThingy();
     fetchMeetup(url);
   });
@@ -60,8 +59,6 @@ $(document).ready(function() {
       hours = '0' + hours;
     }
 
-    $('div.loading').remove();
-    $('form.new_course').show();
     $('#course_name').val(data.name);
     $('#course_url').val(data.event_url);
     $('#course_location').val(data.venue.name + ' ' + data.venue.address_1);
@@ -74,6 +71,7 @@ $(document).ready(function() {
     $('#course_end_time_4i').val(hours);
     $('#course_end_time_5i').val(minutes);
     $('#course_meetup_id').val(id);
+    $('.loading').remove();
   }
 
   function dateFromSecondsSinceEpoch(secs) {
@@ -88,6 +86,6 @@ $(document).ready(function() {
   }
 
   function loadingThingy() {
-    $('body').append('<div class="loading"><h1>Loading!</h1></div>');
+    $('.loading').append('<img src="/images/loading.gif">');
   }
 });
