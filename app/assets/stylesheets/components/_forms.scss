@@ -20,7 +20,7 @@
     color: $secondary;
   }
 
-  #{$all-text-inputs} {
+  #{$all-text-inputs}, textarea {
     @extend .border_box_shadow;
     border-radius: 3px;
     width: 70%;
@@ -30,6 +30,7 @@
   select {
     @extend .border_box_shadow;
     height: $fontSize * 2;
+    max-width: 70%;
   }
 
   #{$all-text-inputs-focus} {
