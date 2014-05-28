@@ -15,5 +15,5 @@ Rails.application.routes.draw do
 
   get '/sign_ups/:private_id', to: 'sign_ups#show', as: 'sign_ups'
   get '/admins/dashboard', to: 'admins#dashboard', as: 'admins_dashboard'
-  get '/admins/dashboard', to: 'admins#email', as: 'admins_email'
+  get '/admins/emails', to: 'admins#emails', as: 'admins_emails'
 end
