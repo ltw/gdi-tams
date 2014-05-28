@@ -1,0 +1,9 @@
+%h3 Organizer Email Dashboard
+
+%p#notice= notice
+
+- if TeachingAssistant.prospective.any?
+  #error_explanation
+    %p
+      %b You have new TA applications!
+      = link_to 'Click here to review them.', '#tas'
