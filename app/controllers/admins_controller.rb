@@ -11,6 +11,7 @@ class AdminsController < ApplicationController
 
   private
   def set_resources
+    @courses = Course.upcoming.single_day.sort_by(&:date)
     @series = Series.upcoming.sort_by(&:end_date)
     @tas = TeachingAssistant.all.sort_by(&:name)
     @approved = Status.find_by_label("approved")
