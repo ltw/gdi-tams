@@ -36,8 +36,11 @@ class HoursController < ApplicationController
       @hour.num = hours
     end
 
-    if @hour.save
-      redirect_to root_path, notice: "Success! TA added for #{@hour.course.name} on #{@hour.course.date}."
+    if is_admin? && @hour.save
+      redirect_to hours_path, notice: 'Hour was successfully created.'
+    elsif @hour.save
+      private_id = @hour.teaching_assistant.private_id
+      redirect_to sign_ups_path(private_id), notice: 'Hour was successfully updated.'
     else
       render :new
     end
@@ -45,8 +48,11 @@ class HoursController < ApplicationController
 
   # PATCH/PUT /hours/1
   def update
-    if @hour.update(hour_params)
-      redirect_to @hour, notice: 'Hour was successfully updated.'
+    if is_admin? && @hour.update(hour_params)
+      redirect_to hours_path, notice: 'Hour was successfully updated.'
+    elsif @hour.update(hour_params)
+      private_id = @hour.teaching_assistant.private_id
+      redirect_to sign_ups_path(private_id), notice: 'Hour was successfully updated.'
     else
       render :edit
     end
@@ -54,11 +60,16 @@ class HoursController < ApplicationController
 
   # DELETE /hours/1
   def destroy
-    private_id = @hour.teaching_assistant.private_id
     name = @hour.course.name
     date = @hour.course.date
     @hour.destroy
-    redirect_to sign_ups_path(private_id), notice: "TA removed for #{name} on #{date}."
+
+    if is_admin?
+      redirect_to hours_path, notice: 'Hour was successfully removed.'
+    else
+      private_id = @hour.teaching_assistant.private_id
+      redirect_to sign_ups_path(private_id), notice: "TA removed for #{name} on #{date}."
+    end
   end
 
   private
