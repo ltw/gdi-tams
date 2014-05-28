@@ -39,8 +39,11 @@ class TeachingAssistantsController < ApplicationController
   end
 
   def update
-    if @teaching_assistant.update(teaching_assistant_params)
+    if is_admin? && @teaching_assistant.update(teaching_assistant_params)
       redirect_to admins_dashboard_path, notice: 'Teaching assistant successfully updated.'
+    elsif @teaching_assistant.update(teaching_assistant_params)
+      private_id = @teaching_assistant.private_id
+      redirect_to sign_ups_path(private_id), notice: 'Updated!'
     else
       render :edit
     end

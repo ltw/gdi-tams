@@ -1,10 +1,11 @@
 %h3
-  %span.float_right.badge.default
-    Ends:
-    = @series.pretty_end_date
   = @series.name
+  %span.text_secondary
+    = @series.pretty_end_date
 
 .line__secondary
 
 - @series.courses.each do |course|
+  %h4= course.pretty_date
   = render partial: "admins/course", locals: { course: course }
+  .line_skinny__secondary

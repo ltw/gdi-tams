@@ -10,3 +10,5 @@
   %li= link_to 'New series', new_series_path
   %li= link_to 'New course', new_course_path
   %li= link_to 'New TA', new_teaching_assistant_path
+  %li= icon_x
+  %li= link_to "Log out", session_path(@admin), method: :delete
