@@ -8,6 +8,10 @@ class AdminsController < ApplicationController
     @pending = Status.find_by_label("pending")
   end
 
+  def emails
+    render 'shared/admin_only' unless is_admin?
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_admin
