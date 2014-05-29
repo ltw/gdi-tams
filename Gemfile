@@ -18,6 +18,7 @@ gem 'rspec-rails', group: :test
 gem 'debugger', group: [:development, :test]
 gem 'database_cleaner', group: :test
 gem 'faker', group: :test
+gem 'shoulda-matchers', group: :test, require: false
 
 # Dev only
 gem 'spring', group: :development
