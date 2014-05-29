@@ -20,6 +20,7 @@ describe TeachingAssistant do
     it 'requires uniqueness for email'
     it 'requires name'
     it 'requires email'
+    it 'requires status'
   end
 
   context 'class methods' do

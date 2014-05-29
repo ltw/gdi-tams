@@ -6,7 +6,7 @@ class TeachingAssistant < ActiveRecord::Base
   has_many :courses, through: :hours
 
   validates_uniqueness_of :private_id, :email
-  validates_presence_of :name, :email
+  validates_presence_of :name, :email, :status
 
   scope :approved, -> { where status: Status.find_by_label("approved") }
   scope :pending, -> { where status: Status.find_by_label("pending") }
