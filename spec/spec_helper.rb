@@ -9,6 +9,8 @@ Dir[Rails.root.join("spec/factories/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  config.include FactoryGirl::Syntax::Methods
+
   config.infer_base_class_for_anonymous_controllers = false
   config.order = "random"
 
