@@ -1,0 +1,2 @@
+module Factories
+end

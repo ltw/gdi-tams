@@ -13,16 +13,19 @@ gem 'bourbon', '~> 3.2'
 
 gem 'bcrypt', '~> 3.1.7'
 
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring', group: :development
-
-gem 'foreman', group: :development
-gem 'debugger', group: [:development, :test]
+# Testing/dev
 gem 'rspec-rails', group: :test
+gem 'debugger', group: [:development, :test]
+gem 'database_cleaner', group: :test
+gem 'faker', group: :test
+
+# Dev only
+gem 'spring', group: :development
+gem 'foreman', group: :development
 gem 'better_errors', group: :development
 gem 'binding_of_caller', group: :development
 
-# Heroku
+# Heroku requirements
 gem 'unicorn'
 gem 'rails_12factor', group: :production
 ruby '2.0.0'
