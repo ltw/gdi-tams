@@ -23,6 +23,7 @@ TeachingAssistant.create! name: "Nidhi Mehta", email: "nidhididi@gmail.com", sta
 TeachingAssistant.create! name: "Jenny O'Neil", email: "oneilj@umich.edu", status: pending
 TeachingAssistant.create! name: "Rishika Murthy", email: "murthy.rishika@gmail.com", status: pending
 TeachingAssistant.create! name: "Jonathan Ozeran", email: "ozeranjo@gmail.com", status: pending
+TeachingAssistant.create! name: "Nichole Baiel", email: "nicholebaiel@gmail.com", status: pending
 
 # Approved
 TeachingAssistant.create! name: "Alan Deitch", email: "adeitch@groupon.com", status: approved
