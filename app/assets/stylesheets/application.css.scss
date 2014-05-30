@@ -37,3 +37,12 @@ ul.auto_rows__2 {
     @include omega(2n);
   }
 }
+
+
+ul.auto_rows__6 {
+  @include outer-container;
+  li.block {
+    @include span-columns(2);
+    @include omega(6n);
+  }
+}
