@@ -2,17 +2,23 @@
 
 %p To view hour balances and history, view the individual TA.
 
-.line__secondary
-
-%table
+%table.table-minimal
   %tr
-    %th Status
     %th Name
-    %th Actions
+    %th Profile
+    %th Private
+    %th Change
+    %th Ban
+    %th Delete
   - @teaching_assistants.each do |teaching_assistant|
-    %tr
-      %td
-        %span.badge{class: teaching_assistant.status.label}
-          = teaching_assistant.status.label
+    %tr{class: teaching_assistant.status.label }
       %td= teaching_assistant.name
-      %td= render partial: 'action_badge', locals: { teaching_assistant: teaching_assistant }
+      %td= link_to icon_link_out, teaching_assistant
+      %td= link_to icon_link_out, sign_ups_path(teaching_assistant.private_id)
+      - if teaching_assistant.approved?
+        %td= link_to icon_thumbs_down, { controller: :teaching_assistants, action: :update, id: teaching_assistant.id, teaching_assistant: { status: @pending } }, method: :put
+      - else
+        %td= link_to icon_thumbs_up, { controller: :teaching_assistants, action: :update, id: teaching_assistant.id, teaching_assistant: { status: @approved } }, method: :put
+      %td= link_to icon_delete, teaching_assistant.email
+      %td= link_to icon_delete, teaching_assistant
+

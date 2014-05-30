@@ -18,18 +18,21 @@
 @import "neat";
 @import "refills/refills";
 
+// STATUS LABELS
+
+.pending { background-color: lighten($light-gray, 7%); }
+.prospective { background-color: lighten($light-red, 15%); }
+.banned { background-color: $light-red; }
+.inactive {
+  background-color: lighten($light-gray, 7%);
+  a { color: $dark-gray; }
+}
+
 // GRID
-
-#container {
-  @include outer-container;
-}
-
-#content {
-  @include span-columns(12);
-}
+#container { @include outer-container; }
+#content { @include span-columns(12); }
 
 // AUTOMATIC ROWS
-
 ul.auto_rows__2 {
   @include outer-container;
   li.block {
@@ -37,7 +40,6 @@ ul.auto_rows__2 {
     @include omega(2n);
   }
 }
-
 
 ul.auto_rows__6 {
   @include outer-container;
