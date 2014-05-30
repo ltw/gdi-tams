@@ -4,7 +4,7 @@ class HoursController < ApplicationController
   # GET /hours
   def index
     render 'shared/admin_only' unless is_admin?
-    @courses = Course.last_month.includes(:teaching_assistants, :series)sort_by(&:date)
+    @courses = Course.last_month.includes(:teaching_assistants, :series).sort_by(&:date).reverse
   end
 
   # GET /hours/1
