@@ -8,10 +8,11 @@ fieldset {
 input,
 label,
 select {
-  display: block;
   font-family: $form-font-family;
   font-size: $form-font-size;
 }
+
+input, label { display: block; }
 
 label {
   font-weight: bold;
