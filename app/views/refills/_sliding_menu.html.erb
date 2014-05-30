@@ -1,0 +1,42 @@
+<button type="button" class="js-menu-trigger sliding-menu-button">
+  <img src="/assets/menu.png" alt="">
+</button>
+
+<nav class="js-menu sliding-menu-content">
+  <ul>
+    <% if is_admin? %>
+      <li><%= link_to 'GDI Chicago', root_path %></li>
+      <li><%= link_to 'Dashboard', admins_dashboard_path %></li>
+      <li><%= link_to 'Attendance management', hours_path %></li>
+      <li><%= link_to 'TA list', teaching_assistants_path %></li>
+      <li><%= link_to 'Series list', series_index_path %></li>
+      <li><%= link_to 'Course list', courses_path %></li>
+      <li><%= link_to 'New series', new_series_path %></li>
+      <li><%= link_to 'New course', new_course_path %></li>
+      <li><%= link_to 'New TA', new_teaching_assistant_path %></li>
+      <li><%= link_to "Log out", session_path(@admin), method: :delete %></li>
+    <% else %>
+      <li><%= link_to 'GDI Chicago', root_path %></li>
+      <li><%= link_to 'Series list', series_index_path %></li>
+      <li><%= link_to 'Course list', courses_path %></li>
+    <% end %>
+  </ul>
+</nav>
+
+<div class="js-menu-screen menu-screen"></div>
+
+<script>
+  $(document).ready(function(){
+    $('.js-menu-trigger').on('click touchstart', function(e){
+      $('.js-menu').toggleClass('is-visible');
+      $('.js-menu-screen').toggleClass('is-visible');
+      e.preventDefault();
+    });
+
+    $('.js-menu-screen').on('click touchstart', function(e){
+      $('.js-menu').toggleClass('is-visible');
+      $('.js-menu-screen').toggleClass('is-visible');
+      e.preventDefault();
+    });
+  });
+</script>

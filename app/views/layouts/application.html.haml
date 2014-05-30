@@ -8,13 +8,7 @@
     = csrf_meta_tags
     = stylesheet_link_tag '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', media: 'all'
   %body
-    .pure-g
-      .pure-u-1-1
-        %nav
-          - if is_admin?
-            = render partial: 'shared/menu_admin'
-          - else
-            = render partial: 'shared/menu'
+    = render partial: 'refills/sliding_menu'
     .pure-g#content
       .pure-u-1-5
       .pure-u-3-5
