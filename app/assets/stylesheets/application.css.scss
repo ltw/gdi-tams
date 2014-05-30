@@ -17,3 +17,14 @@
 @import "bitters/bitters";
 @import "neat";
 @import "refills/refills";
+
+// GRID
+
+#container {
+  @include outer-container;
+}
+
+#content {
+  @include span-columns(11);
+  @include shift(1);
+}
