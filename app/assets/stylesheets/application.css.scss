@@ -28,3 +28,13 @@
   @include span-columns(11);
   @include shift(1);
 }
+
+// AUTOMATIC ROWS
+
+ul.auto_rows__2 {
+  @include outer-container;
+  li.block {
+    @include span-columns(6);
+    @include omega(2n);
+  }
+}
