@@ -4,8 +4,8 @@ class CoursesController < ApplicationController
 
   # GET /courses
   def index
-    @courses = Course.upcoming.single_day
-    @series = Series.upcoming
+    @courses = Course.upcoming.single_day.sort_by(&:date)
+    @series = Series.upcoming.includes(:courses)
   end
 
   # GET /courses/1

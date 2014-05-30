@@ -3,35 +3,35 @@
 %h4 Single Day Workshops
 .cards
   - @courses.each do |course|
-    = render partial: 'refills/card', locals: { course: course }
-
-
-%table
-  %tr
-    %th
-    %th Name & Location
-    %th Date & Time
-    %th Credit
-    %th Meetup
-
-  - @courses.each do |course|
-    = render partial: 'shared/course_row', locals: { course: course }
-
-.line__secondary
+    = render partial: 'refills/course_card', locals: { course: course }
 
 %h4 Multi-Day Workshops
 
-- @series.each do | series|
+.cards
+  - @series.each do | series|
+    .card
+      .card-image
+      .card-header= series.pretty_end_date
+      .card-copy
+        %h5= series.name
+        %ul.auto_rows__2
+          - series.courses.each do |course|
+            %li.block
+              = render partial: 'refills/course_list', locals: { course: course }
+      .card-stats
+        %ul
+          %li
+            = series.courses.count
+            %span Sessions
 
-  %h5= series.name
 
-  %table
-    %tr
-      %th
-      %th Name & Location
-      %th Date & Time
-      %th Credit
-      %th Meetup
+/ %table
+/   %tr
+/     %th
+/     %th Name & Location
+/     %th Date & Time
+/     %th Credit
+/     %th Meetup
 
-    - series.courses.each do |course|
-      = render partial: 'shared/course_row', locals: { course: course }
+/   - series.courses.each do |course|
+/     = render partial: 'shared/course_row', locals: { course: course }

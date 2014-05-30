@@ -1,0 +1,20 @@
+.card
+  .card-image
+  .card-header= course.pretty_date
+  .card-copy
+    %h5= course.name
+    %br
+    %p
+      = course.location
+    %p= course.pretty_time
+  .card-stats
+    %ul
+      %li
+        = course.credit_hours
+        %span Credit hours
+      %li
+        = course.num_tas_needed
+        %span TAs required
+      %li
+        = course.num_tas_still_needed
+        %span Still need
