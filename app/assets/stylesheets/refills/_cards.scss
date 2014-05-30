@@ -10,7 +10,7 @@
   $card-hover-background: lighten($card-background, 5);
   $card-image-background: #DBD199;
   $card-image-hover-background: lighten($card-image-background, 5);
-  $card-stats-color: $light-red;
+  $card-stats-color: $base-accent-color;
 
   @include transition (all 0.2s ease-in-out);
   background-color: $card-background;
@@ -40,7 +40,7 @@
 
   .ribbon-wrapper {
     $ribbon-size: 85px;
-    $ribbon-background: $base-accent-color;
+    $ribbon-background: $light-red;
     @include size($ribbon-size);
     overflow: hidden;
     position: absolute;
