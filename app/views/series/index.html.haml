@@ -1,18 +1,7 @@
 %h3 Series: Upcoming Multi-Day Courses
 
-
-- @series.each do | series|
-  .line__secondary
-
-  %h5= series.name
-
-  %table
-    %tr
-      %th
-      %th Name & Location
-      %th Date & Time
-      %th Credit
-      %th Meetup
-
-    - series.courses.each do |course|
-      = render partial: 'shared/course_row', locals: { course: course }
+- @series.each do |series|
+  %h4= series.name
+  .cards
+    - series.courses.sort_by(&:date).each do |course|
+      = render partial: 'refills/course_card', locals: { course: course, ta_list: false }
