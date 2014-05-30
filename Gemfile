@@ -15,8 +15,8 @@ gem 'bcrypt', '~> 3.1.7'
 # Styles
 gem 'bourbon', '~> 3.2'
 gem 'neat', '~> 1.5.1'
-gem 'bitters'
-gem 'refills'
+gem 'bitters', '~> 0.9.5'
+gem 'refills', '~> 0.0.2'
 
 # Testing/dev
 gem 'rspec-rails', group: :test
