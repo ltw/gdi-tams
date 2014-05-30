@@ -1,7 +1,6 @@
 $(document).ready(function() {
-  $('form.fetch_meetup').submit(function(event) {
-    event.preventDefault();
-    var url = $('form.fetch_meetup input#url').val();
+  $('#fetch_meetup_button').on('click', function(event) {
+    var url = $('input#fetch_meetup_url').val();
     $('.fetch_meetup').hide();
     loadingThingy();
     fetchMeetup(url);
