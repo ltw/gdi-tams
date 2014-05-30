@@ -10,14 +10,13 @@
   $card-hover-background: lighten($card-background, 5);
   $card-image-background: #DBD199;
   $card-image-hover-background: lighten($card-image-background, 5);
-  $card-stats-color: lighten($base-accent-color, 10);
+  $card-stats-color: $light-red;
 
   @include transition (all 0.2s ease-in-out);
   background-color: $card-background;
   border-radius: $base-border-radius;
   border: $card-border;
   margin-bottom: $base-line-height;
-  cursor: pointer;
   box-shadow: 0 2px 4px darken($base-body-color, 10);
   position: relative;
 

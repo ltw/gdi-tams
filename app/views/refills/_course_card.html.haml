@@ -1,7 +1,16 @@
 .card
+  - if course.series
+    .ribbon-wrapper
+      .ribbon
+        Series
   .card-image
-  .card-header= course.pretty_date
+  .card-header
+    = course.pretty_date
   .card-copy
+    - if course.series
+      %h6
+        %span.badges
+          %span.badge= course.series.name
     %h5= course.name
     %br
     %p
