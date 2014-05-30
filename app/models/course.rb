@@ -18,10 +18,6 @@ class Course < ActiveRecord::Base
     hours.where(teaching_assistant: teaching_assistant).first
   end
 
-  def credits_array
-    a=*(1..credit_hours)
-  end
-
   def is_series?
     series.present?
   end
