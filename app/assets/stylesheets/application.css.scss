@@ -18,8 +18,7 @@
 @import "neat";
 @import "refills/refills";
 
-// STATUS LABELS
-
+// STATUS
 .pending { background-color: lighten($light-gray, 7%); }
 .prospective { background-color: lighten($light-red, 15%); }
 .banned { background-color: $light-red; }
