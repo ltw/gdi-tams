@@ -1,12 +1,13 @@
 %h3 Teaching Assistants
 
+%p To view hour balances and history, view the individual TA.
+
 .line__secondary
 
 %table
   %tr
     %th Status
     %th Name
-    %th Balance
     %th Actions
   - @teaching_assistants.each do |teaching_assistant|
     %tr
@@ -14,5 +15,4 @@
         %span.badge{class: teaching_assistant.status.label}
           = teaching_assistant.status.label
       %td= teaching_assistant.name
-      %td= teaching_assistant.balance || 0
       %td= render partial: 'action_badge', locals: { teaching_assistant: teaching_assistant }
