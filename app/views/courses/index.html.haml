@@ -1,8 +1,10 @@
 %h3 All Upcoming Courses
 
-.line__secondary
-
 %h4 Single Day Workshops
+.cards
+  - @courses.each do |course|
+    = render partial: 'refills/card', locals: { course: course }
+
 
 %table
   %tr
