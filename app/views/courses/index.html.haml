@@ -2,4 +2,4 @@
 
 .cards
   - @courses.each do |course|
-    = render partial: 'refills/course_card', locals: { course: course }
+    = render partial: 'refills/course_card', locals: { course: course, ta_list: false }

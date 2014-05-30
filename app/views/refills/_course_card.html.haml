@@ -16,6 +16,10 @@
       = course.location
       %br
       = course.pretty_time
+    - if is_admin?
+      %h6= link_to icon_add + ' Add TA', new_hour_path
+    - if ta_list
+      = render partial: 'refills/ta_list', locals: { tas: course.teaching_assistants, course: course }
   .card-stats
     %ul
       %li

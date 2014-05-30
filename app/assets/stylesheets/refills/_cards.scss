@@ -129,3 +129,12 @@
     }
   }
 }
+
+.cards {
+  .cards-large {
+    .card {
+      @include span-columns(12);
+      @include omega(1n);
+    }
+  }
+}
