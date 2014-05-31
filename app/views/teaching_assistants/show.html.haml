@@ -5,10 +5,9 @@
       .card-header
         %h3= @teaching_assistant.name
       .card-copy
-        %p
-          %b Status:
-          = @teaching_assistant.status.label.capitalize
         %ul.auto_rows__6
+          %li.block
+            = @teaching_assistant.status.label.capitalize
           %li.block
             = link_to icon_email + ' Email', @teaching_assistant.email, class: 'badge default side_margin'
           %li.block
@@ -21,9 +20,8 @@
             - else
               = link_to icon_thumbs_up + ' Upgrade', { controller: :teaching_assistants, action: :update, id: @teaching_assistant.id, teaching_assistant: { status: @approved } }, method: :put, title: "Change student to TA", class: "badge approved right_margin"
           %li.block
-            = link_to icon_delete + ' Ban', @teaching_assistant.email, class: 'badge warning right_margin'
-          %li.block
-            = link_to icon_delete + ' Remove', @teaching_assistant, class: 'badge warning right_margin'
+            = link_to icon_delete + ' Ban', { controller: :teaching_assistants, action: :update, id: @teaching_assistant.id, teaching_assistant: { status_id: @banned.id } }, method: :put, class: 'badge warning right_margin'
+
       .card-stats
         %ul
           %li

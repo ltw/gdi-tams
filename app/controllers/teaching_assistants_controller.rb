@@ -1,13 +1,11 @@
 class TeachingAssistantsController < ApplicationController
   before_action :set_teaching_assistant, only: [:edit, :show, :update, :destroy]
+  before_action :set_status, only: [:index, :show]
 
   # GET /teaching_assistants
   def index
     render 'shared/admin_only' unless is_admin?
     @teaching_assistants = TeachingAssistant.all.includes(:status, :hours).sort_by(&:name)
-    @approved = Status.find_by_label("approved")
-    @banned = Status.find_by_label("banned")
-    @pending = Status.find_by_label("pending")
   end
 
   def edit
@@ -62,5 +60,11 @@ class TeachingAssistantsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def teaching_assistant_params
       params.require(:teaching_assistant).permit(:name, :email, :status_id)
+    end
+
+    def set_status
+      @approved = Status.find_by_label("approved")
+      @banned = Status.find_by_label("banned")
+      @pending = Status.find_by_label("pending")
     end
 end
