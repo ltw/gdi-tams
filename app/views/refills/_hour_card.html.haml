@@ -8,20 +8,14 @@
     = hour.course.pretty_date
   .card-copy
     %h5= hour.course.name
+    - if hour.is_credit? && is_admin?
+      = button_to 'Change to Student', { controller: :hours, action: :update, id: hour.id, hour: { num: -hour.num } }, method: :put, class: 'light-red'
+    - elsif is_admin?
+      = button_to 'Change to TA', { controller: :hours, action: :update, id: hour.id, hour: { num: hour.course.credit_hours } }, method: :put
+      = button_to 'Remove from course', { controller: :hours, action: :destroy, id: hour.id }, method: :delete, class: 'light-red'
   .card-stats
     %ul
       %li
         = hour.num
         %span Credit hours
-      - if hour.is_credit? && is_admin?
-        %li
-          = link_to icon_book, { controller: :hours, action: :update, id: hour.id, hour: { num: -hour.num } }, method: :put
-          %span Make student
-      - elsif is_admin?
-        %li
-          = link_to icon_history, { controller: :hours, action: :update, id: hour.id, hour: { num: hour.course.credit_hours } }, method: :put
-          %span Make TA
-        %li
-          = link_to icon_delete, { controller: :hours, action: :destroy, id: hour.id }, method: :delete
-          %span Remove from course
 
