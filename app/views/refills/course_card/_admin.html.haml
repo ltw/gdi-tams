@@ -5,13 +5,17 @@
     - if course.series
       %h6
         = link_to icon_link_out + ' View series: ' + course.series.name, series_path(course.series)
+    = button_to 'Edit course', edit_course_path(course), class: 'right'
     %h5= course.name
     %br
+    = button_to 'Add TA', new_hour_path, class: 'right'
     %p
       = course.location
       %br
       = course.pretty_time
-    %h6= link_to icon_add + ' Add TA', new_hour_path
+    %p
+      = link_to icon_book + ' Course details', course_path(course)
     = render partial: 'refills/ta_list', locals: { tas: course.teaching_assistants, course: course }
+    %br
 
   = render partial: 'refills/course_card/stats', locals: { course: course }

@@ -11,6 +11,8 @@
       = course.location
       %br
       = course.pretty_time
+    %p
+      = link_to icon_book + ' Course details', course_path(course)
     - if teaching_assistant.is_ta_for?(course)
       = button_to 'Change RSVP to No', { controller: :hours, action: :destroy, id: course.hour_for(teaching_assistant), hour: { } }, method: :post, class: 'light-red'
     - else

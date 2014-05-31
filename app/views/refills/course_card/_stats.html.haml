@@ -9,10 +9,3 @@
     %li
       = course.num_tas_still_needed
       %span Still needed
-    - if is_admin?
-      %li
-        = link_to icon_edit, edit_course_path(course)
-        %span Edit course
-      %li
-        = link_to icon_link_out, course_path(course)
-        %span View details
