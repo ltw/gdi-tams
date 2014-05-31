@@ -1,7 +1,5 @@
 %h3 Hello, #{@teaching_assistant.name}!
 
-%p#notice= notice
-
 %p
   This is your secret sign up page. Only you (and the GDI Organizers) have access to this URL (unless you share it with someone else, but that's kind of silly and defeats the purpose of having a secret sign up page, now doesn't it?).
 
@@ -12,82 +10,26 @@
   %b To use your credit hours:
   Email <a href="mailto:liza@girldevelopit.com">Liz</a> and she will get you signed up in Meetup. That's unfortunately still a manual process.
 
-.line__secondary
-
 %h4 Things you're going to
 
-%table
-  %tr
-    %th Info
-    %th Course & Location
-    %th Date & Time
-    %th
+.cards
   - @teaching_assistant.schedule.each do |course|
-    = render partial: 'course_row', locals: { course: course }
+    .card
+      = render partial: 'refills/course_card/header', locals: { course: course }
+      = render partial: 'refills/course_card/body_ta', locals: { course: course, teaching_assistant: @teaching_assistant }
+      = render partial: 'refills/course_card/stats', locals: { course: course }
 
-.line__secondary
 
-%h4 All Upcoming Single Day Courses
+%h4 Sign up for more stuff!
 
-%table
-  %tr
-    %th Info
-    %th Course & Location
-    %th Date & Time
-    %th Sign up!
+.cards
   - @courses.each do |course|
-    = render partial: 'course_row', locals: { course: course }
+    .card
+      = render partial: 'refills/course_card/header', locals: { course: course }
+      = render partial: 'refills/course_card/body_ta', locals: { course: course, teaching_assistant: @teaching_assistant }
+      = render partial: 'refills/course_card/stats', locals: { course: course }
 
-.line__secondary
 
-%h4 All Upcoming Series Workshops
-
-%p To sign up to TA a multiple day workshop, you need to RSVP for each day you plan to attend.
-
-- @series.each do |series|
-  %h5= series.name
-  %table
-    %tr
-      %th Info
-      %th Course & Location
-      %th Date & Time
-      %th Sign up!
-    - series.courses.each do |course|
-      = render partial: 'course_row', locals: { course: course }
-
-.line__secondary
-
-%h4 Hour balance
-
-%p
-  Your current balance only covers classes you have already TA'd for. Your pending balance includes all hours you're signed up for, but haven't attended yet.
-
-%p
-  %b You can only spend your current balance if you plan on taking classes.
-
-%table.small
-  %tr
-    %th Current Balance
-    %th Pending Balance
-  %tr
-    %td= @teaching_assistant.balance || 0
-    %td= @teaching_assistant.pending_balance || 0
-
-.line__secondary
-
-%h4 TA History
-
-%p Red rows indicate that you were enrolled in the class as a student using your credit hours.
-
-= render partial: 'shared/ta_history_table', locals: { teaching_assistant: @teaching_assistant }
-
-.line__secondary
-
-%h4 Update your info
-
-= render partial: 'teaching_assistants/form'
-
-.line__secondary
 
 - if @teaching_assistant.inactive?
   %h4 Re-activate me!
@@ -95,7 +37,7 @@
   %p Welcome back!
 
   %h5
-    = link_to icon_delete + ' Mark me as active', { controller: :teaching_assistants, action: :update, id: @teaching_assistant, teaching_assistant: { status_id: @pending.id } }, method: :put
+    = button_to 'Mark me as active', { controller: :teaching_assistants, action: :update, id: @teaching_assistant, teaching_assistant: { status_id: @pending.id } }, method: :put
 - else
   %h4 Remove me
 
@@ -107,5 +49,4 @@
 
   %p You can reactivate your account later if you want to. Just visit this page again!
 
-  %h5
-    = link_to icon_delete + ' Mark me as inactive', { controller: :teaching_assistants, action: :update, id: @teaching_assistant, teaching_assistant: { status_id: @inactive.id } }, method: :put
+  = button_to "Mark me as inactive", { controller: :teaching_assistants, action: :update, id: @teaching_assistant, teaching_assistant: { status_id: @inactive.id } }, method: :put, class: 'light-red'
