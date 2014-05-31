@@ -1,11 +1,14 @@
 %h3
   = @series.name
-  %span.text_secondary
-    = @series.pretty_end_date
 
-.line__secondary
+%h4
+  End date:
+  = @series.pretty_end_date
 
-- @series.courses.each do |course|
-  %h4= course.pretty_date
-  = render partial: "admins/course", locals: { course: course }
-  .line_skinny__secondary
+.cards
+  - @series.courses.each do |course|
+    - if is_admin?
+      = render partial: 'refills/course_card/admin', locals: { course: course }
+    - else
+      = render partial: 'refills/course_card/default', locals: { course: course }
+
