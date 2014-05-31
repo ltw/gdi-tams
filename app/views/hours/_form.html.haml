@@ -8,10 +8,10 @@
 
   .field
     = f.label :course_id, "Which course?"
-    = f.select(:course_id, @courses.collect {|c| ["#{c.pretty_date} - #{c.name}", c.id]}, {:include_blank => 'Course'})
+    = f.select(:course_id, @courses, {:include_blank => 'Course'})
   .field
     = f.label :teaching_assistant_id, "Which TA?"
-    = f.select(:teaching_assistant_id, @tas.collect {|ta| [ta.name, ta.id]}, {:include_blank => 'Teaching Assistant'})
+    = f.select(:teaching_assistant_id, @tas, {:include_blank => 'Teaching Assistant'})
   .field
     = label_tag :student, "Student?"
     = check_box_tag :student

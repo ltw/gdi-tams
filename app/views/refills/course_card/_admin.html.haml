@@ -8,7 +8,7 @@
     = button_to 'Edit course', { controller: :courses, action: :edit, id: course.id, course: { course: course } }, method: :get, class: 'right'
     %h5= course.name
     %br
-    = button_to 'Add TA', new_hour_path, class: 'right'
+    = button_to 'Add TA', { controller: :hours, action: :new }, method: :get, class: 'right'
     %p
       = course.location
       %br

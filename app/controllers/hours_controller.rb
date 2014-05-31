@@ -16,8 +16,8 @@ class HoursController < ApplicationController
   def new
     render 'shared/admin_only' unless is_admin?
     @hour = Hour.new
-    @courses = Course.all.sort_by(&:date)
-    @tas= TeachingAssistant.all.sort_by(&:name)
+    @courses = Course.all.sort_by(&:date).collect {|c| ["#{c.pretty_date} - #{c.name}", c.id]}
+    @tas = TeachingAssistant.all.sort_by(&:name).collect {|ta| [ta.name, ta.id]}
   end
 
   # GET /hours/1/edit
