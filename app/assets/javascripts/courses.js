@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('page:load', function() {
   $('#fetch_meetup_button').on('click', function(event) {
     var url = $('input#fetch_meetup_url').val();
     $('.fetch_meetup').hide();
