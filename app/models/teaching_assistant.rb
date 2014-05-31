@@ -35,7 +35,6 @@ class TeachingAssistant < ActiveRecord::Base
     status.label == "prospective"
   end
 
-
   # BALANCES
   def pending_balance
     hours.to_a.map(&:num).inject(&:+)
