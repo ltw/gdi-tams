@@ -1,0 +1,17 @@
+.card
+  = render partial: 'refills/course_card/header', locals: { course: course }
+
+  .card-copy
+    - if course.series
+      %h6
+        = link_to icon_link_out + ' View series: ' + course.series.name, series_path(course.series)
+    %h5= course.name
+    %br
+    %p
+      = course.location
+      %br
+      = course.pretty_time
+    %h6= link_to icon_add + ' Add TA', new_hour_path
+    = render partial: 'refills/ta_list', locals: { tas: course.teaching_assistants, course: course }
+
+  = render partial: 'refills/course_card/stats', locals: { course: course }
