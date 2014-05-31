@@ -25,6 +25,7 @@ class CoursesController < ApplicationController
   # GET /courses/1/edit
   def edit
     render 'shared/admin_only' unless is_admin?
+    @series = Series.all
   end
 
   # POST /courses

@@ -5,7 +5,7 @@
     - if course.series
       %h6
         = link_to icon_link_out + ' View series: ' + course.series.name, series_path(course.series)
-    = button_to 'Edit course', edit_course_path(course), class: 'right'
+    = button_to 'Edit course', { controller: :courses, action: :edit, id: course.id, course: { course: course } }, method: :get, class: 'right'
     %h5= course.name
     %br
     = button_to 'Add TA', new_hour_path, class: 'right'
