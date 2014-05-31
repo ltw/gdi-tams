@@ -14,6 +14,10 @@ class Course < ActiveRecord::Base
     where(date: 1.month.ago.beginning_of_month..Date.today)
   end
 
+  def tas
+    hours.select { |h| h.is_credit? }.map { |h| h.teaching_assistant }
+  end
+
   def hour_for(teaching_assistant)
     hours.where(teaching_assistant: teaching_assistant).first
   end

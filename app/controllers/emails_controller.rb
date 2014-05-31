@@ -3,6 +3,7 @@ class EmailsController < ApplicationController
 
   def index
     render 'shared/admin_only' unless is_admin?
+    @courses = Course.upcoming.where('email_sent = false')
   end
 
   def welcome
@@ -22,5 +23,17 @@ class EmailsController < ApplicationController
       GdiMailer.monthly(ta, courses, month).deliver
     end
     redirect_to emails_path, notice: 'Monthly emails delivered. Hooray!'
+  end
+
+  def confirmation
+    @course = Course.find_by_id(params[:course_id])
+    @course.email_sent = true
+    if @course.save
+      @tas = @course.tas
+      @tas.each do |ta|
+        GdiMailer.confirmation(ta, @course).deliver
+      end
+    end
+    redirect_to admins_dashboard_path, notice: 'Email confirmation sent.'
   end
 end

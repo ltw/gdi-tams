@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '/admins/dashboard', to: 'admins#dashboard', as: 'admins_dashboard'
   get '/emails/welcome', to: 'emails#welcome', as: 'welcome_emails'
   get '/emails/monthly', to: 'emails#monthly', as: 'monthly_emails'
+  get '/emails/confirmation', to: 'emails#confirmation', as: 'confirmation_emails'
 
   mount Resque::Server.new, :at => "/resque"
 end
