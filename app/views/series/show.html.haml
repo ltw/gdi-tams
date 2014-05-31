@@ -6,9 +6,10 @@
   = @series.pretty_end_date
 
 .cards
-  - @series.courses.each do |course|
-    - if is_admin?
-      = render partial: 'refills/course_card/admin', locals: { course: course }
-    - else
-      = render partial: 'refills/course_card/default', locals: { course: course }
+  .cards-large
+    - @series.courses.each do |course|
+      - if is_admin?
+        = render partial: 'refills/course_card/admin', locals: { course: course }
+      - else
+        = render partial: 'refills/course_card/default', locals: { course: course }
 
