@@ -1,11 +1,6 @@
 class EmailsController < ApplicationController
   before_action :set_resources
 
-  def index
-    render 'shared/admin_only' unless is_admin?
-    @courses = Course.upcoming.where('email_sent = false')
-  end
-
   def welcome
     @ta = TeachingAssistant.find_by_id(params[:emails][:teaching_assistant])
     @ta.status = Status.find_by_label("pending")

@@ -15,8 +15,6 @@ Rails.application.routes.draw do
 
   resources :statuses, only: [:index, :show]
 
-  resources :emails, only: [:index]
-
   get '/sign_ups/:private_id', to: 'sign_ups#show', as: 'sign_ups'
   get '/sign_ups/forgot', to: 'sign_ups#forgot', as: 'forgot_sign_ups'
   get '/admins/dashboard', to: 'admins#dashboard', as: 'admins_dashboard'
