@@ -9,7 +9,7 @@ class EmailsController < ApplicationController
     @ta = TeachingAssistant.find_by_id(params[:emails][:teaching_assistant])
     @ta.status = Status.find_by_label("pending")
     if @ta.save
-      GdiMailer.welcome(@ta).deliver
+      GdiMailer.welcome(@ta).deliver!
     end
     redirect_to emails_path, notice: 'Email delivered, TA upgraded to pending.'
   end

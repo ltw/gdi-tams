@@ -19,7 +19,6 @@ class GdiMailer < ActionMailer::Base
     @ta = ta
     @courses = courses
     @month = month
-    @sign_up_url = "http://gdichicago.herokuapp.com/sign_ups/#{@ta.private_id}"
-    mail(to: @ta.email, subject: "GDI Chicago: Monthly TA sign ups - #{month}!")
+    mail(to: @ta['email'], subject: "GDI Chicago: Monthly TA sign ups - #{month}!")
   end
 end
