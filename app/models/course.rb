@@ -11,7 +11,7 @@ class Course < ActiveRecord::Base
   scope :series, -> { where("series_id > ?", 0) }
 
   def self.last_month
-    where(date: 1.month.ago.beginning_of_month..Date.yesterday)
+    where(date: 1.month.ago.beginning_of_month..Date.today)
   end
 
   def hour_for(teaching_assistant)
