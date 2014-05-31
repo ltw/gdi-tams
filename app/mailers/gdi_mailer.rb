@@ -22,10 +22,9 @@ class GdiMailer < ActionMailer::Base
     mail(to: @ta['email'], subject: "GDI Chicago: Monthly TA sign ups - #{month}!")
   end
 
-  def confirmation(ta, course, date_time_data)
+  def confirmation(ta, course)
     @ta = ta
     @course = course
-    @date_time_data = date_time_data
     mail(to: @ta['email'], subject: "TA Confirmation: #{course['name']}")
   end
 end

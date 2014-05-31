@@ -1,4 +1,6 @@
 class Course < ActiveRecord::Base
+  before_save :add_dates
+
   belongs_to :series
   has_many :hours, dependent: :destroy
   has_many :teaching_assistants, through: :hours
@@ -34,15 +36,13 @@ class Course < ActiveRecord::Base
     num_tas_needed - teaching_assistants.count
   end
 
-  def pretty_date
-    date.strftime("%B %e, %Y (%A)")
-  end
-
   def pretty_date_short
     date.strftime("%B %e, %Y")
   end
 
-  def pretty_time
-    "#{start_time.strftime("%I:%M %p")}–#{end_time.strftime("%I:%M %p")}"
+  private
+  def add_dates
+    self.pretty_date = self.date.strftime("%B %e, %Y (%A)")
+    self.pretty_time = "#{self.start_time.strftime("%I:%M %p")}–#{self.end_time.strftime("%I:%M %p")}"
   end
 end
