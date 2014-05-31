@@ -1,35 +1,5 @@
 %h3 All Upcoming Courses
 
-.line__secondary
-
-%h4 Single Day Workshops
-
-%table
-  %tr
-    %th
-    %th Name & Location
-    %th Date & Time
-    %th Credit
-    %th Meetup
-
+.cards
   - @courses.each do |course|
-    = render partial: 'shared/course_row', locals: { course: course }
-
-.line__secondary
-
-%h4 Multi-Day Workshops
-
-- @series.each do | series|
-
-  %h5= series.name
-
-  %table
-    %tr
-      %th
-      %th Name & Location
-      %th Date & Time
-      %th Credit
-      %th Meetup
-
-    - series.courses.each do |course|
-      = render partial: 'shared/course_row', locals: { course: course }
+    = render partial: 'refills/course_card/default', locals: { course: course }

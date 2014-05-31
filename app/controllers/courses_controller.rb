@@ -4,8 +4,7 @@ class CoursesController < ApplicationController
 
   # GET /courses
   def index
-    @courses = Course.upcoming.single_day.sort_by(&:date)
-    @series = Series.upcoming.includes(:courses).sort_by(&:end_date)
+    @courses = Course.upcoming.includes(:series).sort_by(&:date)
   end
 
   # GET /courses/1
@@ -26,6 +25,7 @@ class CoursesController < ApplicationController
   # GET /courses/1/edit
   def edit
     render 'shared/admin_only' unless is_admin?
+    @series = Series.all
   end
 
   # POST /courses

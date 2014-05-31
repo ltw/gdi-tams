@@ -2,58 +2,7 @@
 
 %p The system only shows single day classes and workshops that have concluded in the past month. To view additional courses, you will need to log in to the console.
 
-.line__secondary
-
-%h4 Recently concluded single day workshops
-
-- @courses.each do |course|
-  %h5
-    = course.name
-    = link_to icon_link_out, course_path(course), class: 'side_margin'
-    = link_to icon_edit, edit_course_path(course), class: 'right_margin'
-    = link_to icon_add + ' Add a Teaching Assistant or Student', new_hour_path, class: "badge approved"
-  %table
-    %tr
-      %th Date & Time
-      %th Hours
-      %th Teaching Assistants
-    %tr
-      %td
-        = course.pretty_date_short
-        %br
-        = course.pretty_time
-      %td= course.credit_hours
-      %td= render partial: "shared/ta_table", locals: { course: course }
-  .line__secondary
-
-
-%h4 Recently concluded multi-day workshops
-
-
-- @series.each do |series|
-  %h5
-    = series.name
-    = link_to icon_link_out, series_path(series), class: 'side_margin'
-    = link_to icon_edit, edit_series_path(series), class: 'right_margin'
-  - series.courses.each do |course|
-    %h6
-      = course.pretty_date
-      = link_to icon_link_out, course_path(course), class: 'side_margin'
-      = link_to icon_edit, edit_course_path(course), class: 'right_margin'
-      = link_to icon_add + ' Add a Teaching Assistant or Student', new_hour_path, class: "badge approved left_margin"
-    %table
-      %tr
-        %table
-          %tr
-            %th Time
-            %th Hours
-            %th Teaching Assistants
-          %tr
-            %td= course.pretty_time
-            %td= course.credit_hours
-            %td= render partial: "shared/ta_table", locals: { course: course }
-    %p
-
-
-.line__secondary
-= render partial: 'shared/symbols'
+.cards
+  .cards-large
+    - @courses.each do |course|
+      = render partial: 'refills/course_card/admin', locals: { course: course }

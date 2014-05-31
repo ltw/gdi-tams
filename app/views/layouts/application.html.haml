@@ -6,21 +6,13 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Roboto:300,400,400italic,700,800', media: 'all'
     = stylesheet_link_tag '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', media: 'all'
+
   %body
-    .pure-g
-      .pure-u-1-1
-        %nav
-          - if is_admin?
-            = render partial: 'shared/menu_admin'
-          - else
-            = render partial: 'shared/menu'
-    .pure-g#content
-      .pure-u-1-5
-      .pure-u-3-5
-        %header
-          %h1 Girl Develop It Chicago
-          %h2 Teaching Assistant Management System
+    #nav
+      = render partial: 'refills/sliding_menu'
+    #container
+      #content
+        %h1 GDI Chicago Volunteering
+        %h2 Teaching Assistants
         = yield
-      .pure-u-1-5

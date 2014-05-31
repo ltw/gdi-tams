@@ -2,44 +2,12 @@
 
 %p#notice= notice
 
-- if @series
-  = link_to 'View course series page', series_path(@course.series), class: 'badge warning'
-
-.line__secondary
-
-%table
-  %tr
-    %th
-    %th Name & Location
-    %th Date & Time
-    %th Credit
-    %th Meetup
-  = render partial: 'shared/course_row', locals: { course: @course }
-
-%h4 Teaching Assistants
-
-%table
-  %tr
-    %th TAs
-    %th Teaching Assistants
-  %tr
-    %td
-      %b Needed:
-      = @course.num_tas_needed
-      %br
-      %br
-      - if @course.need_tas?
-        %span.badge.alert
-          = @course.num_tas_still_needed
-          still needed!
-      - else
-        %span.badge.approved= icon_check + ' OK!'
+.cards
+  .cards-large
     - if is_admin?
-      %td= render partial: 'shared/ta_table', locals: { course: @course }
+      = render partial: 'refills/course_card/admin', locals: { course: @course }
     - else
-      %td= render partial: 'shared/ta_table_public', locals: { course: @course }
-
-.line__secondary
+      = render partial: 'refilles/course_card/default', locals: { course: @course }
 
 %h4 Description
 
