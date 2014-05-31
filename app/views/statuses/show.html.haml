@@ -1,9 +1,6 @@
-%p#notice= notice
+- if notice
+  %p#notice= notice
 
 %p
   %b Label:
   = @status.label
-
-= link_to 'Edit', edit_status_path(@status)
-\|
-= link_to 'Back', statuses_path

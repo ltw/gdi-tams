@@ -1,6 +1,7 @@
 %h3= @course.name
 
-%p#notice= notice
+- if notice
+  %p#notice= notice
 
 .cards
   .cards-large
