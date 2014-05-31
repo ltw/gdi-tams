@@ -4,4 +4,4 @@
   %h4= series.name
   .cards
     - series.courses.sort_by(&:date).each do |course|
-      = render partial: 'refills/course_card', locals: { course: course, ta_list: false }
+      = render partial: 'refills/course_card/default', locals: { course: course }

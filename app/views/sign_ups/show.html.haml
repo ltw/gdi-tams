@@ -14,20 +14,14 @@
 
 .cards
   - @teaching_assistant.schedule.each do |course|
-    .card
-      = render partial: 'refills/course_card/header', locals: { course: course }
-      = render partial: 'refills/course_card/body_ta', locals: { course: course, teaching_assistant: @teaching_assistant }
-      = render partial: 'refills/course_card/stats', locals: { course: course }
+    = render partial: 'refills/course_card/ta', locals: { course: course, teaching_assistant: @teaching_assistant }
 
 
 %h4 Sign up for more stuff!
 
 .cards
   - @courses.each do |course|
-    .card
-      = render partial: 'refills/course_card/header', locals: { course: course }
-      = render partial: 'refills/course_card/body_ta', locals: { course: course, teaching_assistant: @teaching_assistant }
-      = render partial: 'refills/course_card/stats', locals: { course: course }
+    = render partial: 'refills/course_card/ta', locals: { course: course, teaching_assistant: @teaching_assistant }
 
 
 

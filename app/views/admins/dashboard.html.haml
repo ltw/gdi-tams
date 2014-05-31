@@ -5,6 +5,6 @@
 .cards
   .cards-large
     - @courses.each do |course|
-      = render partial: 'refills/course_card', locals: { course: course, ta_list: true }
+      = render partial: 'refills/course_card/admin', locals: { course: course }
 
 
