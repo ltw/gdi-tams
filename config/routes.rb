@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   get '/sign_ups/forgot', to: 'sign_ups#forgot', as: 'forgot_sign_ups'
   get '/admins/dashboard', to: 'admins#dashboard', as: 'admins_dashboard'
   get '/emails/welcome', to: 'emails#welcome', as: 'welcome_emails'
+  get '/emails/monthly', to: 'emails#monthly', as: 'monthly_emails'
 end

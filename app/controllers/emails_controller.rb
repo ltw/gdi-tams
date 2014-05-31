@@ -13,4 +13,14 @@ class EmailsController < ApplicationController
     end
     redirect_to emails_path, notice: 'Email delivered, TA upgraded to pending.'
   end
+
+  def monthly
+    @tas = TeachingAssistant.active.limit(1)
+    month = Date.today.strftime("%B")
+    courses = Course.upcoming.includes(:series).sort_by(&:date)
+    @tas.each do |ta|
+      GdiMailer.monthly(ta, courses, month).deliver
+    end
+    redirect_to emails_path, notice: 'Monthly emails delivered. Hooray!'
+  end
 end
