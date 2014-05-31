@@ -29,7 +29,11 @@
 
 // GRID/LAYOUT CORE
 #container { @include outer-container; }
-#content { @include span-columns(12); }
+#content {
+  @include span-columns(12);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
 
 // AUTOMATIC ROWS
 ul.auto_rows__2 {
