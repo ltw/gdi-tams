@@ -7,9 +7,12 @@
 %h2 Signing up
 %p
   To sign up for classes, visit your private sign up page. No need to login!
-%h3= link_to 'View private sign up page', @sign_up_url
-%p
+%p.center
+  = link_to 'View private sign up page', @sign_up_url, class: 'button'
+
+%p.center.small
   Or copy this link into your browser:
+  %br
   %a{href: @sign_up_url}
     = @sign_up_url
 %p
@@ -44,5 +47,3 @@
   %li We carefully manage class capacity, and sometimes we might not have a spot for you (but we'll try our best to fit you in)
 %p
   To use credit hours, contact Liz directly.
-%h1
-  Thank you for volunteering!
