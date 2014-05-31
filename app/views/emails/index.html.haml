@@ -1,0 +1,29 @@
+%h3 Organizer Emails
+
+- if notice
+  %p#notice= notice
+
+- if TeachingAssistant.prospective.any?
+  %p#error_explanation
+    You have new TA applications!
+
+
+%h4 Prospective TAs
+
+- if TeachingAssistant.prospective.any?
+  %p Approving an application will email the TA.
+
+  %table.table-minimal
+    %tr
+      %th Name
+      %th Email
+      %th Approve
+    - TeachingAssistant.prospective.each do |ta|
+      %tr
+        %td= ta.name
+        %td= ta.email
+        %td= link_to icon_thumbs_up + ' Upgrade to Pending', { controller: :emails, action: :welcome, emails: { teaching_assistant: ta } }
+
+- else
+  %p You have no applications to approve.
+
