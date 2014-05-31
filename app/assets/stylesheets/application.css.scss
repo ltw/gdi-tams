@@ -27,7 +27,7 @@
   a { color: $dark-gray; }
 }
 
-// GRID
+// GRID/LAYOUT CORE
 #container { @include outer-container; }
 #content { @include span-columns(12); }
 
@@ -48,6 +48,6 @@ ul.auto_rows__6 {
   }
 }
 
-
+// HELPER CLASSES
 .right { float: right; }
 .left-padding { padding-left: 10px; }

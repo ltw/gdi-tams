@@ -9,7 +9,8 @@
     = stylesheet_link_tag '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', media: 'all'
 
   %body
-    = render partial: 'refills/sliding_menu'
+    #nav
+      = render partial: 'refills/sliding_menu'
     #container
       #content
         = yield
