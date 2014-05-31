@@ -1,4 +1,6 @@
 class GdiMailer < ActionMailer::Base
+  include Resque::Mailer
+
   default from: 'liza@girldevelopit.com'
   layout 'mailer'
 
