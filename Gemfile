@@ -30,8 +30,6 @@ gem 'factory_girl_rails', group: :test
 # Dev only
 gem 'spring', group: :development
 gem 'foreman', group: :development
-gem 'better_errors', group: :development
-gem 'binding_of_caller', group: :development
 
 # Heroku requirements
 gem 'unicorn'
