@@ -8,7 +8,6 @@ class TeachingAssistantsController < ApplicationController
     @approved = Status.find_by_label("approved")
     @banned = Status.find_by_label("banned")
     @pending = Status.find_by_label("pending")
-    @prospective = Status.find_by_label("prospective")
   end
 
   def edit
