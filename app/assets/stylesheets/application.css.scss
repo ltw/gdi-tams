@@ -20,7 +20,7 @@
 
 // STATUS
 .pending { background-color: lighten($light-gray, 7%); }
-.prospective { background-color: lighten($light-red, 15%); }
+.prospective { color: $light-red; }
 .banned { background-color: $light-red; }
 .inactive {
   background-color: lighten($light-gray, 7%);
@@ -47,3 +47,7 @@ ul.auto_rows__6 {
     @include omega(6n);
   }
 }
+
+
+.right { float: right; }
+.left-padding { padding-left: 10px; }
