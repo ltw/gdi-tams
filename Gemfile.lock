@@ -210,7 +210,7 @@ DEPENDENCIES
   resque_mailer (~> 2.2.6)
   rspec-rails
   sass-rails (= 4.0.3)
-  simplecov
+  simplecov (~> 0.8.2)
   skylight
   spring
   turbolinks (~> 2.2.2)
