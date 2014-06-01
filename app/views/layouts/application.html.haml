@@ -16,3 +16,6 @@
         %h1 GDI Chicago Volunteering
         %h2 Teaching Assistants
         = yield
+    - if ENV['STAGING']
+      #footer
+        %h3 STAGING ENVIRONMENT ENABLED

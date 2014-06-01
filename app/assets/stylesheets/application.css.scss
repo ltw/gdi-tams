@@ -55,3 +55,10 @@ ul.auto_rows__6 {
 // HELPER CLASSES
 .right { float: right; }
 .left-padding { padding-left: 10px; }
+
+// STAGING
+#footer {
+  width: 100%;
+  background-color: $light-red;
+  padding: 20px;
+}
