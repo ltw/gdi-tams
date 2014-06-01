@@ -1,8 +1,8 @@
-FactoryGirl.define do
-  factory :admin do
-    name "liz"
-    password  "tacos"
-  end
+# FactoryGirl.define do
+#   factory :admin do
+#     name "liz"
+#     password  "tacos"
+#   end
 
   # This will use the User class (Admin would have been guessed)
   # factory :admin, class: User do
@@ -10,7 +10,7 @@ FactoryGirl.define do
   #   last_name  "User"
   #   admin      true
   # end
-end
+# end
 
 # Returns a User instance that's not saved
 # user = build(:user)
