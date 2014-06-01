@@ -10,17 +10,20 @@
     %h5= course.name
     %br
     - if course.email_sent
-      .right
+      .right.text-right
         %b Email confirmation sent.
         %br
-        Problem?
-        = link_to 'Undo flag.', { controller: :courses, action: :update, id: course.id, course: { email_sent: false } }, method: :put
+        %span.small
+          Problem?
+          = link_to 'Undo flag.', { controller: :courses, action: :update, id: course.id, course: { email_sent: false } }, method: :put
     - elsif course.can_email?
       = button_to 'Send confirmation email!', { controller: :emails, action: :confirmation }, method: :get, params: { course_id: course.id },  class: 'right light-red'
     - else
-      %b Email confirmation disabled.
-      %br
-      Check back 10 days before the class.
+      .right.text-right
+        %b Email disabled.
+        %br
+        %span.small
+          Check back 10 days before the class.
     %p
       = course.location
       %br
