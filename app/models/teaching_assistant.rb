@@ -7,6 +7,7 @@ class TeachingAssistant < ActiveRecord::Base
 
   validates_uniqueness_of :private_id, :email
   validates_presence_of :name, :email, :status
+  validates_format_of :email, with: /[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,}/
 
 
   # STATUSES
