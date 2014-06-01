@@ -32,5 +32,15 @@ FactoryGirl.define do
 
   factory :status do
     label   'approved'
+
+    factory :status_with_tas do
+      ignore do
+        tas_count 10
+      end
+
+      after(:create) do |status, evaluator|
+        create_list(:teaching_assistant, evaluator.tas_count, status: status)
+      end
+    end
   end
 end
