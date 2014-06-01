@@ -27,7 +27,7 @@ var ready = function() {
     $('.js-menu-screen').toggleClass('is-visible');
     e.preventDefault();
   });
-});
+};
 
 $(document).ready(ready);
 $(document).on('page:load', ready);

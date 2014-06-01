@@ -87,7 +87,7 @@ var ready = function() {
   function loadingThingy() {
     $('.loading').append('<img src="/images/loading.gif">');
   }
-});
+};
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
