@@ -1,4 +1,4 @@
-Hello, #{@ta.name}.
+Hello, #{@ta['name']}.
 
 Thanks for signing up to volunteer as a TA with Girl Develop It Chicago! Your application has been approved, and you are now able to sign up to volunteer for classes.
 
@@ -9,6 +9,10 @@ This orientation email contains all sorts of information about how to sign up, e
 Signing up
 
 To sign up for classes, visit your private sign up page. No need to login!
+
+View your private page:
+
+http://gdichicago.herokuapp.com/sign_ups/#{@ta['private_id']}
 
 Your private sign up page contains:
 
@@ -49,3 +53,7 @@ The terms for using credit hours are as follows:
 To use credit hours, contact Liz directly.
 
 Thank you for volunteering!
+
+=======================================
+
+This email was sent because you signed up with <a href="http://gdichicago.herokuapp.com">GDI Chicago</a> as a volunteer TA.
