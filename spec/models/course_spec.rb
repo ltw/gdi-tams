@@ -24,14 +24,31 @@ describe Course do
   end
 
   context 'relationships' do
-    it 'belongs_to series'
-
-    describe 'hours with dependent destroy' do
-       it 'has_many'
-       it 'destroys hours'
+    it 'belongs_to series' do
+      @series = create(:series_with_courses)
+      expect(@series.courses.first.series).to eq(@series)
     end
 
-    it 'has_many teaching_assistants'
+    describe 'hours with dependent destroy' do
+      before do
+        @course = create(:course_with_hours)
+      end
+
+       it 'has_many' do
+        expect(@course.hours.length).to eq(5)
+       end
+
+       it 'destroys hours' do
+        hour = @course.hours.first
+        @course.destroy
+        expect { hour.reload }.to raise_error(ActiveRecord::RecordNotFound)
+       end
+    end
+
+    it 'has_many teaching_assistants' do
+      @course = create(:course_with_hours)
+      expect(@course.teaching_assistants.count).to eq(5)
+    end
   end
 
   context 'class methods' do
