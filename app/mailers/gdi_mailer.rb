@@ -6,12 +6,12 @@ class GdiMailer < ActionMailer::Base
 
   def welcome(ta)
     @ta = ta
-    mail(to: @ta.email, subject: "GDI Chicago: Your TA application is approved!")
+    mail(to: @ta['email'], subject: "GDI Chicago: Your TA application is approved!")
   end
 
   def pending(ta)
     @ta = ta
-    mail(to: @ta.email, subject: "GDI Chicago: Application received")
+    mail(to: @ta['email'], subject: "GDI Chicago: Application received")
   end
 
   def monthly(ta, courses, month)
