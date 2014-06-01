@@ -100,30 +100,65 @@ describe TeachingAssistant do
         expect(@ta.inactive?).to be_false
       end
     end
+  end
+
+  context 'methods with args' do
+    before do
+      @course = create(:course_with_hours)
+      @ta = @course.teaching_assistants.first
+    end
 
     describe '#signed_up_for(course)' do
-      it 'requires an argument'
-      it 'expects a course'
-      it 'returns a string'
-      it 'returns TA for TAs'
-      it 'returns Student for students'
-      it 'returns no if not attending'
+      it 'requires an argument' do
+        expect { @ta.signed_up_for }.to raise_error(ArgumentError)
+      end
+
+      it 'returns a string' do
+        expect(@ta.signed_up_for(@course)).to be_instance_of(String)
+      end
+
+      it 'returns TA for TAs' do
+        expect(@ta.signed_up_for(@course)).to eq('TA')
+      end
+
+      it 'returns Student for students' do
+        hour = create(:hour_debit)
+        ta = hour.teaching_assistant
+        expect(ta.signed_up_for(hour.course)).to eq('Student')
+      end
+
+      it 'returns no if not attending' do
+        ta = create(:teaching_assistant)
+        expect(ta.signed_up_for(@course)).to eq('No')
+      end
     end
 
     describe '#is_ta_for?(course)' do
-      it 'requires an argument'
-      it 'expects a course'
-      it 'returns a boolean'
-      it 'returns true for TAs'
-      it 'returns false for students and nos'
+      it 'requires an argument' do
+        expect { @ta.is_ta_for? }.to raise_error(ArgumentError)
+      end
+
+      it 'returns a boolean' do
+        expect(@ta.is_ta_for?(@course)).to be_instance_of(TrueClass)
+      end
+
+      it 'returns true for TAs' do
+        expect(@ta.is_ta_for?(@course)).to be_true
+      end
     end
 
     describe '#is_student_in?(course)' do
-      it 'requires an argument'
-      it 'expects a course'
-      it 'returns a boolean'
-      it 'returns true for students'
-      it 'returns false for TAs and nos'
+      it 'requires an argument' do
+        expect { @ta.is_student_in? }.to raise_error(ArgumentError)
+      end
+
+      it 'returns a boolean' do
+        expect(@ta.is_student_in?(@course)).to be_instance_of(FalseClass)
+      end
+
+      it 'returns false for TAs' do
+        expect(@ta.is_student_in?(@course)).to be_false
+      end
     end
   end
 
