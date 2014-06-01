@@ -1,12 +1,11 @@
 class Course < ActiveRecord::Base
-  before_save :add_dates
+  before_validation :format_pretty_dates
 
   belongs_to :series
   has_many :hours, dependent: :destroy
   has_many :teaching_assistants, through: :hours
 
-  validates_presence_of :credit_hours
-  validates_presence_of :num_tas_needed
+  validates_presence_of :credit_hours, :num_tas_needed, :name, :date, :url, :location, :meetup_id, :start_time, :end_time, :pretty_time, :pretty_date
 
   scope :upcoming, -> { where("date > ?", Date.today) }
   scope :single_day, -> { where("series_id IS NULL") }
@@ -41,7 +40,7 @@ class Course < ActiveRecord::Base
   end
 
   private
-  def add_dates
+  def format_pretty_dates
     self.pretty_date = self.date.strftime("%B %e, %Y (%A)")
     self.pretty_time = "#{self.start_time.strftime("%I:%M %p")}–#{self.end_time.strftime("%I:%M %p")}"
   end
