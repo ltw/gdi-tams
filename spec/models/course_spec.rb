@@ -15,17 +15,7 @@ require 'spec_helper'
 describe Course do
   context 'before_validation#format_pretty_dates' do
     before do
-      @course = Course.new({
-        name: 'Course',
-        date: Date.today,
-        url: 'http://google.com',
-        location: 'A Place in Chicago',
-        credit_hours: 2,
-        num_tas_needed: 4,
-        meetup_id: '12345',
-        start_time: 2.hours.from_now,
-        end_time: 6.hours.from_now
-        })
+      @course = build(:course)
     end
 
     it 'passes validations' do
