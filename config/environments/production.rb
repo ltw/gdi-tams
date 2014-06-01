@@ -15,28 +15,31 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # GDIMailer = Gmail
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   address:              'smtp.gmail.com',
-  #   port:                 587,
-  #   domain:               'girldevelopit.com',
-  #   user_name:            'liza',
-  #   password:             ENV['GMAIL_PASSWORD'],
-  #   authentication:       'plain',
-  #   enable_starttls_auto: true
-  # }
+  if ENV["STAGING"]
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.default_url_options = { :host => "http://gdicchicago-staging.herokuapp.com" }
+    config.action_mailer.smtp_settings = {
+      :user_name => '20848c62d28739702',
+      :password => 'eb6bea007c4395',
+      :address => 'mailtrap.io',
+      :domain => 'mailtrap.io',
+      :port => '2525',
+      :authentication => :cram_md5,
+      :enable_starttls_auto => true
+    }
+  else
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address:              'smtp.gmail.com',
+      port:                 587,
+      domain:               'girldevelopit.com',
+      user_name:            'liza',
+      password:             ENV['GMAIL_PASSWORD'],
+      authentication:       'plain',
+      enable_starttls_auto: true
+    }
+  end
 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { :host => "http://localhost:3000" }
-  config.action_mailer.smtp_settings = {
-    :user_name => '20848c62d28739702',
-    :password => 'eb6bea007c4395',
-    :address => 'mailtrap.io',
-    :domain => 'mailtrap.io',
-    :port => '2525',
-    :authentication => :cram_md5,
-    :enable_starttls_auto => true
-  }
 end
