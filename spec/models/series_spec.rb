@@ -43,4 +43,11 @@ describe Series do
       expect(Series.last_month.length).to eq(10)
     end
   end
+
+  context 'methods' do
+    it '#pretty_end_date' do
+      series = create(:series)
+      expect(series.pretty_end_date).to be_instance_of(String)
+    end
+  end
 end
