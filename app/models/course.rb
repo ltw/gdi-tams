@@ -40,7 +40,7 @@ class Course < ActiveRecord::Base
   end
 
   def can_email?
-    date < 10.days.from_now && date > Date.tomorrow
+    teaching_assistants.any? && date < 10.days.from_now && date > Date.tomorrow
   end
 
   private
