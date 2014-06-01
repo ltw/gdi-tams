@@ -7,7 +7,7 @@ class EmailsController < ApplicationController
     if @ta.save
       GdiMailer.welcome(@ta).deliver
     end
-    redirect_to emails_path, notice: 'Email delivered, TA upgraded to pending.'
+    redirect_to admins_dashboard_path, notice: 'Email delivered, TA upgraded to pending.'
   end
 
   def monthly
@@ -16,7 +16,7 @@ class EmailsController < ApplicationController
     @tas.each do |ta|
       GdiMailer.monthly(ta, courses, month).deliver
     end
-    redirect_to emails_path, notice: 'Monthly emails delivered. Hooray!'
+    redirect_to admins_dashboard_path, notice: 'Monthly emails delivered. Hooray!'
   end
 
   def confirmation
