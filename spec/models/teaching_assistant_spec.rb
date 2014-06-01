@@ -44,14 +44,6 @@ describe TeachingAssistant do
     end
   end
 
-  context 'class methods' do
-    it '#approved'
-    it '#pending'
-    it '#banned'
-    it '#prospective'
-    it '#active' # on a different branch
-  end
-
   context 'methods' do
     it '#pending_balance'
     it '#balance'
@@ -90,4 +82,37 @@ describe TeachingAssistant do
       it 'returns false for TAs and nos'
     end
   end
+
+  # context 'class methods' do
+    # 'FactoryGirl is giving me shit about these'
+    # before do
+    #   create_list(:teaching_assistant, 10)
+    #   create_list(:teaching_assistant_pending, 5)
+    #   create_list(:teaching_assistant_banned, 5)
+    #   create_list(:teaching_assistant_prospective, 5)
+    #   create_list(:teaching_assistant_inactive, 5)
+    # end
+
+    # it '#approved' do
+    #   TeachingAssistant
+    #   debugger
+    #   expect(TeachingAssistant.approved.length).to eq(10)
+    # end
+
+    # it '#pending' do
+    #   expect(TeachingAssistant.pending.length).to eq(5)
+    # end
+
+    # it '#banned' do
+    #   expect(TeachingAssistant.banned.length).to eq(5)
+    # end
+
+    # it '#prospective' do
+    #   expect(TeachingAssistant.prospective.length).to eq(5)
+    # end
+
+    # it '#active' do
+    #   expect(TeachingAssistant.active.length).to eq(15)
+    # end
+  # end
 end
