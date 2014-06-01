@@ -9,7 +9,16 @@ FactoryGirl.define do
   # hour with teaching_assistant association
   # created before_validations to pass requirement
   factory :hour do
-    num     4
+    num 2
+    course
+
+    after(:build) do |hour|
+      hour.teaching_assistant = create(:teaching_assistant)
+    end
+  end
+
+  factory :hour_debit, class: Hour do
+    num  -2
     course
 
     after(:build) do |hour|
