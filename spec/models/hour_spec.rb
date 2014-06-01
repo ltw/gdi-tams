@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe Hour do
+  before do
+    @course = create(:course_with_hours)
+    @hours = @course.hours
+  end
+
   context 'relationships' do
     it 'belongs_to teaching_assistant'
     it 'belongs_to course'
