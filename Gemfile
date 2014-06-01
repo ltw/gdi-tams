@@ -10,7 +10,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails', '~> 3.1.0'
 gem 'turbolinks', '~> 2.2.2'
 gem 'skylight'
-gem 'resque', '~> 1.22.0'
+gem 'resque', '~> 1.24.1'
 gem 'resque_mailer', '~> 2.2.6'
 gem 'bcrypt', '~> 3.1.7'
 
@@ -33,6 +33,6 @@ gem 'spring', group: :development
 gem 'foreman', group: :development
 
 # Heroku requirements
-gem 'unicorn'
+gem 'unicorn', '~> 4.6.2'
 gem 'rails_12factor', group: :production
 ruby '2.0.0'
