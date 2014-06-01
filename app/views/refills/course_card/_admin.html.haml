@@ -15,8 +15,12 @@
         %br
         Problem?
         = link_to 'Undo flag.', { controller: :courses, action: :update, id: course.id, course: { email_sent: false } }, method: :put
-    - else
+    - elsif course.can_email?
       = button_to 'Send confirmation email!', { controller: :emails, action: :confirmation }, method: :get, params: { course_id: course.id },  class: 'right light-red'
+    - else
+      %b Email confirmation disabled.
+      %br
+      Check back 10 days before the class.
     %p
       = course.location
       %br

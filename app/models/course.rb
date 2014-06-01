@@ -39,6 +39,10 @@ class Course < ActiveRecord::Base
     date.strftime("%B %e, %Y")
   end
 
+  def can_email?
+    date < 10.days.from_now && date > Date.tomorrow
+  end
+
   private
   def format_pretty_dates
     self.pretty_date = self.date.strftime("%B %e, %Y (%A)")
