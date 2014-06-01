@@ -1,14 +1,79 @@
+require 'faker'
+
 FactoryGirl.define do
+  # unique emails
+  sequence :email do |n|
+    Faker::Internet.email(Faker::Name.name + n.to_s)
+  end
+
+  # hour with teaching_assistant association
+  # created before_validations to pass requirement
+  factory :hour do
+    num     4
+    course
+
+    after(:build) do |hour|
+      hour.teaching_assistant = create(:teaching_assistant)
+    end
+  end
+
+  # course
+  # created in the future
   factory :course do
-    name            'Course'
-    date            Date.today
-    url             'http://google.com'
+    name            Faker::Commerce.department
+    url             Faker::Internet.url
     location        'A Place in Chicago'
     credit_hours    2
     num_tas_needed  4
     meetup_id       '12345'
     start_time      2.hours.from_now
     end_time        6.hours.from_now
+    sequence(:date, 10) { |n| n.days.from_now }
+
+    trait :past do
+      sequence(:date, 10) { |n| n.days.ago }
+    end
+
+    # course with 5 hours
+    # hour with teaching assistant
+    factory :course_with_hours do
+      ignore do
+        hours_count 5
+      end
+
+      after(:create) do |course, evaluator|
+        create_list(:hour, evaluator.hours_count, course: course)
+      end
+    end
+
+    factory :course_past, traits: [:past]
+  end
+
+  # series
+  factory :series do
+    name      Faker::Commerce.color.capitalize
+    end_date  40.days.from_now
+
+    # series with courses
+    factory :series_with_courses do
+      ignore do
+        courses_count 4
+      end
+
+      after(:create) do |series, evaluator|
+        create_list(:course, evaluator.courses_count, series: series)
+      end
+    end
+  end
+
+  factory :teaching_assistant do
+    name      Faker::Name.first_name + Faker::Name.last_name
+    email
+    status
+  end
+
+  factory :status do
+    label   'approved'
   end
 
   # This will use the User class (Admin would have been guessed)
@@ -18,83 +83,3 @@ FactoryGirl.define do
   #   admin      true
   # end
 end
-
-# Returns a User instance that's not saved
-# user = build(:user)
-
-# Returns a saved User instance
-# user = create(:user)
-
-# It's possible to set up associations within factories. If the factory name is the same as the association name, the factory name can be left out.
-
-# factory :post do
-#   # ...
-#   author
-# end
-
-
-# Generating data for a has_many relationship is a bit more involved, depending on the amount of flexibility desired, but here's a surefire example of generating associated data.
-
-# FactoryGirl.define do
-
-#   # post factory with a `belongs_to` association for the user
-#   factory :post do
-#     title "Through the Looking Glass"
-#     user
-#   end
-
-#   # user factory without associated posts
-#   factory :user do
-#     name "John Doe"
-
-#     # user_with_posts will create post data after the user has been created
-#     factory :user_with_posts do
-#       # posts_count is declared as a transient attribute and available in
-#       # attributes on the factory, as well as the callback via the evaluator
-#       transient do
-#         posts_count 5
-#       end
-
-#       # the after(:create) yields two values; the user instance itself and the
-#       # evaluator, which stores all values from the factory, including transient
-#       # attributes; `create_list`'s second argument is the number of records
-#       # to create and we make sure the user is associated properly to the post
-#       after(:create) do |user, evaluator|
-#         create_list(:post, evaluator.posts_count, user: user)
-#       end
-#     end
-#   end
-# end
-
-
-# Traits allow you to group attributes together and then apply them to any factory.
-
-# factory :user, aliases: [:author]
-
-# factory :story do
-#   title "My awesome story"
-#   author
-
-#   trait :published do
-#     published true
-#   end
-
-#   trait :unpublished do
-#     published false
-#   end
-
-#   trait :week_long_publishing do
-#     start_at { 1.week.ago }
-#     end_at   { Time.now }
-#   end
-
-#   trait :month_long_publishing do
-#     start_at { 1.month.ago }
-#     end_at   { Time.now }
-#   end
-
-#   factory :week_long_published_story,    traits: [:published, :week_long_publishing]
-#   factory :month_long_published_story,   traits: [:published, :month_long_publishing]
-#   factory :week_long_unpublished_story,  traits: [:unpublished, :week_long_publishing]
-#   factory :month_long_unpublished_story, traits: [:unpublished, :month_long_publishing]
-# end
