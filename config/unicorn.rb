@@ -13,7 +13,7 @@ before_fork do |server, worker|
     ActiveRecord::Base.connection.disconnect!
 
   if defined?(Resque)
-    Resque.redis = ENV['REDISTOGO_URL']
+    Resque.redis = ENV['REDISCLOUD_URL']
     Resque.redis.quit
     Rails.logger.info('Disconnected from Redis')
   end
@@ -28,7 +28,7 @@ after_fork do |server, worker|
     ActiveRecord::Base.establish_connection
 
   if defined?(Resque)
-    Resque.redis = ENV['REDISTOGO_URL']
+    Resque.redis = ENV['REDISCLOUD_URL']
     Rails.logger.info('Connected to Redis')
   end
 end
