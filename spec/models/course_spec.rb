@@ -101,6 +101,14 @@ describe Course do
       it '#num_tas_still_needed' do
         expect(@course.num_tas_still_needed).to eq(4)
       end
+
+      it '#tas' do
+        expect(@course.tas).to eq(@course.teaching_assistants)
+      end
+
+      it '#pretty_date_short' do
+        expect(@course.pretty_date_short).to be_instance_of(String)
+      end
     end
 
     describe '#hour_for(teaching_assistant)' do

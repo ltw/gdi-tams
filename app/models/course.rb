@@ -16,7 +16,7 @@ class Course < ActiveRecord::Base
   end
 
   def tas
-    hours.select { |h| h.is_credit? }.map { |h| h.teaching_assistant }
+    teaching_assistants.select { |ta| ta.is_ta_for?(self) }
   end
 
   def hour_for(teaching_assistant)
