@@ -23,11 +23,7 @@ after_fork do |server, worker|
     puts 'Unicorn worker intercepting TERM and doing nothing. Wait for master to send QUIT'
   end
 
-  defined?(ActiveRecord::Base) and
-    ActiveRecord::Base.establish_connection
-
   if defined?(Resque)
-    Resque.redis = ENV['REDISCLOUD_URL']
     Rails.logger.info('Connected to Redis')
   end
 end
