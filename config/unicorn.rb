@@ -1,7 +1,7 @@
-worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
+preload_app true
+worker_processes Integer(ENV["WEB_CONCURRENCY"] || 2)
 timeout 15
 preload_app true
-
 
 before_fork do |server, worker|
   Signal.trap 'TERM' do
@@ -12,13 +12,12 @@ before_fork do |server, worker|
   defined?(ActiveRecord::Base) and
     ActiveRecord::Base.connection.disconnect!
 
-  if defined?(Resque)
-    Resque.redis.quit
-    Rails.logger.info('Disconnected from Redis')
-  end
+  defined?(Redis) and
+    Redis.current.quit
 end
 
 after_fork do |server, worker|
+
   Signal.trap 'TERM' do
     puts 'Unicorn worker intercepting TERM and doing nothing. Wait for master to send QUIT'
   end
@@ -26,8 +25,6 @@ after_fork do |server, worker|
   defined?(ActiveRecord::Base) and
     ActiveRecord::Base.establish_connection
 
-  if defined?(Resque)
-    Resque.redis = Redis.new(url: ENV["REDISCLOUD_URL"])
-    Rails.logger.info('Connected to Redis')
-  end
+  defined?(Redis) and
+    $redis = Redis.current = Redis.new( url: ENV['REDIS_URI'] )
 end
