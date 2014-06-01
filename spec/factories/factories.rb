@@ -81,6 +81,23 @@ FactoryGirl.define do
     end
   end
 
+  # series in the past
+  factory :series_past, class: Series do
+    name      Faker::Commerce.color.capitalize
+    end_date  9.days.ago
+
+    # series with courses
+    factory :series_past_with_courses do
+      ignore do
+        courses_count 4
+      end
+
+      after(:create) do |series, evaluator|
+        create_list(:course_past, evaluator.courses_count, series: series)
+      end
+    end
+  end
+
   factory :teaching_assistant do
     name      Faker::Name.first_name + Faker::Name.last_name
     email
