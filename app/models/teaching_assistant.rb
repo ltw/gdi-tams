@@ -37,21 +37,21 @@ class TeachingAssistant < ActiveRecord::Base
 
   # BALANCES
   def pending_balance
-    hours.to_a.map(&:num).inject(&:+)
+    hours.to_a.map(&:num).inject(&:+) || 0
   end
 
   def balance
-    history.to_a.map(&:num).inject(&:+)
+    history.to_a.map(&:num).inject(&:+) || 0
   end
 
 
   # SCHEDULING & ATTENDANCE
   def history
-    hours.select { |h| h.course.date < Date.today }.sort_by { |h| h.course.date }
+    hours.select { |h| h.course.date < Date.tomorrow }.sort_by { |h| h.course.date }
   end
 
   def schedule
-    hours.where('num > 0').select { |h| h.course.date > Date.today }.map(&:course).sort_by(&:date)
+    hours.where('num > 0').select { |h| h.course.date > Date.tomorrow }.map(&:course).sort_by(&:date)
   end
 
   def signed_up_for(course)
