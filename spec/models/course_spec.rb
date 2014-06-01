@@ -63,6 +63,7 @@ describe Course do
       end
 
       it '#last_month' do
+        create(:course_beyond_last_month)
         expect(Course.last_month.length).to eq(10)
       end
     end

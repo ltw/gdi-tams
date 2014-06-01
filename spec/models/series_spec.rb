@@ -40,7 +40,7 @@ describe Series do
     end
 
     it '#last_month' do
-      Series.create!(end_date: 2.months.ago, name: 'Old Course')
+      create(:series_beyond_last_month)
       expect(Series.last_month.length).to eq(10)
     end
   end

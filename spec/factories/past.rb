@@ -1,6 +1,24 @@
 require 'faker'
 
 FactoryGirl.define do
+
+  factory :course_beyond_last_month, class: Course do
+    name            Faker::Commerce.department
+    url             Faker::Internet.url
+    location        'A Place in Chicago'
+    credit_hours    2
+    num_tas_needed  4
+    meetup_id       '12345'
+    start_time      2.hours.from_now
+    end_time        6.hours.from_now
+    date            3.months.ago
+  end
+
+  factory :series_beyond_last_month, class: Series do
+    name      Faker::Commerce.color.capitalize
+    end_date  3.months.ago
+  end
+
   factory :series_past, class: Series do
     name      Faker::Commerce.color.capitalize
     end_date  9.days.ago
@@ -26,7 +44,7 @@ FactoryGirl.define do
     meetup_id       '12345'
     start_time      2.hours.from_now
     end_time        6.hours.from_now
-    sequence(:date, 1) { |n| n.days.ago }
+    sequence(:date, 10) { |n| n.days.ago }
 
     # course with 5 hours
     # hour with teaching assistant
