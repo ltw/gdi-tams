@@ -52,15 +52,53 @@ describe Course do
   end
 
   context 'class methods' do
-    it '#upcoming'
-    it '#single_day'
-    it '#series'
-    it '#last_month'
+    describe 'time' do
+      before do
+        create_list(:course_past, 10)
+        create_list(:course, 10)
+      end
+
+      it '#upcoming' do
+        expect(Course.upcoming.length).to eq(10)
+      end
+
+      it '#last_month' do
+        expect(Course.last_month.length).to eq(10)
+      end
+    end
+
+    describe 'course type' do
+      before do
+        create_list(:course, 10)
+        create_list(:series_with_courses, 1)
+      end
+
+      it '#single_day' do
+        expect(Course.single_day.length).to eq(10)
+      end
+
+      it '#series' do
+        expect(Course.series.length).to eq(4)
+      end
+    end
   end
 
   context 'methods' do
-    it '#is_series?'
-    it '#need_tas?'
-    it '#num_tas_still_needed'
+    before do
+      series = create(:series_with_courses)
+      @course = series.courses.first
+    end
+
+    it '#is_series?' do
+      expect(@course.is_series?).to be_true
+    end
+
+    it '#need_tas?' do
+      expect(@course.need_tas?).to be_true
+    end
+
+    it '#num_tas_still_needed' do
+      expect(@course.num_tas_still_needed).to eq(4)
+    end
   end
 end
