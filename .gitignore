@@ -10,3 +10,5 @@
 /tmp
 /config/secrets.yml
 
+# simplecov
+/coverage

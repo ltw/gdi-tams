@@ -26,6 +26,7 @@ gem 'debugger', group: [:development, :test]
 gem 'database_cleaner', group: :test
 gem 'faker', group: :test
 gem 'factory_girl_rails', '~> 3.6.0', group: :test
+gem 'simplecov', require: false, group: :test
 
 # Dev only
 gem 'spring', group: :development
