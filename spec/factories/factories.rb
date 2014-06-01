@@ -30,36 +30,6 @@ FactoryGirl.define do
     status
   end
 
-  factory :teaching_assistant_pending, class: TeachingAssistant do
-    name      Faker::Name.first_name + Faker::Name.last_name
-    email
-    status_pending
-  end
-
-  factory :teaching_assistant_banned, class: TeachingAssistant do
-    name      Faker::Name.first_name + Faker::Name.last_name
-    email
-    status_banned
-  end
-
-  factory :teaching_assistant_prospective, class: TeachingAssistant do
-    name      Faker::Name.first_name + Faker::Name.last_name
-    email
-    status_prospective
-  end
-
-  factory :status_pending, class: Status do
-    label 'pending'
-  end
-
-  factory :status_banned, class: Status do
-    label 'banned'
-  end
-
-  factory :status_prospective, class: Status do
-    label 'prospective'
-  end
-
   factory :status do
     label   'approved'
 
