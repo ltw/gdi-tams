@@ -45,13 +45,45 @@ describe TeachingAssistant do
   end
 
   context 'methods' do
-    it '#pending_balance'
-    it '#balance'
-    it '#history'
-    it '#schedule'
+    describe 'past' do
+      before do
+        @course = create(:course_past_with_hours)
+        @ta = @course.teaching_assistants.first
+      end
+
+      it '#balance' do
+        expect(@ta.balance).to eq(2)
+      end
+
+      it '#pending_balance' do
+        expect(@ta.pending_balance).to eq(2)
+      end
+
+      it '#history' do
+        expect(@ta.history.length).to eq(1)
+      end
+    end
+
+    describe 'future' do
+      before do
+        @course = create(:course_with_hours)
+        @ta = @course.teaching_assistants.first
+      end
+
+      it '#pending_balance' do
+        expect(@ta.pending_balance).to eq(2)
+      end
+
+      it '#balance' do
+        expect(@ta.balance).to eq(0)
+      end
+
+      it '#schedule' do
+        expect(@ta.schedule.length).to eq(1)
+      end
+    end
 
     describe 'status checks' do
-      # All on a different branch
       it '#pending?'
       it '#approved?'
       it '#inactive?'
