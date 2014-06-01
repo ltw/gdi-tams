@@ -26,5 +26,5 @@ after_fork do |server, worker|
     ActiveRecord::Base.establish_connection
 
   defined?(Redis) and
-    $redis = Redis.current = Redis.new( url: ENV['REDIS_URI'] )
+    $redis = Redis.current = Redis.new( url: ENV['REDISCLOUD_URL'] )
 end
