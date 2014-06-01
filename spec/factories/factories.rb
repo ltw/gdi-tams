@@ -30,10 +30,6 @@ FactoryGirl.define do
     end_time        6.hours.from_now
     sequence(:date, 10) { |n| n.days.from_now }
 
-    trait :past do
-      sequence(:date, 10) { |n| n.days.ago }
-    end
-
     # course with 5 hours
     # hour with teaching assistant
     factory :course_with_hours do
@@ -45,8 +41,18 @@ FactoryGirl.define do
         create_list(:hour, evaluator.hours_count, course: course)
       end
     end
+  end
 
-    factory :course_past, traits: [:past]
+  factory :course_past, class: Course do
+    name            Faker::Commerce.department
+    url             Faker::Internet.url
+    location        'A Place in Chicago'
+    credit_hours    2
+    num_tas_needed  4
+    meetup_id       '12345'
+    start_time      2.hours.from_now
+    end_time        6.hours.from_now
+    sequence(:date, 10) { |n| n.days.ago }
   end
 
   # series
