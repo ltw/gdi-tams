@@ -84,9 +84,21 @@ describe TeachingAssistant do
     end
 
     describe 'status checks' do
-      it '#pending?'
-      it '#approved?'
-      it '#inactive?'
+      before do
+        @ta = create(:teaching_assistant)
+      end
+
+      it '#pending?' do
+        expect(@ta.pending?).to be_false
+      end
+
+      it '#approved?' do
+        expect(@ta.approved?).to be_true
+      end
+
+      it '#inactive?' do
+        expect(@ta.inactive?).to be_false
+      end
     end
 
     describe '#signed_up_for(course)' do
