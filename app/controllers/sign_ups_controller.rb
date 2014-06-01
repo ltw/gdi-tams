@@ -10,7 +10,4 @@ class SignUpsController < ApplicationController
     @inactive = Status.find_by_label("inactive")
     @pending = Status.find_by_label("pending")
   end
-
-  def forgot
-  end
 end

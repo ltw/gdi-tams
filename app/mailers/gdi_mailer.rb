@@ -25,4 +25,9 @@ class GdiMailer < ActionMailer::Base
     @course = course
     mail(to: @ta['email'], subject: "TA Confirmation: #{course['name']}")
   end
+
+  def forgot(ta)
+    @ta = ta
+    mail(to: @ta['email'], subject: "Here's your private sign up page")
+  end
 end

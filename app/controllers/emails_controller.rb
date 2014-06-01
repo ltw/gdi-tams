@@ -30,4 +30,14 @@ class EmailsController < ApplicationController
     end
     redirect_to admins_dashboard_path, notice: 'Email confirmation sent.'
   end
+
+  def forgot
+    @ta = TeachingAssistant.find_by_email(params[:email])
+    if @ta
+      GdiMailer.forgot(@ta).deliver
+      render json: "Email sent!"
+    else
+      render json: "Looks like we don't have that email on file."
+    end
+  end
 end
