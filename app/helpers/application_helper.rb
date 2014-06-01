@@ -1,7 +1,6 @@
 module ApplicationHelper
   def set_resources
-    @courses = Course.upcoming.single_day.sort_by(&:date)
-    @series = Series.upcoming.sort_by(&:end_date)
+    @courses = Course.upcoming.includes(:series).sort_by(&:date)
     @tas = TeachingAssistant.all.sort_by(&:name)
     @approved = Status.find_by_label("approved")
     @pending = Status.find_by_label("pending")
