@@ -2,7 +2,6 @@ worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
 timeout 15
 preload_app true
 
-Resque.redis = ENV['REDISTOGO_URL']
 
 before_fork do |server, worker|
   Signal.trap 'TERM' do
@@ -14,6 +13,7 @@ before_fork do |server, worker|
     ActiveRecord::Base.connection.disconnect!
 
   if defined?(Resque)
+    Resque.redis = ENV['REDISTOGO_URL']
     Resque.redis.quit
     Rails.logger.info('Disconnected from Redis')
   end
@@ -28,6 +28,7 @@ after_fork do |server, worker|
     ActiveRecord::Base.establish_connection
 
   if defined?(Resque)
+    Resque.redis = ENV['REDISTOGO_URL']
     Rails.logger.info('Connected to Redis')
   end
 end
