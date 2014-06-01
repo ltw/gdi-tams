@@ -1,0 +1,12 @@
+%h3 Forgot sign up
+
+%p So you forgot your sign up page. No sad! Give me your email address and I'll send it to you.
+
+.field
+  = label_tag(:email, 'Email address')
+  = text_field_tag(:email, '', id: 'forgot_email')
+.actions
+  = submit_tag('Submit', id: 'forgot_email_submit')
+
+%br
+%p.response

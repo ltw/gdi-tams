@@ -1,4 +1,4 @@
-$(document).ready(function() {
+var ready = function() {
   $('#fetch_meetup_button').on('click', function(event) {
     var url = $('input#fetch_meetup_url').val();
     $('.fetch_meetup').hide();
@@ -87,4 +87,7 @@ $(document).ready(function() {
   function loadingThingy() {
     $('.loading').append('<img src="/images/loading.gif">');
   }
-});
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

@@ -15,6 +15,6 @@
   @extend %flash-notice;
 }
 
-#error, #error-explanation {
+#error, #error_explanation {
   @extend %flash-error;
 }

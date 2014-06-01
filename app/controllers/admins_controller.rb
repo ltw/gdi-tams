@@ -1,21 +1,7 @@
 class AdminsController < ApplicationController
+  before_action :set_resources
 
   def dashboard
     render 'shared/admin_only' unless is_admin?
-    @courses = Course.upcoming.includes(:series, :teaching_assistants).sort_by(&:date)
-    @approved = Status.find_by_label("approved")
-    @banned = Status.find_by_label("banned")
-    @pending = Status.find_by_label("pending")
   end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_admin
-      @admin = Admin.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def admin_params
-      params.require(:admin).permit(:name, :password)
-    end
 end

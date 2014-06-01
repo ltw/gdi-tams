@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require_tree .
 
-$(document).ready(function(){
+var ready = function() {
   $('.js-menu-trigger').on('click touchstart', function(e){
     $('.js-menu').toggleClass('is-visible');
     $('.js-menu-screen').toggleClass('is-visible');
@@ -27,5 +27,7 @@ $(document).ready(function(){
     $('.js-menu-screen').toggleClass('is-visible');
     e.preventDefault();
   });
-});
+};
 
+$(document).ready(ready);
+$(document).on('page:load', ready);

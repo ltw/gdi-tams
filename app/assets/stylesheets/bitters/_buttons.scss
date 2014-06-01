@@ -13,3 +13,7 @@ button.light-red,
 input[type="submit"].light-red {
   @include button($button-style, $light-red);
 }
+
+.inline {
+  display: inline;
+}

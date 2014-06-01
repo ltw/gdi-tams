@@ -1,11 +1,13 @@
 require 'spec_helper'
 
-describe Series do
-  context 'relationships' do
-    it 'has_many teaching_assistants'
+describe Status do
+  it 'has_many teaching_assistants' do
+    status = create(:status_with_tas)
+    expect(status.teaching_assistants.length).to eq(10)
   end
 
-  context 'validations' do
-    it 'requires label'
+  it 'requires label' do
+    status = Status.new
+    expect { status.save! }.to raise_error(ActiveRecord::RecordInvalid)
   end
 end

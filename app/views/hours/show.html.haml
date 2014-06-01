@@ -1,4 +1,5 @@
-%p#notice= notice
+- if notice
+  %p#notice= notice
 
 %p
   %b Course:
@@ -9,7 +10,3 @@
 %p
   %b Num:
   = @hour.num
-
-= link_to 'Edit', edit_hour_path(@hour)
-\|
-= link_to 'Back', hours_path

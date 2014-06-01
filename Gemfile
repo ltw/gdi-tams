@@ -10,6 +10,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails', '~> 3.1.0'
 gem 'turbolinks', '~> 2.2.2'
 gem 'skylight'
+gem 'resque', '~> 1.24.1'
+gem 'resque_mailer', '~> 2.2.6'
 gem 'bcrypt', '~> 3.1.7'
 
 # Styles
@@ -23,15 +25,14 @@ gem 'rspec-rails', group: :test
 gem 'debugger', group: [:development, :test]
 gem 'database_cleaner', group: :test
 gem 'faker', group: :test
-gem 'factory_girl_rails', group: :test
+gem 'factory_girl_rails', '~> 3.6.0', group: :test
+gem 'simplecov', '~> 0.8.2', require: false, group: :test
 
 # Dev only
 gem 'spring', group: :development
 gem 'foreman', group: :development
-gem 'better_errors', group: :development
-gem 'binding_of_caller', group: :development
 
 # Heroku requirements
-gem 'unicorn'
+gem 'unicorn', '~> 4.6.2'
 gem 'rails_12factor', group: :production
 ruby '2.0.0'

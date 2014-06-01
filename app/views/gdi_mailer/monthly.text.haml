@@ -1,0 +1,49 @@
+TA Sign Ups
+
+Hello #{@ta['name']}! I hope you're doing well! This is your friendly monthly reminder to sign up to TA for Girl Develop It Chicago classes.
+
+=======================================
+
+*** Remember! ***
+
+You're elligible to receive credit hours toward upcoming Girl Develop It Chicago courses.
+
+Additional course information is below, and can also be found on your private sign up page.
+
+*** Private sign up page ***
+
+http://gdichicago.herokuapp.com/sign_ups/#{@ta['private_id']}
+
+=======================================
+
+Credit hour balance
+
+Balance:
+= @ta['balance'] || 0
+
+Pending balance:
+= @ta['pending_balance']
+
+Your pending balance includes classes you have signed up to TA that haven't happened yet.
+
+=======================================
+
+Upcoming Courses
+
+For additional information about the course, click the course name. You will be taken to the Meetup page.
+
+- @courses.each do |course|
+
+  * #{course['name']} - #{course['url']}
+
+=======================================
+
+Sign up
+
+http://gdichicago.herokuapp.com/sign_ups/#{@ta['private_id']}
+
+=======================================
+
+This email was sent because you signed up with GDI Chicago as a volunteer TA.
+
+To remove yourself from the list, visit your private sign up page and mark yourself as inactive.
