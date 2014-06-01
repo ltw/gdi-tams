@@ -84,21 +84,42 @@ describe Course do
   end
 
   context 'methods' do
-    before do
-      series = create(:series_with_courses)
-      @course = series.courses.first
+    describe 'simple' do
+      before do
+        series = create(:series_with_courses)
+        @course = series.courses.first
+      end
+
+      it '#is_series?' do
+        expect(@course.is_series?).to be_true
+      end
+
+      it '#need_tas?' do
+        expect(@course.need_tas?).to be_true
+      end
+
+      it '#num_tas_still_needed' do
+        expect(@course.num_tas_still_needed).to eq(4)
+      end
     end
 
-    it '#is_series?' do
-      expect(@course.is_series?).to be_true
-    end
+    describe '#hour_for(teaching_assistant)' do
+      before do
+        @course = create(:course_with_hours)
+        @ta = @course.teaching_assistants.first
+      end
 
-    it '#need_tas?' do
-      expect(@course.need_tas?).to be_true
-    end
+      it 'returns instance of hour' do
+        expect(@course.hour_for(@ta)).to be_instance_of(Hour)
+      end
 
-    it '#num_tas_still_needed' do
-      expect(@course.num_tas_still_needed).to eq(4)
+      it 'requires one argument' do
+        expect { @course.hour_for }.to raise_error(ArgumentError)
+      end
+
+      it 'expects one argument' do
+        expect { @course.hour_for(1, 2) }.to raise_error(ArgumentError)
+      end
     end
   end
 end
