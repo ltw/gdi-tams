@@ -2,25 +2,46 @@ require 'spec_helper'
 
 describe TeachingAssistant do
   context 'before_create' do
-    it '#generate_private_id'
-  end
+    before do
+      @ta = build(:teaching_assistant)
+    end
 
-  context 'relationships' do
-    it 'belongs_to status'
-    it 'has_many courses'
+    it 'does not have a private_id' do
+      expect(@ta.private_id).to be_nil
+    end
 
-    describe 'hours with dependent destroy' do
-      it 'has_any'
-      it 'destroys hours'
+    it '#generate_private_id' do
+      @ta.save!
+      expect(@ta.private_id).to be_true
     end
   end
 
-  context 'validations' do
-    it 'requires uniqueness for private_id'
-    it 'requires uniqueness for email'
-    it 'requires name'
-    it 'requires email'
-    it 'requires status'
+  context 'relationships' do
+    it 'belongs_to status' do
+      ta = create(:teaching_assistant)
+      expect(ta.status_id).to be_true
+    end
+
+    describe 'hours with dependent destroy' do
+      before do
+        courses = create_list(:course_with_hours, 2)
+        @ta = courses.first.teaching_assistants.first
+      end
+
+      it 'has_many courses' do
+        expect(@ta.courses).to be_true
+      end
+
+      it 'has_many hours' do
+        expect(@ta.hours).to be_true
+      end
+
+      it 'destroys hours' do
+        hour = @ta.hours.first
+        @ta.destroy
+        expect { hour.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
   end
 
   context 'class methods' do
