@@ -9,7 +9,7 @@ describe Admin do
 
     it 'requires password' do
       admin = Admin.new(name: "taco")
-      expect { admin.save! }.to raise_error("Validation failed: Password can't be blank, Password can't be blank")
+      expect { admin.save! }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 end
