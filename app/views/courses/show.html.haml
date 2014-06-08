@@ -1,18 +1,15 @@
-%script{ type: 'text/x-handlebars', id: 'templates/course' }
-  {{ outlet }}
+%h3= @course.name
 
-/ %h3= @course.name
+- if notice
+  %p#notice= notice
 
-/ - if notice
-/   %p#notice= notice
+.cards
+  .cards-large
+    - if is_admin?
+      = render partial: 'refills/course_card/admin', locals: { course: @course }
+    - else
+      = render partial: 'refilles/course_card/default', locals: { course: @course }
 
-/ .cards
-/   .cards-large
-/     - if is_admin?
-/       = render partial: 'refills/course_card/admin', locals: { course: @course }
-/     - else
-/       = render partial: 'refilles/course_card/default', locals: { course: @course }
+%h4 Description
 
-/ %h4 Description
-
-/ = raw @course.description
+= raw @course.description

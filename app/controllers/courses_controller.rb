@@ -2,11 +2,6 @@ class CoursesController < ApplicationController
 
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
-  # GET /courses
-  def index
-    @courses = Course.upcoming.includes(:series).sort_by(&:date)
-  end
-
   # GET /courses/1
   def show; end
 

@@ -3,16 +3,16 @@ require 'resque/server'
 Rails.application.routes.draw do
   # API for Ember
   namespace :api do
-    resources :courses, only: :show
+    resources :courses, only: :index
   end
 
-  root 'courses#index'
+  root 'pages#index'
 
   resources :series
 
   resources :hours
 
-  resources :courses
+  # resources :courses
 
   resources :teaching_assistants
 

@@ -1,8 +1,7 @@
 class Api::CoursesController < ApplicationController
   respond_to :json
 
-  def show
-    @course = Course.find(params[:id])
-    render json: @course
+  def index
+    respond_with Course.upcoming.sort_by(&:date)
   end
 end
