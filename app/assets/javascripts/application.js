@@ -10,34 +10,15 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require jquery-1.9.1
 //= require jquery_ujs
-//= require turbolinks
-//= require jquery
-//= require handlebars
-//= require ember
-//= require ember-data
+//= require handlebars-1.0.0
+//= require ember-canary
+//= require ember-data-canary
 //= require_self
-//= require ./teaching_assistants
+//= require app
 
 // for more details see: http://emberjs.com/guides/application/
-TeachingAssistants = Ember.Application.create();
+App = Ember.Application.create();
 
 //= require_tree .
-
-var ready = function() {
-  $('.js-menu-trigger').on('click touchstart', function(e){
-    $('.js-menu').toggleClass('is-visible');
-    $('.js-menu-screen').toggleClass('is-visible');
-    e.preventDefault();
-  });
-
-  $('.js-menu-screen').on('click touchstart', function(e){
-    $('.js-menu').toggleClass('is-visible');
-    $('.js-menu-screen').toggleClass('is-visible');
-    e.preventDefault();
-  });
-};
-
-$(document).ready(ready);
-$(document).on('page:load', ready);
