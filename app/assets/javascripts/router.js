@@ -1,5 +1,9 @@
 // For more information see: http://emberjs.com/guides/routing/
 
+// TeachingAssistants.Router.map(function() {
+//   // this.resource('posts');
+// });
+
 TeachingAssistants.Router.map(function() {
-  // this.resource('posts');
+  return this.resource('courses');
 });
