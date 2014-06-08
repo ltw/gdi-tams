@@ -14,6 +14,10 @@ gem 'resque', '~> 1.24.1'
 gem 'resque_mailer', '~> 2.2.6'
 gem 'bcrypt', '~> 3.1.7'
 
+# Ember
+gem 'ember-rails', '0.15.0'
+gem 'ember-source', '1.5.0'
+
 # Styles
 gem 'bourbon', '~> 3.2'
 gem 'neat', '~> 1.5.1'
