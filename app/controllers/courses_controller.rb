@@ -9,7 +9,10 @@ class CoursesController < ApplicationController
 
   # GET /courses/1
   def show
-    render json: @course
+    if @course.series_id
+      @series = @course.series
+      flash[:notice] = "This class is part of a series! To get the full picture of the class, you should view the series page."
+    end
   end
 
   # GET /courses/new
