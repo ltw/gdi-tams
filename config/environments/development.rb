@@ -9,6 +9,7 @@ Rails.application.configure do
   config.assets.debug = true
   config.assets.raise_runtime_errors = true
 
+  config.ember.variant = :development
 
   # GDIMailer - Mailtrap
   config.action_mailer.delivery_method = :smtp
