@@ -13,6 +13,16 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery
+//= require handlebars
+//= require ember
+//= require ember-data
+//= require_self
+//= require ./teaching_assistants
+
+// for more details see: http://emberjs.com/guides/application/
+TeachingAssistants = Ember.Application.create();
+
 //= require_tree .
 
 var ready = function() {
