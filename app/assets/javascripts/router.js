@@ -5,5 +5,5 @@
 // });
 
 TeachingAssistants.Router.map(function() {
-  return this.resource('courses');
+  return this.resource('course', { path: '/courses' });
 });
