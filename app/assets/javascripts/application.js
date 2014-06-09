@@ -20,5 +20,6 @@
 
 // for more details see: http://emberjs.com/guides/application/
 App = Ember.Application.create();
+App.rootElement = '#app';
 
 //= require_tree .
