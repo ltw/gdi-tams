@@ -5,7 +5,5 @@ DS.RESTAdapter.reopen({
 });
 
 App.ApplicationAdapter = DS.ActiveModel.extend({
-  namespace: 'api',
-  configure: 'plurals',
-  course: 'courses'
+  namespace: 'api'
 });
