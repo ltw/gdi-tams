@@ -38,10 +38,12 @@ class TeachingAssistant < ActiveRecord::Base
 
   # BALANCES
   def pending_balance
+    return 0 unless approved?
     hours.to_a.map(&:num).inject(&:+) || 0
   end
 
   def balance
+    return 0 unless approved?
     history.to_a.map(&:num).inject(&:+) || 0
   end
 
