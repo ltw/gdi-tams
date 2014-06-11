@@ -28,6 +28,7 @@ class HoursController < ApplicationController
   def create
     hours = Course.find(params[:hour][:course_id]).credit_hours
     @hour = Hour.new(hour_params)
+    private_id = @hour.teaching_assistant.private_id
 
     if params[:student]
       @hour.num = -hours
@@ -35,13 +36,16 @@ class HoursController < ApplicationController
       @hour.num = hours
     end
 
-    if is_admin? && @hour.save
-      redirect_to hours_path, notice: 'Hour was successfully created.'
-    elsif @hour.save
-      private_id = @hour.teaching_assistant.private_id
+    if !@hour.teaching_assistant.approved?
       redirect_to sign_ups_path(private_id), notice: 'Got it! See you in class.'
+    end
+
+    render :new unless @hour.save
+
+    if is_admin?
+      redirect_to hours_path, notice: 'Hour was successfully created.'
     else
-      render :new
+      redirect_to sign_ups_path(private_id), notice: 'Got it! See you in class.'
     end
   end
 
