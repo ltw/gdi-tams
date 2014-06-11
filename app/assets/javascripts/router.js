@@ -1,3 +1,4 @@
 App.Router.map(function() {
-  return this.resource('courses');
+  this.resource('courses');
+  this.resource('sign_ups', { path: '/sign_ups/:private_id' });
 });
