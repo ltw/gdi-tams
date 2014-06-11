@@ -23,7 +23,6 @@
 
 %h4 Things you're going to
 
-
 - if @teaching_assistant.schedule.any?
   .cards
     - @teaching_assistant.schedule.each do |course|
@@ -40,6 +39,13 @@
       = render partial: 'refills/course_card/ta', locals: { course: course, teaching_assistant: @teaching_assistant }
 - else
   %p There aren't anymore classes to sign up for right now. Check back later!
+
+
+%h4 History
+
+.cards
+  - @teaching_assistant.history.each do |hour|
+    = render partial: 'refills/hour_card', locals: { hour: hour }
 
 
 - if @teaching_assistant.inactive?
