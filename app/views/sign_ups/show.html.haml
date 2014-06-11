@@ -6,19 +6,23 @@
 %p
   You can sign up to TA new classes below, or change your RSVP for classes you already signed up to TA.
 
-%p
-  %b To use your credit hours:
-  Email <a href="mailto:liza@girldevelopit.com">Liz</a> and she will get you signed up in Meetup. That's unfortunately still a manual process.
+- unless @teaching_assistant.approved?
+  %p You are not yet eligible to earn credit hours.
 
-%h4 Balance
+- if @teaching_assistant.approved?
+  %p
+    %b To use your credit hours:
+    Email <a href="mailto:liza@girldevelopit.com">Liz</a> and she will get you signed up in Meetup. That's unfortunately still a manual process.
 
-%p
-  %b Pending balance:
-  = @teaching_assistant.pending_balance || 0
+  %h4 Balance
 
-%p
-  %b Balance:
-  = @teaching_assistant.balance || 0
+  %p
+    %b Pending balance:
+    = @teaching_assistant.pending_balance
+
+  %p
+    %b Balance:
+    = @teaching_assistant.balance
 
 
 %h4 Things you're going to
