@@ -32,12 +32,10 @@ class HoursController < ApplicationController
 
     if params[:student]
       @hour.num = -hours
+    elsif !@hour.teaching_assistant.approved?
+      @hour.num = 0
     else
       @hour.num = hours
-    end
-
-    if !@hour.teaching_assistant.approved?
-      redirect_to sign_ups_path(private_id), notice: 'Got it! See you in class.'
     end
 
     render :new unless @hour.save
