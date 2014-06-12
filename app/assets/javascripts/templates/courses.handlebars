@@ -1,4 +1,46 @@
-<h1>Courses...</h1>
+<h2>Upcoming Courses</h2>
+
 {{#each course in controller}}
-  {{ course.name }}
+  <div class="card">
+    <div class="column_large">
+      <h3>
+        {{ course.pretty_date }}
+      </h3>
+
+      <h4>
+        {{ course.name }}
+      </h4>
+
+      <p>
+        {{ course.location }}
+        from
+        {{ course.pretty_time }}
+      </p>
+
+      <a href="{{ course.url }} ">View on Meetup <i class="fa fa-external-link"></i></a>
+
+      <p>
+        Credit hours: {{ course.credit_hours }}
+      </p>
+    </div>
+
+    <div class="column_small">
+      <h5>TAs: #</h5>
+      <h5>Need: # more</h5>
+      <p>
+        <a href="">View TA list</a>
+      </p>
+
+      <br>
+
+      <button>Add TA</button>
+
+      {{#if course.email_sent }}
+        <strong>Email sent.</strong>
+        <button class="button__small">Remove flag</button>
+      {{else}}
+        <button>Send confirmation email</button>
+      {{/if}}
+    </div>
+  </div>
 {{/each}}
