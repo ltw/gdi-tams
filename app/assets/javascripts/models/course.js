@@ -14,6 +14,7 @@ App.Course = DS.Model.extend({
   pretty_time: DS.attr('string'),
   series_id: DS.attr('number'),
   start_time: DS.attr('date'),
+  unique_id: DS.attr('string'),
   url: DS.attr('string'),
 
   numTas: function() {
@@ -24,3 +25,4 @@ App.Course = DS.Model.extend({
 
   needMoreTas: Ember.computed.gt('num_tas_still_needed', 0)
 });
+

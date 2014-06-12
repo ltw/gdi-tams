@@ -1,7 +1,7 @@
-<h2>Upcoming Courses</h2>
 
+<h2>Upcoming Courses</h2>
 {{#each course in controller}}
-  <div class="card">
+  <div class="card" {{ bind-attr id=course.unique_id }}>
     <div class="column_large">
       <h3>{{ course.pretty_date }}</h3>
       <h4>{{ course.name }}</h4>
@@ -20,6 +20,8 @@
     </div>
 
     <div class="column_small">
+      <button {{action 'openModal' 'modal' model}}>FUCK YOU MODAL</button>
+
       <h5>TAs: {{ course.numTas }} </h5>
 
       {{#if course.needMoreTas}}
@@ -44,4 +46,3 @@
     </div>
   </div>
 {{/each}}
-
