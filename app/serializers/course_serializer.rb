@@ -17,9 +17,14 @@ class CourseSerializer < ActiveModel::Serializer
               :pretty_time,
               :series_id,
               :start_time,
+              :unique_id,
               :url
 
   def can_email
     object.can_email?
+  end
+
+  def unique_id
+    "#{object.meetup_id}_#{object.id}"
   end
 end
