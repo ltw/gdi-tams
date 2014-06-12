@@ -6,23 +6,21 @@
 %p
   You can sign up to TA new classes below, or change your RSVP for classes you already signed up to TA.
 
-- unless @teaching_assistant.approved?
-  %p You are not yet eligible to earn credit hours.
+%h4 Balance
+
+%p
+  %b Balance:
+  = @teaching_assistant.balance
 
 - if @teaching_assistant.approved?
   %p
-    %b To use your credit hours:
-    Email <a href="mailto:liza@girldevelopit.com">Liz</a> and she will get you signed up in Meetup. That's unfortunately still a manual process.
-
-  %h4 Balance
-
-  %p
     %b Pending balance:
     = @teaching_assistant.pending_balance
-
   %p
-    %b Balance:
-    = @teaching_assistant.balance
+    %b To use your credit hours:
+    Email <a href="mailto:liza@girldevelopit.com">Liz</a> and she will get you signed up in Meetup. That's unfortunately still a manual process.
+- else
+  %p.pending You are not yet eligible to earn credit hours. After you TA four full classes, you will be eligible to earn credit hours toward classes.
 
 
 %h4 Things you're going to
@@ -47,9 +45,12 @@
 
 %h4 History
 
-.cards
-  - @teaching_assistant.history.each do |hour|
-    = render partial: 'refills/hour_card', locals: { hour: hour }
+- if @teaching_assistant.history.empty?
+  %p You haven't TA'd for any classes yet.
+- else
+  .cards
+    - @teaching_assistant.history.each do |hour|
+      = render partial: 'refills/hour_card', locals: { hour: hour }
 
 
 - if @teaching_assistant.inactive?
