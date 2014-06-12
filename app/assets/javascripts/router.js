@@ -1,4 +1,23 @@
 App.Router.map(function() {
   this.resource('courses', { path: '/dashboard' });
-  this.resource('sign_ups', { path: '/sign_ups/:private_id' });
+});
+
+App.ApplicationRoute = Ember.Route.extend({
+  actions: {
+    openModal: function(modalName, model) {
+      this.controllerFor(modalName).set('model', model);
+      console.log("click");
+      return this.render(modalName, {
+        into: 'application',
+        outlet: 'modal'
+      });
+    },
+
+    closeModal: function() {
+      return this.disconnectOutlet({
+        outlet: 'modal',
+        parentView: 'application'
+      });
+    }
+  }
 });
