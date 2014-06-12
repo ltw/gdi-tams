@@ -1,6 +1,8 @@
 class CourseSerializer < ActiveModel::Serializer
   embed :ids, include: true
 
+  has_many :teaching_assistants
+
   attributes  :id,
               :can_email,
               :credit_hours,
