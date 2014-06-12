@@ -9,13 +9,22 @@
     = stylesheet_link_tag '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', media: 'all'
 
   %body
-    #nav
     - if ENV['STAGING']
       #footer
         %h3 STAGING ENVIRONMENT ENABLED
     #container
       #content
-        %h1 GDI Chicago Volunteering
-        %h2 Teaching Assistants
+        #header
+          %h1 GDI Chicago Volunteering
+        #nav
+          %ul
+            %li
+              = icon_add
+            %li
+              %a{href: ""} Course
+            %li
+              %a{href: ""} Series
+            %li
+              %a{href: ""} TA
         = yield
         #app
