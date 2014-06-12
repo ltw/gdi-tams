@@ -15,7 +15,8 @@ $base-border-radius: em(3);
 // Colors
 ///////////////////////////////////////////////////////////////////////////////
 
-$blue: #477DCA;
+$orange: #F35E48;
+$blue: #28AEA7;
 $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #DDD;
@@ -28,7 +29,8 @@ $base-body-color: white;
 
 //  Font Colors
 $base-font-color: $dark-gray;
-$base-accent-color: $blue;
+$base-accent-color: $orange;
+$base-secondary-color: $blue;
 
 //  Text Link Colors
 $base-link-color: $base-accent-color;
