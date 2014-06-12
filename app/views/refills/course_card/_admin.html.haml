@@ -5,7 +5,7 @@
     - if course.series
       %h6
         = link_to icon_link_out + ' View series: ' + course.series.name, series_path(course.series)
-    = button_to 'Edit course', { controller: :courses, action: :edit, id: course.id, course: { course: course } }, method: :get, class: 'right'
+    /  = button_to 'Edit course', { controller: :courses, action: :edit, id: course.id }, method: :get, class: 'right'
     = button_to 'Add TA', { controller: :hours, action: :new }, method: :get, class: 'inline right'
     %h5= course.name
     %br
@@ -29,7 +29,7 @@
       %br
       = course.pretty_time
     %p
-      = link_to icon_book + ' Course details', course_path(course)
+      / = link_to icon_book + ' Course details', course_path(course)
     = render partial: 'refills/ta_list', locals: { tas: course.teaching_assistants, course: course }
     %br
 
