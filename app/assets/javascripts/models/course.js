@@ -1,4 +1,6 @@
 App.Course = DS.Model.extend({
+  teaching_assistants: DS.hasMany('teaching_assistant'),
+
   can_email: DS.attr('boolean'),
   credit_hours: DS.attr('number'),
   date: DS.attr('date'),
