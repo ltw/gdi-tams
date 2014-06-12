@@ -1,0 +1,14 @@
+.card {
+  @extend .container__30px;
+  @include outer-container;
+  &:hover {
+    background-color: lighten($light-gray, 10%);
+  }
+  .column_small {
+    @include span-columns(4);
+  }
+  .column_large {
+    @include span-columns(8);
+  }
+}
+
