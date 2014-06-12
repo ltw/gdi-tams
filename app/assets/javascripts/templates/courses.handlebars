@@ -26,13 +26,12 @@
         <h5>Need: {{ course.num_tas_still_needed }} more</h5>
       {{/if}}
 
-      <p>
-        <a href="">View TA list</a>
-      </p>
-
       <br>
 
-      <button>Add TA</button>
+      <p>
+        <button>View TA list</button>
+        <button>Add TA</button>
+      </p>
 
       {{#if course.email_sent }}
         <strong>Email sent.</strong>
@@ -45,3 +44,4 @@
     </div>
   </div>
 {{/each}}
+
