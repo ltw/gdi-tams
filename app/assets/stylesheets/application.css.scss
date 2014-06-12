@@ -11,5 +11,7 @@
 
 // Theme-ing
 // Requires above variables
+@import "components/header";
+@import "components/nav";
 @import "components/statuses";
 @import "layout/grid";
