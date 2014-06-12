@@ -17,22 +17,10 @@
 @import "bitters/bitters";
 @import "neat";
 
-/*
-*= require_tree ./styles
-*/
+// --------------------------- //
 
-// STATUS
-.pending { background-color: lighten($light-gray, 7%); }
-.prospective { color: $light-red; }
-.banned { background-color: $light-red; }
-.inactive {
-  background-color: lighten($light-gray, 7%);
-  a { color: $dark-gray; }
-}
+// Classes for TA statuses
+@import "components/statuses";
 
-#container { @include outer-container; }
-#content {
-  @include span-columns(12);
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
+// Core layout with grid
+@import "layout/grid";

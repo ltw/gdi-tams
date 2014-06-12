@@ -1,0 +1,7 @@
+.pending { background-color: lighten($light-gray, 7%); }
+.prospective { color: $light-red; }
+.banned { background-color: $light-red; }
+.inactive {
+  background-color: lighten($light-gray, 7%);
+  a { color: $dark-gray; }
+}
