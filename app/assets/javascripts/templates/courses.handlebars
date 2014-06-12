@@ -3,13 +3,8 @@
 {{#each course in controller}}
   <div class="card">
     <div class="column_large">
-      <h3>
-        {{ course.pretty_date }}
-      </h3>
-
-      <h4>
-        {{ course.name }}
-      </h4>
+      <h3>{{ course.pretty_date }}</h3>
+      <h4>{{ course.name }}</h4>
 
       <p>
         {{ course.location }}
@@ -17,16 +12,20 @@
         {{ course.pretty_time }}
       </p>
 
-      <a href="{{ course.url }} ">View on Meetup <i class="fa fa-external-link"></i></a>
+      <a {{ bind-attr href=course.url }}>
+        View on Meetup <i class="fa fa-external-link"></i>
+      </a>
 
-      <p>
-        Credit hours: {{ course.credit_hours }}
-      </p>
+      <p>Credit hours: {{ course.credit_hours }}</p>
     </div>
 
     <div class="column_small">
-      <h5>TAs: #</h5>
-      <h5>Need: # more</h5>
+      <h5>TAs: {{ course.numTas }} </h5>
+
+      {{#if course.needMoreTas}}
+        <h5>Need: {{ course.num_tas_still_needed }} more</h5>
+      {{/if}}
+
       <p>
         <a href="">View TA list</a>
       </p>
@@ -38,7 +37,9 @@
       {{#if course.email_sent }}
         <strong>Email sent.</strong>
         <button class="button__small">Remove flag</button>
-      {{else}}
+      {{/if }}
+
+      {{#if course.can_email }}
         <button>Send confirmation email</button>
       {{/if}}
     </div>
