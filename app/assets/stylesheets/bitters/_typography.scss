@@ -8,21 +8,17 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: $header-font-family;
-  line-height: 1.75em;
+  line-height: 1.25em;
   margin: 0;
   text-rendering: optimizeLegibility; // Fix the character spacing for headings
 }
 
 h1 {
-  font-size: $base-font-size * 0.8; // 16 * 2.25 = 36px
-  text-transform: uppercase;
-  color: $base-accent-color;
+  font-size: $base-font-size * 2.25; // 16 * 2.25 = 36px
 }
 
 h2 {
-  font-size: $base-font-size * 1.2; // 16 * 2 = 32px
-  text-transform: uppercase;
-  color: $light-red;
+  font-size: $base-font-size * 2; // 16 * 2 = 32px
 }
 
 h3 {
@@ -105,12 +101,4 @@ cite {
   &:before {
     content: '\2014 \00A0';
   }
-}
-
-.small {
-  font-size: 75%;
-}
-
-.text-right {
-  text-align: right;
 }

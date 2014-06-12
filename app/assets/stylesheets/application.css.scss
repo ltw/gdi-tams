@@ -17,6 +17,10 @@
 @import "bitters/bitters";
 @import "neat";
 
+/*
+*= require_tree ./styles
+*/
+
 // STATUS
 .pending { background-color: lighten($light-gray, 7%); }
 .prospective { color: $light-red; }
@@ -26,40 +30,9 @@
   a { color: $dark-gray; }
 }
 
-// GRID/LAYOUT CORE
 #container { @include outer-container; }
 #content {
   @include span-columns(12);
   padding-top: 20px;
   padding-bottom: 20px;
-}
-
-// AUTOMATIC ROWS
-ul.auto_rows__2 {
-  @include outer-container;
-  li.block {
-    @include span-columns(6);
-    @include omega(2n);
-  }
-}
-
-ul.auto_rows__6 {
-  @include outer-container;
-  li.block {
-    @include span-columns(2);
-    @include omega(6n);
-  }
-}
-
-// HELPER CLASSES
-.right { float: right; }
-.left-padding { padding-left: 10px; }
-
-// STAGING
-#footer {
-  width: 100%;
-  background-color: $light-red;
-  padding: 10px 20px;
-  text-align: right;
-  margin: 0;
 }

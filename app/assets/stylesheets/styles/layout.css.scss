@@ -1,0 +1,6 @@
+#container { @include outer-container; }
+#content {
+  @include span-columns(12);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

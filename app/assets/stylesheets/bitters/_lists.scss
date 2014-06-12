@@ -29,8 +29,3 @@ dl {
     margin: 0;
   }
 }
-
-
-ul.default {
-  @extend %default-ul;
-}
