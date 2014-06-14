@@ -20,6 +20,10 @@ class TeachingAssistantsController < ApplicationController
 
   def new
     @teaching_assistant = TeachingAssistant.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
