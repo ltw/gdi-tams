@@ -35,7 +35,7 @@ class TeachingAssistantsController < ApplicationController
       redirect_to admins_dashboard_path, notice: "TA #{@teaching_assistant.name} successfully added and marked as prospective. Remember to process their application!"
     elsif @teaching_assistant.save
       GdiMailer.pending(@teaching_assistant).deliver!
-      redirect_to courses_path, notice: "You will receive an email shortly with details, pending approval. Thanks for TA'ing with Girl Develop It!"
+      redirect_to thanks_teaching_assistant_path
     else
       render :new
     end
@@ -50,6 +50,9 @@ class TeachingAssistantsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def thanks
   end
 
   private

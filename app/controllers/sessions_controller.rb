@@ -9,9 +9,9 @@ class SessionsController < ApplicationController
     @admin = Admin.find_by_name(params[:name])
     if @admin && @admin.authenticate(params[:password])
       create_session
-      redirect_to series_index_path
+      redirect_to admins_dashboard_path
     else
-      redirect_to courses_path
+      redirect_to new_session_path
     end
   end
 
