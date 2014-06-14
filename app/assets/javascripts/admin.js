@@ -3,7 +3,7 @@ var ready = function() {
   $('#prospective_tas').toggle();
   // $('#upcoming_courses').toggle();
   $('#attendance_management').toggle();
-  // $('#add_new_things').toggle();
+  $('#add_new_things').toggle();
 
   function initClick(id) {
     $(id + '_header').click(function(event) {

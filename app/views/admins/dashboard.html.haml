@@ -10,10 +10,11 @@
 #add_new_things
   .container__30px
     = link_to 'Add a new Series', new_series_path, remote: true, class: 'button'
-    = link_to 'Import Course from Meetup', new_course_path, remote: true, class: 'button'
+    / = link_to 'Import Course from Meetup', new_course_path, remote: true, class: 'button'
     = link_to 'Add a new TA', new_teaching_assistant_path, remote: true, class: 'button'
+    = render partial: 'courses/new'
 
-%h2
+%h2.padding-top__15px
   %a{:href => "#{teaching_assistants_path}"}
     = icon_link_out
     Manage Teaching Assistants

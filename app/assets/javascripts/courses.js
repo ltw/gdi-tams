@@ -1,5 +1,5 @@
 var ready = function() {
-  $('#fetch_meetup_button').on('click', function(event) {
+  $('#main #fetch_meetup_button').on('click', function(event) {
     var url = $('input#fetch_meetup_url').val();
     $('.fetch_meetup').hide();
     loadingThingy();
@@ -58,19 +58,19 @@ var ready = function() {
       hours = '0' + hours;
     }
 
-    $('#course_name').val(data.name);
-    $('#course_url').val(data.event_url);
-    $('#course_location').val(data.venue.name + ' ' + data.venue.address_1);
-    $('#course_description').val(data.description);
-    $('#course_date_1i').val('2014');
-    $('#course_date_2i').val(date.getMonth() + 1); // January
-    $('#course_date_3i').val(day); // 1-31
-    $('#course_start_time_4i').val(startHour);
-    $('#course_start_time_5i').val(startMins);
-    $('#course_end_time_4i').val(hours);
-    $('#course_end_time_5i').val(minutes);
-    $('#course_meetup_id').val(id);
-    $('.loading').remove();
+    $('#main #course_name').val(data.name);
+    $('#main #course_url').val(data.event_url);
+    $('#main #course_location').val(data.venue.name + ' ' + data.venue.address_1);
+    $('#main #course_description').val(data.description);
+    $('#main #course_date_1i').val('2014');
+    $('#main #course_date_2i').val(date.getMonth() + 1); // January
+    $('#main #course_date_3i').val(day); // 1-31
+    $('#main #course_start_time_4i').val(startHour);
+    $('#main #course_start_time_5i').val(startMins);
+    $('#main #course_end_time_4i').val(hours);
+    $('#main #course_end_time_5i').val(minutes);
+    $('#main #course_meetup_id').val(id);
+    $('#main .loading').remove();
   }
 
   function dateFromSecondsSinceEpoch(secs) {
