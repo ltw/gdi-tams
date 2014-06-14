@@ -1,0 +1,48 @@
+.card
+  .column_large
+    %h3= course.pretty_date
+    %h4
+      - if course.is_series?
+        %span.color__secondary= icon_code
+      = course.name
+
+    %p
+      = course.location
+      from
+      = course.pretty_time
+
+    %a{:href => "#{course.url}"}
+      View on Meetup
+      = icon_link_out
+
+    %p
+      Credit hours:
+      = course.credit_hours
+
+  .column_small
+    %h5
+      TAs:
+      = course.num_tas
+
+    - if course.need_tas? && !course.is_past?
+      %h5
+        Need
+        = course.num_tas_still_needed
+        more
+
+    %br/
+
+    %p
+      = link_to 'View TA List', course_ta_list_path(course), remote: true, class: 'button'
+      = link_to 'Add TA to Course', new_hour_path, remote: true, class: 'button'
+
+    - if course.can_email?
+      = button_to 'Send confirmation email', { controller: :emails, action: :confirmation }, method: :get,  params: { course_id: course.id }
+    - elsif course.email_sent?
+      Email sent.
+      = link_to "Remove flag.", "#"
+    - elsif course.is_past?
+      No email options.
+    - else
+      Can't email yet!
+

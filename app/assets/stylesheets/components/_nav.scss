@@ -1,0 +1,17 @@
+#nav {
+  margin-bottom: 40px;
+  padding: 10px 10px 0px 10px;
+  ul {
+    // stuff
+  }
+  li {
+    display: inline;
+  }
+  a {
+    color: $base-font-color;
+    padding: 10px 5px;
+    &:hover {
+      background-color: lighten($base-secondary-color, 35%);
+    }
+  }
+}

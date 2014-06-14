@@ -8,11 +8,14 @@ fieldset {
 input,
 label,
 select {
+  display: block;
   font-family: $form-font-family;
   font-size: $form-font-size;
 }
 
-input, label { display: block; }
+select {
+  display: inline;
+}
 
 label {
   font-weight: bold;
@@ -76,4 +79,11 @@ select {
   width: auto;
   max-width: 100%;
   margin-bottom: $base-line-height;
+}
+
+.field {
+  padding: 10px;
+  &:hover {
+    background-color: lighten($light-gray, 10%);
+  }
 }

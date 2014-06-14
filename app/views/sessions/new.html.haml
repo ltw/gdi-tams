@@ -1,11 +1,12 @@
 %h1 Admin login
 
-= form_tag sessions_path do
-  .field
-    = label_tag :name
-    = text_field_tag :name
-  .field
-    = label_tag :password
-    = password_field_tag :password
+.container__30px
+  = form_tag sessions_path do
+    .field
+      = label_tag :name
+      = text_field_tag :name
+    .field
+      = label_tag :password
+      = password_field_tag :password
 
-  = submit_tag 'Login'
+    = submit_tag 'Login'

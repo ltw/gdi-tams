@@ -7,7 +7,7 @@ class Course < ActiveRecord::Base
 
   validates_presence_of :credit_hours, :num_tas_needed, :name, :date, :url, :location, :meetup_id, :start_time, :end_time, :pretty_time, :pretty_date
 
-  scope :upcoming, -> { where("date > ?", Date.today) }
+  scope :upcoming, -> { where("date > ?", Date.yesterday) }
   scope :single_day, -> { where("series_id IS NULL") }
   scope :series, -> { where("series_id > ?", 0) }
 
@@ -23,6 +23,10 @@ class Course < ActiveRecord::Base
     hours.where(teaching_assistant: teaching_assistant).first
   end
 
+  def is_past?
+    date < Date.today
+  end
+
   def is_series?
     series.present?
   end
@@ -32,7 +36,13 @@ class Course < ActiveRecord::Base
   end
 
   def num_tas_still_needed
-    num_tas_needed - teaching_assistants.count
+    count = num_tas_needed - num_tas
+    return 0 unless count > 0
+    count
+  end
+
+  def num_tas
+    teaching_assistants.select { |ta| ta.is_ta_for?(self) }.length
   end
 
   def pretty_date_short
@@ -40,7 +50,7 @@ class Course < ActiveRecord::Base
   end
 
   def can_email?
-    teaching_assistants.any? && date < 10.days.from_now && date > Date.tomorrow
+    !email_sent && teaching_assistants.any? && date < 10.days.from_now && date > Date.tomorrow
   end
 
   private
