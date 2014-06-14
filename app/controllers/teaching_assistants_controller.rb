@@ -48,7 +48,7 @@ class TeachingAssistantsController < ApplicationController
       private_id = @teaching_assistant.private_id
       redirect_to sign_ups_path(private_id), notice: 'Updated!'
     else
-      render :edit
+      redirect_to admins_dashboard_path
     end
   end
 
