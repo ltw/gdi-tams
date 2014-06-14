@@ -4,9 +4,9 @@ App.Router.map(function() {
 
 App.ApplicationRoute = Ember.Route.extend({
   actions: {
-    openModal: function(modalName, model) {
+    openModal: function(modalName, model, course) {
       this.controllerFor(modalName).set('model', model);
-      console.log("click");
+      this.controllerFor(modalName).set('course', course);
       return this.render(modalName, {
         into: 'application',
         outlet: 'modal'

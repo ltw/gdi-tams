@@ -1,0 +1,12 @@
+{{#modal-dialog action="close"}}
+  <h3 class="flush--top">TA List</h3>
+  <h4>{{ course.name}}</h4>
+
+  <ul>
+    {{#each ta in course.teaching_assistants}}
+      <li>{{ ta.name }} <button {{action 'removeTA'}}>Remove</button></li>
+    {{/each}}
+  </ul>
+
+  <button {{action "close"}}>Done</button>
+{{/modal-dialog}}
