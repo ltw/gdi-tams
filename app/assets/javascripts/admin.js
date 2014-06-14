@@ -3,6 +3,7 @@ var ready = function() {
   $('#prospective_tas').toggle();
   // $('#upcoming_courses').toggle();
   $('#attendance_management').toggle();
+  // $('#add_new_things').toggle();
 
   function initClick(id) {
     $(id + '_header').click(function(event) {
@@ -18,6 +19,7 @@ var ready = function() {
   initClick('#prospective_tas');
   initClick('#upcoming_courses');
   initClick('#attendance_management');
+  initClick('#add_new_things');
 }
 
 

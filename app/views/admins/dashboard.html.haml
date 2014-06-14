@@ -1,19 +1,22 @@
 - if notice
   %p#notice= notice
 
-%h2#monthly_emails_header.padding-top__15px
+%h2#add_new_things_header.padding-top__15px
   %a{:href => "#"}
-    %span#monthly_emails_icon
+    %span#add_new_things_icon
       = icon_toggle_right
-    Monthly course emails
+    Add Course, TA, or Series
 
-#monthly_emails
-  .card
-    %p
-      This will email all Teaching Assistants! Use with caution.
+#add_new_things
+  .container__30px
+    = link_to 'Add a new Series', new_series_path, remote: true, class: 'button'
+    = link_to 'Import Course from Meetup', new_course_path, remote: true, class: 'button'
+    = link_to 'Add a new TA', new_teaching_assistant_path, remote: true, class: 'button'
 
-    = button_to 'Send monthly sign up email', { controller: :emails, action: :monthly }, method: :get
-
+%h2
+  %a{:href => "#{teaching_assistants_path}"}
+    = icon_link_out
+    Manage Teaching Assistants
 
 - if TeachingAssistant.prospective.any?
   %h2#prospective_tas_header.padding-top__15px
@@ -51,11 +54,23 @@
   - @past_courses.each do |course|
     = render partial: 'refills/course_card/admin', locals: { course: course }
 
+%h2#monthly_emails_header.padding-top__15px
+  %a{:href => "#"}
+    %span#monthly_emails_icon
+      = icon_toggle_right
+    Monthly course emails
+
+#monthly_emails
+  .card
+    %p
+      This will email all Teaching Assistants! Use with caution.
+
+    = button_to 'Send monthly sign up email', { controller: :emails, action: :monthly }, method: :get
 
 %h2#upcoming_courses_header.padding-top__15px
   %a{:href => "#"}
     %span#upcoming_courses_icon
-      = icon_toggle_right
+      = icon_toggle_down
     Upcoming Courses
 
 #upcoming_courses
@@ -64,3 +79,4 @@
     Indicates a series (multi-session) course.
   - @courses.each do |course|
     = render partial: 'refills/course_card/admin', locals: { course: course }
+

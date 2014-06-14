@@ -13,8 +13,12 @@ class SeriesController < ApplicationController
 
   # GET /series/new
   def new
-    @series = Series.new
     render 'shared/admin_only' unless is_admin?
+    @series = Series.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /series/1/edit
@@ -27,7 +31,7 @@ class SeriesController < ApplicationController
     @series = Series.new(series_params)
 
     if @series.save
-      redirect_to @series, notice: 'Series was successfully created.'
+      redirect_to admins_dashboard_path, notice: 'Series was successfully created.'
     else
       render :new
     end
@@ -36,7 +40,7 @@ class SeriesController < ApplicationController
   # PATCH/PUT /series/1
   def update
     if @series.update(series_params)
-      redirect_to @series, notice: 'Series was successfully updated.'
+      redirect_to admins_dashboard_path, notice: 'Series was successfully updated.'
     else
       render :edit
     end
@@ -45,7 +49,7 @@ class SeriesController < ApplicationController
   # DELETE /series/1
   def destroy
     @series.destroy
-    redirect_to series_index_url, notice: 'Series was successfully destroyed.'
+    redirect_to admins_dashboard_path, notice: 'Series was successfully destroyed.'
   end
 
   private
