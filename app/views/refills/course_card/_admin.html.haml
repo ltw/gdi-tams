@@ -38,7 +38,11 @@
 
     - if course.can_email?
       = button_to 'Send confirmation email', { controller: :emails, action: :confirmation }, method: :get,  params: { course_id: course.id }
-    - elsif !course.is_past?
+    - elsif course.email_sent?
       Email sent.
       = link_to "Remove flag.", "#"
+    - elsif course.is_past?
+      No email options.
+    - else
+      Can't email yet!
 
