@@ -3,12 +3,16 @@
   font-weight: 400;
 }
 
-button, input[type=submit] {
+.button, button, input[type=submit] {
   @include button(lighten($light-gray, 10%));
   @include button-base;
   &.button__small {
     font-size: 75%;
   }
+}
+
+.button {
+  padding: 4px 15px;
 }
 
 button.button__accent {

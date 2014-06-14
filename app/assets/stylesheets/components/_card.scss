@@ -1,5 +1,4 @@
-.card {
-  @extend .container__30px;
+@mixin cardBase {
   @include outer-container;
   &:hover {
     background-color: lighten($light-gray, 10%);
@@ -12,3 +11,12 @@
   }
 }
 
+.card {
+  @extend .container__30px;
+  @include cardBase;
+}
+
+.card__mini {
+  @extend .container__10px;
+  @include cardBase;
+}
