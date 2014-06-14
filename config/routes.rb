@@ -1,7 +1,7 @@
 require 'resque/server'
 
 Rails.application.routes.draw do
-  root 'courses#index'
+  root 'sessions#new'
 
   resources :series, only: [:new, :create]
 
