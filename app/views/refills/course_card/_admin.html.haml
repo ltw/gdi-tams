@@ -37,8 +37,7 @@
       = link_to 'Add TA to Course', new_hour_path, remote: true, class: 'button'
 
     - if course.can_email?
-      %button
-        Send confirmation email
+      = button_to 'Send confirmation email', { controller: :emails, action: :confirmation }, method: :get,  params: { course_id: course.id }
     - elsif !course.is_past?
       Email sent.
       = link_to "Remove flag.", "#"
