@@ -40,9 +40,6 @@
       %button
         Send confirmation email
     - elsif !course.is_past?
-      %strong
-        Email sent.
-      %br/
-      %button.button__small
-        Remove flag
+      Email sent.
+      = link_to "Remove flag.", "#"
 
