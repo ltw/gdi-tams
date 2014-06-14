@@ -3,7 +3,7 @@ require 'resque/server'
 Rails.application.routes.draw do
   root 'courses#index'
 
-  resources :series
+  resources :series, only: [:new, :create]
 
   resources :hours
 
