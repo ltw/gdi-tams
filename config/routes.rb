@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :series, only: [:new, :create]
 
-  resources :hours
+  resources :hours, only: [:new, :edit, :create, :update, :destroy]
 
   resources :courses, only: [:new, :create]
   get '/courses/:id/ta_list', to: 'courses#ta_list', as: 'course_ta_list'
@@ -13,8 +13,6 @@ Rails.application.routes.draw do
   resources :teaching_assistants, param: :private_id, only: [:index, :new, :create, :show, :update]
 
   resources :sessions, only: [:new, :create, :destroy]
-
-  resources :statuses, only: [:index, :show]
 
   # PRIMARY ADMIN DASHBOARD
   get '/dashboard', to: 'admins#dashboard', as: 'admins_dashboard'

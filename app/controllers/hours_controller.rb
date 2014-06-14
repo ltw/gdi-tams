@@ -1,17 +1,6 @@
 class HoursController < ApplicationController
   before_action :set_hour, only: [:show, :edit, :update, :destroy]
 
-  # GET /hours
-  def index
-    render 'shared/admin_only' unless is_admin?
-    @courses = Course.last_month.includes(:teaching_assistants, :series).sort_by(&:date).reverse
-  end
-
-  # GET /hours/1
-  def show
-    render 'shared/admin_only' unless is_admin?
-  end
-
   # GET /hours/new
   def new
     render 'shared/admin_only' unless is_admin?
