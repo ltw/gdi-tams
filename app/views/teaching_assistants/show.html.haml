@@ -53,7 +53,7 @@
     Indicates a series (multi-session) course.
   - if @teaching_assistant.schedule.any?
     - @teaching_assistant.schedule.each do |course|
-      = render partial: 'refills/course_card/ta', locals: { course: course, teaching_assistant: @teaching_assistant }
+      = render partial: 'courses/ta_view', locals: { course: course, teaching_assistant: @teaching_assistant }
   - else
     %p Looks like you're not signed up for anything right now.
 
@@ -70,7 +70,7 @@
       %span.color__secondary= icon_code
       Indicates a series (multi-session) course.
     - @courses.each do |course|
-      = render partial: 'refills/course_card/ta', locals: { course: course, teaching_assistant: @teaching_assistant }
+      = render partial: 'courses/ta_view', locals: { course: course, teaching_assistant: @teaching_assistant }
   - else
     .container__30px
       %p There aren't anymore classes to sign up for right now. Check back later!
@@ -87,9 +87,7 @@
     .container__30px
       %p You haven't TA'd for any classes yet.
   - else
-    .cards
-      - @teaching_assistant.history.each do |hour|
-        = render partial: 'refills/hour_card', locals: { hour: hour }
+    History goes here.
 
 
 - if @teaching_assistant.inactive?

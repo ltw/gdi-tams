@@ -46,7 +46,7 @@
     %span.color__secondary= icon_code
     Indicates a series (multi-session) course.
   - @past_courses.each do |course|
-    = render partial: 'refills/course_card/admin', locals: { course: course }
+    = render partial: 'courses/admin_view', locals: { course: course }
 
 %h2#monthly_emails_header.padding-top__15px
   %a{:href => "#"}
@@ -72,5 +72,5 @@
     %span.color__secondary= icon_code
     Indicates a series (multi-session) course.
   - @courses.each do |course|
-    = render partial: 'refills/course_card/admin', locals: { course: course }
+    = render partial: 'courses/admin_view', locals: { course: course }
 
