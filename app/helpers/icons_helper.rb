@@ -35,6 +35,14 @@ module IconsHelper
     raw('<i class="fa fa-external-link"></i>')
   end
 
+  def icon_toggle_down
+    raw('<i class="fa fa-angle-down"></i>')
+  end
+
+  def icon_toggle_right
+    raw('<i class="fa fa-angle-right"></i>')
+  end
+
   def icon_thumbs_down
     raw('<i class="fa fa-thumbs-down"></i>')
   end
