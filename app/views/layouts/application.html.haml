@@ -16,6 +16,8 @@
       #content
         #header
           %h1 GDI Chicago Volunteering
+          - if @title
+            %h2= @title
         #nav
           %ul
             %li
@@ -26,4 +28,5 @@
               %a{href: ""} Series
             %li
               %a{href: ""} TA
-        = yield
+        #main
+          = yield
