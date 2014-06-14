@@ -30,10 +30,8 @@
     %br/
 
     %p
-      %b
-        = link_to 'View TA List', course_ta_list_path(course), remote: true, class: 'button'
-      %button
-        Add TA to course
+      = link_to 'View TA List', course_ta_list_path(course), remote: true, class: 'button'
+      = link_to 'Add TA to Course', new_hour_path, remote: true, class: 'button'
 
     - if course.can_email?
       %button

@@ -18,6 +18,10 @@ class HoursController < ApplicationController
     @hour = Hour.new
     @courses = Course.all.sort_by(&:date).collect {|c| ["#{c.pretty_date} - #{c.name}", c.id]}
     @tas = TeachingAssistant.all.sort_by(&:name).collect {|ta| [ta.name, ta.id]}
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /hours/1/edit
@@ -41,7 +45,7 @@ class HoursController < ApplicationController
     render :new unless @hour.save
 
     if is_admin?
-      redirect_to hours_path, notice: 'Hour was successfully created.'
+      redirect_to admins_dashboard_path, notice: 'Hour was successfully created.'
     else
       redirect_to sign_ups_path(private_id), notice: 'Got it! See you in class.'
     end
@@ -66,7 +70,7 @@ class HoursController < ApplicationController
     @hour.destroy
 
     if is_admin?
-      redirect_to hours_path, notice: 'Hour was successfully removed.'
+      redirect_to admins_dashboard_path, notice: 'Hour was successfully removed.'
     else
       private_id = @hour.teaching_assistant.private_id
       redirect_to sign_ups_path(private_id), notice: "RSVP cancelled for #{name} on #{date}."
