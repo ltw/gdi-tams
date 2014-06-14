@@ -13,6 +13,10 @@ select {
   font-size: $form-font-size;
 }
 
+select {
+  display: inline;
+}
+
 label {
   font-weight: bold;
   margin-bottom: $base-line-height / 4;
@@ -75,4 +79,11 @@ select {
   width: auto;
   max-width: 100%;
   margin-bottom: $base-line-height;
+}
+
+.field {
+  padding: 10px;
+  &:hover {
+    background-color: lighten($light-gray, 10%);
+  }
 }
