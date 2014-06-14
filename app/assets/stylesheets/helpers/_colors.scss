@@ -5,3 +5,19 @@
 .color__accent {
   color: $base-accent-color;
 }
+
+.pending {
+  color: $yellow;
+}
+
+.approved {
+  color: $base-secondary-color;
+}
+
+.banned {
+  color: $base-accent-color;
+}
+
+.inactive {
+  color: $medium-gray;
+}

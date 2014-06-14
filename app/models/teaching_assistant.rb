@@ -28,6 +28,10 @@ class TeachingAssistant < ActiveRecord::Base
     status.label == "approved"
   end
 
+  def banned?
+    status.label == "banned"
+  end
+
   def inactive?
     (status.label == "inactive") || (status.label == "banned")
   end

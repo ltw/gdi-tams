@@ -5,3 +5,12 @@
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
+ul.container {
+  @include outer-container;
+}
+
+li.block {
+  @include span-columns(6);
+  @include omega(2n);
+}
