@@ -54,7 +54,7 @@ class HoursController < ApplicationController
   # PATCH/PUT /hours/1
   def update
     if is_admin? && @hour.update(hour_params)
-      redirect_to hours_path, notice: 'Hour was successfully updated.'
+      redirect_to admins_dashboard_path, notice: 'Hour was successfully updated.'
     elsif @hour.update(hour_params)
       private_id = @hour.teaching_assistant.private_id
       redirect_to sign_ups_path(private_id), notice: 'RSVP was successfully updated.'
