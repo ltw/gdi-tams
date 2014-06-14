@@ -15,7 +15,12 @@ class TeachingAssistantsController < ApplicationController
   # GET /teaching_assistants/1
   def show
     render 'shared/admin_only' unless is_admin?
-    render 'shared/admin_only' unless is_admin?
+    courses = Course.upcoming.includes(:series).sort_by(&:date)
+    @courses = courses.delete_if do |course|
+      course.teaching_assistants.pluck(:private_id).include?(@teaching_assistant.private_id)
+    end
+    @inactive = Status.find_by_label("inactive")
+    @pending = Status.find_by_label("pending")
   end
 
   def new
@@ -59,7 +64,7 @@ class TeachingAssistantsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_teaching_assistant
-      @teaching_assistant = TeachingAssistant.find(params[:id])
+      @teaching_assistant = TeachingAssistant.find_by_private_id(params[:private_id])
     end
 
     # Only allow a trusted parameter "white list" through.

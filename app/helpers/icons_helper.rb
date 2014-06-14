@@ -27,6 +27,10 @@ module IconsHelper
     raw('<i class="fa fa-envelope"></i>')
   end
 
+  def icon_exclamation
+    raw('<i class="fa fa-exclamation-triangle"></i>')
+  end
+
   def icon_history
     raw('<i class="fa fa-history"></i>')
   end

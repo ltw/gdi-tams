@@ -57,8 +57,12 @@ class TeachingAssistant < ActiveRecord::Base
     hours.select { |h| h.course.date < Date.tomorrow }.sort_by { |h| h.course.date }
   end
 
+  def num_classes
+    hours.where('num >= 0').select { |h| h.course.date < Date.tomorrow }.length
+  end
+
   def schedule
-    hours.where('num > 0').select { |h| h.course.date > Date.yesterday }.map(&:course).sort_by(&:date)
+    hours.where('num >= 0').select { |h| h.course.date > Date.yesterday }.map(&:course).sort_by(&:date)
   end
 
   def signed_up_for(course)

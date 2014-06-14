@@ -2,6 +2,10 @@
   @include pad(30px);
 }
 
+.container__0px_30px {
+  @include pad(0px 30px);
+}
+
 .container__10px_30px {
   @include pad(10px 30px);
 }
@@ -33,4 +37,12 @@ a i {
 .padding-vertical__15px {
   @extend .padding-top__15px;
   @extend .padding-bottom__15px;
+}
+
+.center {
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: lighten($light-gray, 10%);
 }
