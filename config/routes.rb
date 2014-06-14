@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :courses
 
-  resources :teaching_assistants, param: :private_id
+  resources :teaching_assistants #, param: :private_id
 
   resources :sessions, only: [:new, :create, :destroy]
 
