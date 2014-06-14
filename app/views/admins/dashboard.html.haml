@@ -1,38 +1,52 @@
-%h3 Organizer Dashboard
+%h1 Organizer Dashboard
 
 - if notice
   %p#notice= notice
 
-%h4 Monthly course emails
+%h2#monthly_emails_header
+  %a{:href => "#"}
+    %span#monthly_emails_icon
+      = icon_toggle_right
+    Monthly course emails
 
-= button_to 'Send monthly sign up email', { controller: :emails, action: :monthly }, method: :get
+#monthly_emails
+  .card
+    %p
+      This will email all Teaching Assistants! Use with caution.
 
-%h4 Prospective TAs
+    = button_to 'Send monthly sign up email', { controller: :emails, action: :monthly }, method: :get
+
 
 - if TeachingAssistant.prospective.any?
-  %p Approving an application will email the TA.
+  %h2#prospective_tas_header
+    %a{:href => "#"}
+    %span#prospective_tas_icon
+      = icon_toggle_right
+    Prospective TAs
 
-  %table.table-minimal
-    %tr
-      %th Name
-      %th Email
-      %th Approve
-    - TeachingAssistant.prospective.each do |ta|
-      %tr
-        %td= ta.name
-        %td= ta.email
-        %td= link_to icon_thumbs_up + ' Upgrade to Pending', { controller: :emails, action: :welcome, emails: { teaching_assistant: ta } }
+  #prospective_tas
+    .card
+      %p Approving an application will email the TA.
 
-- else
-  %p You have no applications to approve.
+      %table.table-minimal
+        %tr
+          %th Name
+          %th Email
+          %th Approve
+        - TeachingAssistant.prospective.each do |ta|
+          %tr
+            %td= ta.name
+            %td= ta.email
+            %td= link_to icon_thumbs_up + ' Upgrade to Pending', { controller: :emails, action: :welcome, emails: { teaching_assistant: ta } }
 
 
 
-%h4 Upcoming courses
 
-.cards
-  .cards-large
-    - @courses.each do |course|
-      = render partial: 'refills/course_card/admin', locals: { course: course }
+%h2
+  = icon_toggle_down
+  Upcoming courses
+
+- @courses.each do |course|
+  = render partial: 'refills/course_card/admin', locals: { course: course }
 
 

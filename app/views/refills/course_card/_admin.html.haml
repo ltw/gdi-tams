@@ -1,36 +1,47 @@
 .card
-  = render partial: 'refills/course_card/header', locals: { course: course }
+  .column_large
+    %h3= course.pretty_date
+    %h4= course.name
 
-  .card-copy
-    - if course.series
-      %h6
-        = link_to icon_link_out + ' View series: ' + course.series.name, series_path(course.series)
-    = button_to 'Edit course', { controller: :courses, action: :edit, id: course.id, course: { course: course } }, method: :get, class: 'right'
-    = button_to 'Add TA', { controller: :hours, action: :new }, method: :get, class: 'inline right'
-    %h5= course.name
-    %br
-    - if course.email_sent
-      .right.text-right
-        %b Email confirmation sent.
-        %br
-        %span.small
-          Problem?
-          = link_to 'Undo flag.', { controller: :courses, action: :update, id: course.id, course: { email_sent: false } }, method: :put
-    - elsif course.can_email?
-      = button_to 'Send confirmation email!', { controller: :emails, action: :confirmation }, method: :get, params: { course_id: course.id },  class: 'right light-red'
-    - else
-      .right.text-right
-        %b Email disabled.
-        %br
-        %span.small
-          Check back 10 days before the class.
     %p
       = course.location
-      %br
+      from
       = course.pretty_time
-    %p
-      = link_to icon_book + ' Course details', course_path(course)
-    = render partial: 'refills/ta_list', locals: { tas: course.teaching_assistants, course: course }
-    %br
 
-  = render partial: 'refills/course_card/stats', locals: { course: course }
+    %a{:href => "#{course.url}"}
+      View on Meetup
+      = icon_link_out
+
+    %p
+      Credit hours:
+      = course.credit_hours
+
+  .column_small
+    %h5
+      TAs:
+      = course.num_tas
+
+    - if course.need_tas?
+      %h5
+        Need
+        = course.num_tas_still_needed
+        more
+
+    %br/
+
+    %p
+      %button
+        View TA List
+      %button
+        Add TA to course
+
+    - if course.can_email?
+      %button
+        Send confirmation email
+    - else
+      %strong
+        Email sent.
+      %br/
+      %button.button__small
+        Remove flag
+
