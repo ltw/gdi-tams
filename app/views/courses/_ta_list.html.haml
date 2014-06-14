@@ -8,7 +8,8 @@
 
     - @course.teaching_assistants.each do |ta|
       .card__mini
-        = ta.signed_up_for(@course)
+        %span.padding-right__10px
+          = ta.signed_up_for(@course)
         %strong= ta.name
         = link_to icon_link_out + ' Profile', teaching_assistant_path(ta), class: 'badge default'
         - if ta.is_ta_for?(@course)
