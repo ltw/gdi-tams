@@ -32,7 +32,13 @@ class Course < ActiveRecord::Base
   end
 
   def num_tas_still_needed
-    num_tas_needed - teaching_assistants.count
+    count = num_tas_needed - num_tas
+    return 0 unless count > 0
+    count
+  end
+
+  def num_tas
+    teaching_assistants.select { |ta| ta.is_student_in?(self) }.length
   end
 
   def pretty_date_short
