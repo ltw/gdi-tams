@@ -1,5 +1,6 @@
 App.Router.map(function() {
   this.resource('courses', { path: '/dashboard' });
+  this.resource('teaching_assistant', { path: '/ta/:private_id' });
 });
 
 App.ApplicationRoute = Ember.Route.extend({
