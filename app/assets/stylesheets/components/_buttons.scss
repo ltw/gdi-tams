@@ -3,7 +3,7 @@
   font-weight: 400;
 }
 
-button {
+button, input[type=submit] {
   @include button(lighten($light-gray, 10%));
   @include button-base;
   &.button__small {
