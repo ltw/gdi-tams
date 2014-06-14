@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # API for Ember
   namespace :api do
     resources :courses, only: :index
+    resources :teaching_assistants, only: :show, path: 'teachingAssistants'
   end
 
   resources :series
