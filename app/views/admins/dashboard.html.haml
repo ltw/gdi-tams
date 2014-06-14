@@ -45,6 +45,11 @@
     Attendance Management
 
 #attendance_management
+  .container__30px
+    %span.color__secondary= icon_code
+    Indicates a series (multi-session) course.
+  - @past_courses.each do |course|
+    = render partial: 'refills/course_card/admin', locals: { course: course }
 
 
 %h2#upcoming_courses_header.padding-top__15px

@@ -23,6 +23,10 @@ class Course < ActiveRecord::Base
     hours.where(teaching_assistant: teaching_assistant).first
   end
 
+  def is_past?
+    date < Date.today
+  end
+
   def is_series?
     series.present?
   end

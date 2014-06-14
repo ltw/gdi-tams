@@ -24,7 +24,7 @@
       TAs:
       = course.num_tas
 
-    - if course.need_tas?
+    - if course.need_tas? && !course.is_past?
       %h5
         Need
         = course.num_tas_still_needed
@@ -39,7 +39,7 @@
     - if course.can_email?
       %button
         Send confirmation email
-    - else
+    - elsif !course.is_past?
       %strong
         Email sent.
       %br/
