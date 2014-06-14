@@ -7,10 +7,6 @@ class CoursesController < ApplicationController
     render 'shared/admin_only' unless is_admin?
     @course = Course.new
     @series = Series.all
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   # POST /courses
