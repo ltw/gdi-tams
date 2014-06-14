@@ -2,6 +2,10 @@
   @include pad(30px);
 }
 
+.container__10px_30px {
+  @include pad(10px 30px);
+}
+
 .container__10px {
   @include pad(10px);
 }
