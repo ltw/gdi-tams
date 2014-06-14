@@ -9,15 +9,20 @@ Rails.application.routes.draw do
 
   resources :courses
 
-  resources :teaching_assistants
+  resources :teaching_assistants, param: :private_id
 
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :statuses, only: [:index, :show]
 
+  # SHOULD BE DELETED AND MOVED UNDER TEACHING ASSISTANTS
   get '/sign_ups/forgot', to: 'sign_ups#forgot', as: 'forgot_sign_ups'
   get '/sign_ups/:private_id', to: 'sign_ups#show', as: 'sign_ups'
-  get '/admins/dashboard', to: 'admins#dashboard', as: 'admins_dashboard'
+
+  # PRIMARY ADMIN DASHBOARD
+  get '/dashboard', to: 'admins#dashboard', as: 'admins_dashboard'
+
+  # EMAIL SENDS
   get '/emails/welcome', to: 'emails#welcome', as: 'welcome_emails'
   get '/emails/monthly', to: 'emails#monthly', as: 'monthly_emails'
   get '/emails/confirmation', to: 'emails#confirmation', as: 'confirmation_emails'
