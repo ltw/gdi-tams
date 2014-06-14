@@ -1,8 +1,0 @@
-%table.no_border
-  - course.teaching_assistants.each do |ta|
-    %tr
-      %td
-        = ta.name
-        (
-        = ta.signed_up_for(course)
-        )
