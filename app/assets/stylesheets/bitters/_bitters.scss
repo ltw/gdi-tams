@@ -1,7 +1,7 @@
 // Neat Settings -- uncomment if using Neat
 ///////////////////////////////////////////////////////////////////////////////
-@import 'neat-helpers'; // or '../neat/neat-helpers' when not in Rails
-@import 'grid-settings';
+// @import 'neat-helpers'; // or '../neat/neat-helpers' when not in Rails
+// @import 'grid-settings';
 
 
 // Bitters
@@ -11,7 +11,6 @@
 @import 'mixins/mixins';
 @import 'typography';
 @import 'forms';
-@import 'buttons';
 @import 'tables';
 @import 'lists';
 @import 'flashes';

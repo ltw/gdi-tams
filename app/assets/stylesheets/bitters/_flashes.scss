@@ -9,12 +9,3 @@
 %flash-success {
   @include flash($success-color);
 }
-
-
-#notice {
-  @extend %flash-notice;
-}
-
-#error, #error_explanation {
-  @extend %flash-error;
-}

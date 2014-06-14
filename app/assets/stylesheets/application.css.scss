@@ -1,66 +1,21 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
  *= require_self
  */
 
+
+// Bourbon, Bitters, Neat
+// Assigning global variables and grid settings
 @import "bourbon";
 @import "bitters/bitters";
 @import "neat";
-@import "refills/refills";
 
-// STATUS
-.pending { background-color: lighten($light-gray, 7%); }
-.prospective { color: $light-red; }
-.banned { background-color: $light-red; }
-.inactive {
-  background-color: lighten($light-gray, 7%);
-  a { color: $dark-gray; }
-}
-
-// GRID/LAYOUT CORE
-#container { @include outer-container; }
-#content {
-  @include span-columns(12);
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-// AUTOMATIC ROWS
-ul.auto_rows__2 {
-  @include outer-container;
-  li.block {
-    @include span-columns(6);
-    @include omega(2n);
-  }
-}
-
-ul.auto_rows__6 {
-  @include outer-container;
-  li.block {
-    @include span-columns(2);
-    @include omega(6n);
-  }
-}
-
-// HELPER CLASSES
-.right { float: right; }
-.left-padding { padding-left: 10px; }
-
-// STAGING
-#footer {
-  width: 100%;
-  background-color: $light-red;
-  padding: 10px 20px;
-  text-align: right;
-  margin: 0;
-}
+// Theme-ing
+// Requires above variables
+@import "components/buttons";
+@import "components/card";
+@import "components/header";
+@import "components/modal";
+@import "components/nav";
+@import "components/statuses";
+@import "layout/grid";
+@import "layout/spacing";

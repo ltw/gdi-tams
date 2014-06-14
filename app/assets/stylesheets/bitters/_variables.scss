@@ -15,20 +15,22 @@ $base-border-radius: em(3);
 // Colors
 ///////////////////////////////////////////////////////////////////////////////
 
-$blue: #1BBC9B;
-$light-red: #E64C66;
+$pink: #F05B62;
+$green: #45B29D;
 $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #DDD;
+$light-red: #FBE3E4;
 $light-yellow: #FFF6BF;
-$light-green: lighten($blue, 25%);
+$light-green: #E6EFC2;
 
 // Body Color
 $base-body-color: white;
 
 //  Font Colors
 $base-font-color: $dark-gray;
-$base-accent-color: $blue;
+$base-accent-color: $pink;
+$base-secondary-color: $green;
 
 //  Text Link Colors
 $base-link-color: $base-accent-color;
