@@ -1,9 +1,7 @@
-%h1 Organizer Dashboard
-
 - if notice
   %p#notice= notice
 
-%h2#monthly_emails_header
+%h2#monthly_emails_header.padding-top__15px
   %a{:href => "#"}
     %span#monthly_emails_icon
       = icon_toggle_right
@@ -18,7 +16,7 @@
 
 
 - if TeachingAssistant.prospective.any?
-  %h2#prospective_tas_header
+  %h2#prospective_tas_header.padding-top__15px
     %a{:href => "#"}
     %span#prospective_tas_icon
       = icon_toggle_right
@@ -40,13 +38,24 @@
             %td= link_to icon_thumbs_up + ' Upgrade to Pending', { controller: :emails, action: :welcome, emails: { teaching_assistant: ta } }
 
 
+%h2#attendance_management_header.padding-top__15px
+  %a{:href => "#"}
+    %span#attendance_management_icon
+      = icon_toggle_right
+    Attendance Management
+
+#attendance_management
 
 
-%h2
-  = icon_toggle_down
-  Upcoming courses
+%h2#upcoming_courses_header.padding-top__15px
+  %a{:href => "#"}
+    %span#upcoming_courses_icon
+      = icon_toggle_right
+    Upcoming Courses
 
-- @courses.each do |course|
-  = render partial: 'refills/course_card/admin', locals: { course: course }
-
-
+#upcoming_courses
+  .container__30px
+    %span.color__secondary= icon_code
+    Indicates a series (multi-session) course.
+  - @courses.each do |course|
+    = render partial: 'refills/course_card/admin', locals: { course: course }

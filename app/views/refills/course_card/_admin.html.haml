@@ -1,7 +1,10 @@
 .card
   .column_large
     %h3= course.pretty_date
-    %h4= course.name
+    %h4
+      - if course.is_series?
+        %span.color__secondary= icon_code
+      = course.name
 
     %p
       = course.location
