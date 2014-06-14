@@ -8,10 +8,6 @@ class TeachingAssistantsController < ApplicationController
     @teaching_assistants = TeachingAssistant.all.includes(:status, :hours).sort_by(&:name)
   end
 
-  def edit
-    render 'shared/admin_only' unless is_admin?
-  end
-
   # GET /teaching_assistants/1
   def show
     render 'shared/admin_only' unless is_admin?
@@ -54,11 +50,6 @@ class TeachingAssistantsController < ApplicationController
     else
       render :edit
     end
-  end
-
-  def destroy
-    @teaching_assistant.destroy
-    redirect_to admins_dashboard_path, notice: 'Teaching Assistant was successfully removed.'
   end
 
   private
