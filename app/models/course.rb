@@ -38,7 +38,7 @@ class Course < ActiveRecord::Base
   end
 
   def num_tas
-    teaching_assistants.select { |ta| ta.is_student_in?(self) }.length
+    teaching_assistants.select { |ta| ta.is_ta_for?(self) }.length
   end
 
   def pretty_date_short
