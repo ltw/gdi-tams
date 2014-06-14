@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   # API for Ember
   namespace :api do
     resources :courses, only: :index
-    resources :sign_ups, only: :show
   end
 
   resources :series
