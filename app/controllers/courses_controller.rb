@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
 
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :update, :destroy, :ta_list]
 
   # GET /courses
   def index
@@ -52,6 +52,14 @@ class CoursesController < ApplicationController
   def destroy
     @course.destroy
     redirect_to courses_url, notice: 'Course was successfully destroyed.'
+  end
+
+  # CUSTOM ROUTES
+  def ta_list
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   private

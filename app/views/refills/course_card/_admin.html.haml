@@ -30,8 +30,8 @@
     %br/
 
     %p
-      %button
-        View TA List
+      %b
+        = link_to 'View TA List', course_ta_list_path(course), remote: true, class: 'button'
       %button
         Add TA to course
 
