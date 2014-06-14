@@ -27,12 +27,24 @@ module IconsHelper
     raw('<i class="fa fa-envelope"></i>')
   end
 
+  def icon_exclamation
+    raw('<i class="fa fa-exclamation-triangle"></i>')
+  end
+
   def icon_history
     raw('<i class="fa fa-history"></i>')
   end
 
   def icon_link_out
     raw('<i class="fa fa-external-link"></i>')
+  end
+
+  def icon_toggle_down
+    raw('<i class="fa fa-angle-down"></i>')
+  end
+
+  def icon_toggle_right
+    raw('<i class="fa fa-angle-right"></i>')
   end
 
   def icon_thumbs_down

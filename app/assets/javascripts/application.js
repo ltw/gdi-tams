@@ -16,16 +16,10 @@
 //= require_tree .
 
 var ready = function() {
-  $('.js-menu-trigger').on('click touchstart', function(e){
-    $('.js-menu').toggleClass('is-visible');
-    $('.js-menu-screen').toggleClass('is-visible');
-    e.preventDefault();
-  });
-
-  $('.js-menu-screen').on('click touchstart', function(e){
-    $('.js-menu').toggleClass('is-visible');
-    $('.js-menu-screen').toggleClass('is-visible');
-    e.preventDefault();
+  // CLOSE MODAL
+  $('#content #modal #close').click(function(event) {
+    event.preventDefault();
+    $('#modal').remove();
   });
 };
 

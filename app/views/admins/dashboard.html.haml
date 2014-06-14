@@ -1,38 +1,76 @@
-%h3 Organizer Dashboard
-
 - if notice
   %p#notice= notice
 
-%h4 Monthly course emails
+%h2.padding-top__15px
+  %a{:href => "#{teaching_assistants_path}"}
+    = icon_link_out
+    Manage Teaching Assistants
 
-= button_to 'Send monthly sign up email', { controller: :emails, action: :monthly }, method: :get
+%h2#add_new_things_header.padding-top__15px
+  %a{:href => "#"}
+    %span#add_new_things_icon
+      = icon_toggle_right
+    Add Course, TA, or Series
 
-%h4 Prospective TAs
+#add_new_things
+  .container__30px
+    = link_to 'Add a new Series', new_series_path, remote: true, class: 'button'
+    / = link_to 'Import Course from Meetup', new_course_path, remote: true, class: 'button'
+    = link_to 'Add a new TA', new_teaching_assistant_path, remote: true, class: 'button'
+    = render partial: 'courses/new'
 
 - if TeachingAssistant.prospective.any?
-  %p Approving an application will email the TA.
+  %h2#prospective_tas_header.padding-top__15px
+    %a{:href => "#"}
+      %span#prospective_tas_icon
+        = icon_toggle_right
+      Prospective TAs
 
-  %table.table-minimal
-    %tr
-      %th Name
-      %th Email
-      %th Approve
-    - TeachingAssistant.prospective.each do |ta|
-      %tr
-        %td= ta.name
-        %td= ta.email
-        %td= link_to icon_thumbs_up + ' Upgrade to Pending', { controller: :emails, action: :welcome, emails: { teaching_assistant: ta } }
-
-- else
-  %p You have no applications to approve.
+  #prospective_tas
+    .container__30px
+      %p Approving an application will email the TA.
+    .card
+      - TeachingAssistant.prospective.each do |ta|
+        = link_to icon_thumbs_up + ' Upgrade to Pending', { controller: :emails, action: :welcome, emails: { teaching_assistant: ta } }, class: 'padding-right__10px'
+        %b= ta.name
 
 
+%h2#attendance_management_header.padding-top__15px
+  %a{:href => "#"}
+    %span#attendance_management_icon
+      = icon_toggle_right
+    Attendance Management
 
-%h4 Upcoming courses
+#attendance_management
+  .container__30px
+    %span.color__secondary= icon_code
+    Indicates a series (multi-session) course.
+  - @past_courses.each do |course|
+    = render partial: 'courses/admin_view', locals: { course: course }
 
-.cards
-  .cards-large
-    - @courses.each do |course|
-      = render partial: 'refills/course_card/admin', locals: { course: course }
+%h2#monthly_emails_header.padding-top__15px
+  %a{:href => "#"}
+    %span#monthly_emails_icon
+      = icon_toggle_right
+    Monthly course emails
 
+#monthly_emails
+  .card
+    %p
+      This will email all Teaching Assistants! Use with caution.
+
+    = button_to 'Send monthly sign up email', { controller: :emails, action: :monthly }, method: :get
+
+%h2#upcoming_courses_header.padding-top__15px
+  %a{:href => "#"}
+    %span#upcoming_courses_icon
+      = icon_toggle_down
+    Upcoming Courses
+
+#upcoming_courses
+  .container__30px
+    %span.color__secondary= icon_code
+    Indicates a series (multi-session) course.
+  - @courses.each do |course|
+    = render partial: 'courses/admin_view', locals: { course: course }
 

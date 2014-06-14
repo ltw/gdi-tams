@@ -28,6 +28,10 @@ class TeachingAssistant < ActiveRecord::Base
     status.label == "approved"
   end
 
+  def banned?
+    status.label == "banned"
+  end
+
   def inactive?
     (status.label == "inactive") || (status.label == "banned")
   end
@@ -38,10 +42,12 @@ class TeachingAssistant < ActiveRecord::Base
 
   # BALANCES
   def pending_balance
+    return 0 unless approved?
     hours.to_a.map(&:num).inject(&:+) || 0
   end
 
   def balance
+    return 0 unless approved?
     history.to_a.map(&:num).inject(&:+) || 0
   end
 
@@ -51,8 +57,12 @@ class TeachingAssistant < ActiveRecord::Base
     hours.select { |h| h.course.date < Date.tomorrow }.sort_by { |h| h.course.date }
   end
 
+  def num_classes
+    hours.where('num >= 0').select { |h| h.course.date < Date.tomorrow }.length
+  end
+
   def schedule
-    hours.where('num > 0').select { |h| h.course.date > Date.yesterday }.map(&:course).sort_by(&:date)
+    hours.where('num >= 0').select { |h| h.course.date > Date.yesterday }.map(&:course).sort_by(&:date)
   end
 
   def signed_up_for(course)

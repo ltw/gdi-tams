@@ -1,0 +1,38 @@
+@mixin modalBase {
+  box-sizing: border-box;
+  background-color: #fff;
+  padding: 1em;
+  background: white;
+  position: fixed;
+  width: 50%;
+  top: 30%;
+  left: 50%;
+  margin: 0 0 0 -25%;
+  transform: scale(1.5);
+}
+
+.modal {
+  @include modalBase;
+}
+
+.big-modal {
+  @include modalBase;
+  height: 80%;
+  top: 10%;
+  left: 50%;
+  margin: 0 0 0 -25%;
+  overflow: scroll;
+}
+
+.overlay {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.flush--top {
+  margin-top: 0;
+}

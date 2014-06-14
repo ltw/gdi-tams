@@ -6,7 +6,7 @@ class Hour < ActiveRecord::Base
   validates_presence_of :teaching_assistant
   validates_presence_of :course
 
-  scope :credit, -> { where("num > ?", 0) }
+  scope :credit, -> { where("num >= ?", 0) }
   scope :debit, -> { where("num < ?", 1) }
 
   def is_credit?

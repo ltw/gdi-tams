@@ -7,13 +7,3 @@ input[type="submit"] {
   vertical-align: middle;
   white-space: nowrap;
 }
-
-
-button.light-red,
-input[type="submit"].light-red {
-  @include button($button-style, $light-red);
-}
-
-.inline {
-  display: inline;
-}
