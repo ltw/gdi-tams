@@ -2,6 +2,11 @@ class CoursesController < ApplicationController
 
   before_action :set_course, only: [:ta_list]
 
+  def index
+    render 'shared/admin_only' unless is_admin?
+    @courses = Course.all.sort_by(&:date)
+  end
+
   # GET /courses/new
   def new
     render 'shared/admin_only' unless is_admin?
