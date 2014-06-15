@@ -9,7 +9,7 @@
     %h1
       There are
       %span.color__accent
-        %b= @courses.length
+        %b= @num_available
       classes that we still need TAs for.
   %p
     This is your secret sign up page. Only you (and the GDI Organizers) have access to this URL. You can sign up to TA new classes below, or change your RSVP for classes you already signed up to TA.
@@ -55,7 +55,8 @@
     - @teaching_assistant.schedule.each do |course|
       = render partial: 'courses/ta_view', locals: { course: course, teaching_assistant: @teaching_assistant }
   - else
-    %p Looks like you're not signed up for anything right now.
+    .container__10px_30px
+      %p Looks like you're not signed up for anything right now.
 
 
 %h3#sign_up_header.padding-top__15px
