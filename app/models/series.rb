@@ -13,4 +13,8 @@ class Series < ActiveRecord::Base
   def pretty_end_date
     end_date.strftime("%B %e, %Y")
   end
+
+  def upcoming_courses_by_date
+    courses.upcoming.sort_by(&:date)
+  end
 end
