@@ -4,6 +4,11 @@ class TeachingAssistantMailer < ActionMailer::Base
   default from: '"Liz at GDI Chicago" <liza@girldevelopit.com>'
   layout 'mailer'
 
+  def kick_off(ta, courses)
+    @ta = ta
+    mail(to: @ta['email'], subject: "TA signups and credit hours! Details inside")
+  end
+
   def welcome(ta)
     @ta = ta
     mail(to: @ta['email'], subject: "GDI Chicago: Your TA application is approved!")
