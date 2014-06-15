@@ -31,13 +31,12 @@ class TeachingAssistantsController < ApplicationController
     @teaching_assistant = TeachingAssistant.new(teaching_assistant_params)
     @teaching_assistant.status = Status.find_by_label("prospective")
 
-    if is_admin? && @teaching_assistant.save
+    GdiMailer.pending(@teaching_assistant).deliver! if @teaching_assistant.save
+
+    if @teaching_assistant.save
       redirect_to admins_dashboard_path, notice: "TA #{@teaching_assistant.name} successfully added and marked as prospective. Remember to process their application!"
-    elsif @teaching_assistant.save
-      GdiMailer.pending(@teaching_assistant).deliver!
-      redirect_to thanks_teaching_assistant_path
     else
-      render :new
+      redirect_to thanks_teaching_assistant_path
     end
   end
 

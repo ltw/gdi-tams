@@ -32,12 +32,12 @@ Rails.application.configure do
   else
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
-      address:              'smtp.gmail.com',
-      port:                 587,
-      domain:               'girldevelopit.com',
-      user_name:            'liza',
-      password:             ENV['GMAIL_PASSWORD'],
-      authentication:       'plain',
+      address:              'smtp.sendgrid.net',
+      port:                 '587',
+      authentication:       :plain,
+      user_name:            ENV['SENDGRID_USERNAME'],
+      password:             ENV['SENDGRID_PASSWORD'],
+      domain:               'heroku.com',
       enable_starttls_auto: true
     }
   end
