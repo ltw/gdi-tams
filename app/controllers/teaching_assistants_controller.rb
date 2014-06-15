@@ -10,7 +10,6 @@ class TeachingAssistantsController < ApplicationController
 
   # GET /teaching_assistants/1
   def show
-    render 'shared/admin_only' unless is_admin?
     courses = Course.upcoming.single_day.sort_by(&:date)
     @courses = courses.delete_if do |course|
       course.teaching_assistants.pluck(:private_id).include?(@teaching_assistant.private_id)
