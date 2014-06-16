@@ -1,7 +1,7 @@
 class GdiMailer < ActionMailer::Base
   include Resque::Mailer
 
-  default from: 'liza@girldevelopit.com'
+  default from: '"Liz at GDI Chicago" <liza@girldevelopit.com>'
   layout 'mailer'
 
   def welcome(ta)

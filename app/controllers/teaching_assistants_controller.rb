@@ -10,7 +10,6 @@ class TeachingAssistantsController < ApplicationController
 
   # GET /teaching_assistants/1
   def show
-    render 'shared/admin_only' unless is_admin?
     courses = Course.upcoming.single_day.sort_by(&:date)
     @courses = courses.delete_if do |course|
       course.teaching_assistants.pluck(:private_id).include?(@teaching_assistant.private_id)
@@ -35,7 +34,7 @@ class TeachingAssistantsController < ApplicationController
 
     GdiMailer.pending(@teaching_assistant).deliver! if @teaching_assistant.save
 
-    if @teaching_assistant.save
+    if @teaching_assistant.save && is_admin?
       redirect_to admins_dashboard_path, notice: "TA #{@teaching_assistant.name} successfully added and marked as prospective. Remember to process their application!"
     else
       redirect_to thanks_teaching_assistant_path
