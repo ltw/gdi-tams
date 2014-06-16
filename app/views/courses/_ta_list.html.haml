@@ -11,7 +11,7 @@
         %span.padding-right__10px
           = ta.signed_up_for(@course)
         %strong= ta.name
-        = link_to icon_link_out + ' Profile', teaching_assistant_path(ta), class: 'badge default'
+        = link_to icon_link_out + ' Profile', teaching_assistant_path(ta.private_id), class: 'badge default'
         - if ta.is_ta_for?(@course)
           = link_to icon_book + ' Use hours', { controller: :hours, action: :update, id: @course.hour_for(ta), hour: { num: -@course.credit_hours } }, method: :put, title: "Change TA to student", class: "badge warning"
         - else
