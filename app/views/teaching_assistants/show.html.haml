@@ -96,7 +96,8 @@
     .container__30px
       %p You haven't TA'd for any classes yet.
   - else
-    History goes here.
+    - @teaching_assistant.history.each do |hour|
+      = render partial: 'hours/ta_view', locals: { course: hour.course, teaching_assistant: @teaching_assistant }
 
 
 - if @teaching_assistant.inactive?
