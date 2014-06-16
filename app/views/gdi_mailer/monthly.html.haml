@@ -39,7 +39,7 @@
 
 - @courses.each do |course|
   %p
-    %h4= link_to course['name'], course.url
+    %h4= link_to course['name'], course['url']
     = course['date']
     at
     = course['location']
