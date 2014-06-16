@@ -50,7 +50,7 @@ class Course < ActiveRecord::Base
   end
 
   def can_email?
-    !email_sent && teaching_assistants.any? && date < 10.days.from_now && date > Date.tomorrow
+    !email_sent && teaching_assistants.any? && date < 10.days.from_now && date > Date.today
   end
 
   private
