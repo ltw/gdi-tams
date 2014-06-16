@@ -12,3 +12,5 @@
 
 # simplecov
 /coverage
+
+.ruby-version
