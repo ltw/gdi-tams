@@ -33,6 +33,20 @@ class HoursController < ApplicationController
     end
   end
 
+  def mass_create
+    series = Series.find(params[:hour][:series_id])
+    ta = TeachingAssistant.find(params[:hour][:teaching_assistant_id])
+    private_id = ta.private_id
+
+    build_series_hours(series, ta)
+
+    if is_admin?
+      redirect_to admins_dashboard_path, notice: 'Hour was successfully created.'
+    else
+      redirect_to sign_ups_path(private_id), notice: 'Got it! See you in class.'
+    end
+  end
+
   # PATCH/PUT /hours/1
   def update
     if is_admin? && @hour.update(hour_params)
