@@ -37,8 +37,6 @@
       %p.pending
         = icon_exclamation
         You are not yet eligible to earn credit hours. After you TA four full classes, you will be eligible to earn credit hours toward classes.
-      %p
-        You have TA'd for #{pluralize(@teaching_assistant.num_classes, 'class')}, only #{4-@teaching_assistant.num_classes} more to go!
 
 
 %h3#schedule_header.padding-top__15px
