@@ -1,4 +1,6 @@
 class HoursController < ApplicationController
+  include HoursHelper
+
   before_action :set_hour, only: [:show, :edit, :update, :destroy]
 
   # GET /hours/new
@@ -19,23 +21,18 @@ class HoursController < ApplicationController
 
   # POST /hours
   def create
-    hours = Course.find(params[:hour][:course_id]).credit_hours
     @hour = Hour.new(hour_params)
-    private_id = @hour.teaching_assistant.private_id
+    build_hour_from(@hour)
 
-    if params[:student]
-      @hour.num = -hours
-    elsif !@hour.teaching_assistant.approved?
-      @hour.num = 0
-    else
-      @hour.num = hours
+    if params[:series_id]
+      series = Series.find_by_id(params[:series_id])
+      build_series_hours(series, @hour.teaching_assistant)
     end
-
-    render :new unless @hour.save
 
     if is_admin?
       redirect_to admins_dashboard_path, notice: 'Hour was successfully created.'
     else
+      private_id = @hour.teaching_assistant.private_id
       redirect_to sign_ups_path(private_id), notice: 'Got it! See you in class.'
     end
   end
