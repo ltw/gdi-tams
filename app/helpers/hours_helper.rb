@@ -14,5 +14,6 @@ module HoursHelper
     else
       hour.num = hour.course.credit_hours
     end
+    hour.save
   end
 end
