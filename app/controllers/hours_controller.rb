@@ -31,6 +31,8 @@ class HoursController < ApplicationController
       @hour.num = hours
     end
 
+    render :new unless @hour.save
+
     if is_admin?
       redirect_to admins_dashboard_path, notice: 'Hour was successfully created.'
     else
