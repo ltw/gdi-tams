@@ -24,9 +24,6 @@
     - if !course.is_past?
       - if teaching_assistant.is_ta_for?(course)
         = button_to 'Change RSVP to No', { controller: :hours, action: :destroy, id: course.hour_for(teaching_assistant) }, method: :delete
-      - elsif course.is_series?
-        = button_to "RSVP Yes for Series", { controller: :hours, action: :create, hour: { course_id: course.id, teaching_assistant_id: teaching_assistant.id, series_id: course.series_id } }, method: :post
-        = button_to "RSVP Yes for Single Session", { controller: :hours, action: :create, hour: { course_id: course.id, teaching_assistant_id: teaching_assistant.id } }, method: :post
       - else
         = button_to "RSVP Yes! I'll be there!", { controller: :hours, action: :create, hour: { course_id: course.id, teaching_assistant_id: teaching_assistant.id } }, method: :post
 
