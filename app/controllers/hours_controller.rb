@@ -22,17 +22,18 @@ class HoursController < ApplicationController
   # POST /hours
   def create
     @hour = Hour.new(hour_params)
-    build_hour_from(@hour)
+    hours = Course.find(params[:hour][:course_id]).credit_hours
+    private_id = @hour.teaching_assistant.private_id
 
-    if params[:series_id]
-      series = Series.find_by_id(params[:series_id])
-      build_series_hours(series, @hour.teaching_assistant)
+    if !@hour.teaching_assistant.approved?
+      @hour.num = 0
+    else
+      @hour.num = hours
     end
 
     if is_admin?
       redirect_to admins_dashboard_path, notice: 'Hour was successfully created.'
     else
-      private_id = @hour.teaching_assistant.private_id
       redirect_to sign_ups_path(private_id), notice: 'Got it! See you in class.'
     end
   end
