@@ -2,8 +2,10 @@ module HoursHelper
   def build_series_hours(series, ta)
     courses = series.courses.reject { |c| c.id == params[:course_id] }
     courses.each do |course|
-      hour = Hour.new(course: course, teaching_assistant: ta)
-      build_hour_from(hour)
+      if course.date > Date.today
+        hour = Hour.new(course: course, teaching_assistant: ta)
+        build_hour_from(hour)
+      end
     end
   end
 
