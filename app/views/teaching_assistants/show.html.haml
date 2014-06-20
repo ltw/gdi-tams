@@ -26,7 +26,7 @@
     - if @teaching_assistant.approved?
       %p
         %b Balance:
-      = @teaching_assistant.balance
+        = @teaching_assistant.balance
       %p
         %b Pending balance:
         = @teaching_assistant.pending_balance
@@ -37,8 +37,6 @@
       %p.pending
         = icon_exclamation
         You are not yet eligible to earn credit hours. After you TA four full classes, you will be eligible to earn credit hours toward classes.
-      %p
-        You have TA'd for #{pluralize(@teaching_assistant.num_classes, 'class')}, only #{4-@teaching_assistant.num_classes} more to go!
 
 
 %h3#schedule_header.padding-top__15px
@@ -68,10 +66,11 @@
 #sign_up
   - if @series.any?
     - @series.each do |s|
-      .container__30px_30px_10px_30px
+      .card
         %h2
           Series:
           = s.name
+        = button_to "RSVP Yes for all Courses in Series", { controller: :hours, action: :mass_create, hour: { course_id: s.courses.first.id, teaching_assistant_id: @teaching_assistant.id, series_id: s.id } }, method: :post
       - s.upcoming_courses_by_date.each do |course|
         = render partial: 'courses/ta_view', locals: { course: course, teaching_assistant: @teaching_assistant }
 
@@ -97,7 +96,7 @@
       %p You haven't TA'd for any classes yet.
   - else
     - @teaching_assistant.history.each do |hour|
-      = render partial: 'hours/ta_view', locals: { course: hour.course, teaching_assistant: @teaching_assistant }
+      = render partial: 'courses/ta_view', locals: { course: hour.course, teaching_assistant: @teaching_assistant }
 
 
 - if @teaching_assistant.inactive?

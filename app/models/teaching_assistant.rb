@@ -70,8 +70,6 @@ class TeachingAssistant < ActiveRecord::Base
       "TA"
     elsif is_student_in?(course)
       "Student"
-    else
-      "No"
     end
   end
 

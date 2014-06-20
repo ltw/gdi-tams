@@ -129,7 +129,7 @@ describe TeachingAssistant do
 
       it 'returns no if not attending' do
         ta = create(:teaching_assistant)
-        expect(ta.signed_up_for(@course)).to eq('No')
+        expect(ta.signed_up_for(@course)).to eq(nil)
       end
     end
 

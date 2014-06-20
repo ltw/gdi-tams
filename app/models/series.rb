@@ -1,8 +1,7 @@
 class Series < ActiveRecord::Base
   has_many :courses, dependent: :destroy
 
-  validates_presence_of :name
-  validates_presence_of :end_date
+  validates_presence_of :name, :end_date
 
   scope :upcoming, lambda { where("end_date > ?", Date.today) }
 
