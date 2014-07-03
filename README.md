@@ -15,3 +15,31 @@ Staging and production environments available.
 `staging` branch is staging.
 
 Migrations are ran upon deploy automatically.
+
+## Running locally
+
+Make your database and stuffs:
+
+```
+$ bundle
+$ rake db:create && rake db:migrate
+```
+
+And you should probably create an Admin user:
+
+```
+$ rails c
+$ Admin.create!(name: "Me", password: "hello", password_confirmation: "hello")
+```
+
+And then to start up, you need Redis running:
+
+```
+$ redis-server
+```
+
+And launch the app using Foreman:
+
+```
+$ foreman start
+```
