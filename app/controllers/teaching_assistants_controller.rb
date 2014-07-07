@@ -37,7 +37,7 @@ class TeachingAssistantsController < ApplicationController
     if @teaching_assistant.save && is_admin?
       redirect_to admins_dashboard_path, notice: "TA #{@teaching_assistant.name} successfully added and marked as prospective. Remember to process their application!"
     else
-      redirect_to thanks_teaching_assistant_path
+      redirect_to teaching_assistant_thanks_path
     end
   end
 
