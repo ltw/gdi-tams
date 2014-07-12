@@ -37,7 +37,7 @@ class TeachingAssistantsController < ApplicationController
     if @teaching_assistant.save && is_admin?
       redirect_to admins_dashboard_path, notice: "TA #{@teaching_assistant.name} successfully added and marked as prospective. Remember to process their application!"
     else
-      redirect_to thanks_teaching_assistant_path
+      redirect_to teaching_assistant_thanks_path
     end
   end
 
@@ -46,7 +46,7 @@ class TeachingAssistantsController < ApplicationController
       redirect_to admins_dashboard_path, notice: 'Teaching assistant successfully updated.'
     elsif @teaching_assistant.update(teaching_assistant_params)
       private_id = @teaching_assistant.private_id
-      redirect_to sign_ups_path(private_id), notice: 'Updated!'
+      redirect_to teaching_assistant_path(private_id), notice: 'Updated!'
     else
       redirect_to admins_dashboard_path
     end

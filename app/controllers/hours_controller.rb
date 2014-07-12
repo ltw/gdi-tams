@@ -29,7 +29,7 @@ class HoursController < ApplicationController
     if is_admin?
       redirect_to admins_dashboard_path, notice: 'Hour was successfully created.'
     else
-      redirect_to sign_ups_path(private_id), notice: 'Got it! See you in class.'
+      redirect_to teaching_assistant_path(private_id), notice: 'Got it! See you in class.'
     end
   end
 
@@ -43,7 +43,7 @@ class HoursController < ApplicationController
     if is_admin?
       redirect_to admins_dashboard_path, notice: 'Hour was successfully created.'
     else
-      redirect_to sign_ups_path(private_id), notice: 'Got it! See you in class.'
+      redirect_to teaching_assistant_path(private_id), notice: 'Got it! See you in class.'
     end
   end
 
@@ -53,7 +53,7 @@ class HoursController < ApplicationController
       redirect_to admins_dashboard_path, notice: 'Hour was successfully updated.'
     elsif @hour.update(hour_params)
       private_id = @hour.teaching_assistant.private_id
-      redirect_to sign_ups_path(private_id), notice: 'RSVP was successfully updated.'
+      redirect_to teaching_assistant_path(private_id), notice: 'RSVP was successfully updated.'
     else
       render :edit
     end
@@ -69,7 +69,7 @@ class HoursController < ApplicationController
       redirect_to admins_dashboard_path, notice: 'Hour was successfully removed.'
     else
       private_id = @hour.teaching_assistant.private_id
-      redirect_to sign_ups_path(private_id), notice: "RSVP cancelled for #{name} on #{date}."
+      redirect_to teaching_assistant_path(private_id), notice: "RSVP cancelled for #{name} on #{date}."
     end
   end
 
