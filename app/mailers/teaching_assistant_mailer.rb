@@ -1,4 +1,4 @@
-class GdiMailer < ActionMailer::Base
+class TeachingAssistantMailer < ActionMailer::Base
   include Resque::Mailer
 
   default from: '"Liz at GDI Chicago" <liza@girldevelopit.com>'
