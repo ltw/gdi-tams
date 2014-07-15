@@ -13,7 +13,7 @@
         %strong= ta.name
         = link_to icon_link_out + ' Profile', teaching_assistant_path(ta.private_id), class: 'badge default'
         - if ta.is_ta_for?(@course)
-          = link_to icon_book + ' Use hours', { controller: :hours, action: :update, id: @course.hour_for(ta), hour: { num: -@course.credit_hours } }, method: :put, title: "Change TA to student", class: "badge warning"
+          = link_to icon_book + ' Use hours', { controller: :hours, action: :update, id: @course.hour_for(ta), hour: { num: -@course.student_hours } }, method: :put, title: "Change TA to student", class: "badge warning"
         - else
           = link_to icon_history + ' Make TA', { controller: :hours, action: :update, id: @course.hour_for(ta), hour: { num: @course.credit_hours } }, method: :put, title: "Change student to TA", class: "badge approved"
         = link_to icon_delete + ' Remove', { controller: :hours, action: :destroy, id: @course.hour_for(ta) }, method: :delete, title: "Remove TA from course (will also remove hours from credit balance)", class: "badge warning side_margin"
