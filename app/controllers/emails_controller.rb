@@ -4,9 +4,9 @@ class EmailsController < ApplicationController
   def kick_off
     courses = Course.upcoming.includes(:series).sort_by(&:date)
     @tas.each do |ta|
+      log_email("kick off", ta)
       TeachingAssistantMailer.kick_off(ta, courses).deliver
     end
-    log_email("kick off")
     redirect_to admins_dashboard_path, notice: 'System kick off emails sent!'
   end
 
