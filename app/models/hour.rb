@@ -4,6 +4,8 @@ class Hour < ActiveRecord::Base
 
   validates_presence_of :num, :teaching_assistant, :course
 
+  validates :teaching_assistant, uniqueness: {scope: :course}
+
   scope :credit, -> { where("num >= ?", 0) }
   scope :debit, -> { where("num < ?", 1) }
 
