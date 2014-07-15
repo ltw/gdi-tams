@@ -18,10 +18,16 @@
           %h1 GDI Chicago Volunteering
           - if @title
             %h2= @title
-          - if is_admin?
-            #nav
-              %ul
-                %li Menu
+          #nav
+            %ul
+              %li Menu
+              %li
+                %a{href: "#{new_teaching_assistant_path}"}
+                  Sign Up
+              %li
+                %a{href: "#{new_session_path}"}
+                  Admin Log In
+              - if is_admin?
                 %li
                   %a{href: "#{admins_dashboard_path}"}
                     Dashboard
