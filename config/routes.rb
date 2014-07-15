@@ -16,8 +16,9 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
 
-  # PRIMARY ADMIN DASHBOARD
+  # ADMIN FUNCTIONS
   get '/dashboard', to: 'admins#dashboard', as: 'admins_dashboard'
+  get '/attendance', to: 'admins#attendance', as: 'admins_attendance'
 
   # EMAIL SENDS
   get '/emails/welcome', to: 'emails#welcome', as: 'welcome_emails'

@@ -18,5 +18,27 @@
           %h1 GDI Chicago Volunteering
           - if @title
             %h2= @title
+          #nav
+            %ul
+              %li Menu
+              %li
+                %a{href: "#{new_teaching_assistant_path}"}
+                  Sign Up
+              %li
+                %a{href: "#{new_session_path}"}
+                  Admin Log In
+              - if is_admin?
+                %li
+                  %a{href: "#{admins_dashboard_path}"}
+                    Dashboard
+                %li
+                  %a{href: "#{admins_attendance_path}"}
+                    Attendance Management
+                %li
+                  %a{href: "#{teaching_assistants_path}"}
+                    TA Management
+                %li
+                  %a{href: "#{courses_path}"}
+                    Course List
         #main
           = yield
