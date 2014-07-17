@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
 
-  before_action :set_course, only: [:ta_list]
+  before_action :set_course, only: [:ta_list, :edit, :update]
 
   def index
     render 'shared/admin_only' unless is_admin?
@@ -14,6 +14,11 @@ class CoursesController < ApplicationController
     @series = Series.all
   end
 
+  def edit
+    render 'shared/admin_only' unless is_admin?
+    @series = Series.all
+  end
+
   # POST /courses
   def create
     @course = Course.new(course_params)
@@ -22,6 +27,14 @@ class CoursesController < ApplicationController
       redirect_to admins_dashboard_path, notice: 'Course was successfully created.'
     else
       redirect_to admins_dashboard_path, error: 'Course was not successfully created. Womp womp.'
+    end
+  end
+
+  def update
+    if @course.update(course_params)
+      redirect_to admins_dashboard_path, notice: 'Course was successfully updated.'
+    else
+      render :edit
     end
   end
 

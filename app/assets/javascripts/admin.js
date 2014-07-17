@@ -2,7 +2,6 @@ var ready = function() {
   $('#monthly_emails').toggle();
   $('#prospective_tas').toggle();
   // $('#upcoming_courses').toggle();
-  $('#attendance_management').toggle();
   $('#add_new_things').toggle();
 
   function initClick(id) {
@@ -18,7 +17,6 @@ var ready = function() {
   initClick('#monthly_emails');
   initClick('#prospective_tas');
   initClick('#upcoming_courses');
-  initClick('#attendance_management');
   initClick('#add_new_things');
 }
 

@@ -35,17 +35,9 @@
 
 
 %h2#attendance_management_header.padding-top__15px
-  %a{:href => "#"}
-    %span#attendance_management_icon
-      = icon_toggle_right
+  %a{:href => "#{admins_attendance_path}"}
+    = icon_link_out
     Attendance Management
-
-#attendance_management
-  .container__30px
-    %span.color__secondary= icon_code
-    Indicates a series (multi-session) course.
-  - @past_courses.each do |course|
-    = render partial: 'courses/admin_view', locals: { course: course }
 
 %h2#monthly_emails_header.padding-top__15px
   %a{:href => "#"}
