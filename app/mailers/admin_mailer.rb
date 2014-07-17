@@ -6,8 +6,11 @@ class AdminMailer < ActionMailer::Base
 
   layout 'mailer'
 
-  def new_ta(ta)
+  def new_ta(ta, screeners)
     @ta = ta
+    @about = CGI.escapeHTML(screeners[:about]) || 'Answer not provided.'
+    @how = CGI.escapeHTML(screeners[:how]) || 'Answer not provided.'
+    @why = CGI.escapeHTML(screeners[:why]) || 'Answer not provided.'
     mail(subject: "GDI Chicago: New TA application received")
   end
 end

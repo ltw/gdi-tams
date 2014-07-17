@@ -31,13 +31,18 @@ class TeachingAssistantsController < ApplicationController
   def create
     @teaching_assistant = TeachingAssistant.new(teaching_assistant_params)
     @teaching_assistant.status = Status.find_by_label("prospective")
+    screeners = {
+      about: params[:about],
+      how: params[:how],
+      why: params[:why]
+    }
 
     TeachingAssistantMailer.pending(@teaching_assistant).deliver! if @teaching_assistant.save
 
     if @teaching_assistant.save && is_admin?
       redirect_to admins_dashboard_path, notice: "TA #{@teaching_assistant.name} successfully added and marked as prospective. Remember to process their application!"
     else
-      AdminMailer.new_ta(@teaching_assistant).deliver!
+      AdminMailer.new_ta(@teaching_assistant, screeners).deliver!
       redirect_to teaching_assistant_thanks_path
     end
   end
