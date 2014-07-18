@@ -1,4 +1,4 @@
-# #{CHAPTER_NAME} TAMS
+# GDI TAMS
 
 ![Codeship](https://codeship.io/projects/ceff6e60-cbc9-0131-1542-069c58d51f38/status)
 
